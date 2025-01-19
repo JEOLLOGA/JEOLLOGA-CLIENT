@@ -1,4 +1,5 @@
 import PageName from '@components/common/pageName/PageName';
+import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import useNavigateTo from '@hooks/useNavigateTo';
 
 const TempleDetailData = {
@@ -20,6 +21,7 @@ const TempleDetailPage = () => {
         onRightClick={handleToLikeButton}
         isLikeBtn={true}
       />
+      <TempleTitle />
     </div>
   );
 };
