@@ -6,6 +6,7 @@ export const titleWrapper = style({
   flexDirection: 'column',
   width: '33.5rem',
   height: '5rem',
+  gap: '0.4rem',
 });
 
 export const tagBox = style({
