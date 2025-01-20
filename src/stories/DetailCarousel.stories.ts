@@ -1,4 +1,4 @@
-import MainImage from '@components/templeDetail/mainImage/MainImage';
+import MainImage from '@components/carousel/detailCarousel/DetailCarousel';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   title: 'Carousel/DetailCarousel',

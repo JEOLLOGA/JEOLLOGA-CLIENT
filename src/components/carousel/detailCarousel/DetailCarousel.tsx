@@ -1,7 +1,7 @@
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
 
-import * as styles from './mainImage.css';
+import * as styles from './detailCarousel.css';
 import NumberTag from './numberTag/NumberTag';
 
 const mainImageData = {
@@ -26,7 +26,7 @@ const mainImageData = {
   ],
 };
 
-const MainImage = () => {
+const DetailCarousel = () => {
   const { carouselRef, transformStyle, handleDragChange, handleDragEnd } = useCarousel({
     itemCount: mainImageData.total,
     moveDistance: 355,
@@ -53,4 +53,4 @@ const MainImage = () => {
   );
 };
 
-export default MainImage;
+export default DetailCarousel;

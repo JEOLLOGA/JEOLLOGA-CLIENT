@@ -1,5 +1,7 @@
+import MainImage from '@components/carousel/detailCarousel/DetailCarousel';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return <MainImage />;
 };
 
 export default HomePage;
