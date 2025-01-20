@@ -1,13 +1,13 @@
-import MainImage from '@components/carousel/detailCarousel/DetailCarousel';
+import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import type { Meta, StoryObj } from '@storybook/react';
 const meta = {
   title: 'Carousel/DetailCarousel',
-  component: MainImage,
+  component: DetailCarousel,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof MainImage>;
+} satisfies Meta<typeof DetailCarousel>;
 
 export default meta;
 
