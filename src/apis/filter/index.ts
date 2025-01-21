@@ -1,13 +1,21 @@
-import getfilterOptions from '@apis/filter/axios';
-import { useQuery } from '@tanstack/react-query';
+import { fetchFilteredList, fetchFilteredCount } from '@apis/filter/axios';
+import { FilterData } from '@apis/filter/type';
+import { useMutation } from '@tanstack/react-query';
 
-const useGetFilterOptions = () => {
-  const { data, isLoading } = useQuery({
-    queryKey: ['filterOptions'],
-    queryFn: () => getfilterOptions(),
+export const useFetchFilteredList = () => {
+  return useMutation({
+    mutationFn: (groupedFilters: FilterData) => {
+      const page = 1;
+      const userId = 1;
+      return fetchFilteredList(groupedFilters, page, userId);
+    },
   });
-
-  return { data, isLoading };
 };
 
-export default useGetFilterOptions;
+export const useFetchFilteredCount = () => {
+  return useMutation({
+    mutationFn: (groupedFilters: FilterData) => {
+      return fetchFilteredCount(groupedFilters);
+    },
+  });
+};
