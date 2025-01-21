@@ -1,6 +1,6 @@
 import { privateInstance } from '@apis/instance';
 
-const getRanking = async (userId?: number) => {
+const getRanking = async (userId: string | null) => {
   const res = await privateInstance.get('/ranking', {
     params: { userId },
   });
