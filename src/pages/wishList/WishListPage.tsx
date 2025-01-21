@@ -1,4 +1,4 @@
-import useWishlistQuery from '@apis/wish';
+import { useWishlistQuery, useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardList';
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
@@ -13,6 +13,8 @@ const WishListPage = () => {
   const userId = Number(localStorage.getItem('userId'));
 
   const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
 
   const wishlist = data?.wishlist || [];
   const totalPages = data?.totalPages || 1;
@@ -24,6 +26,14 @@ const WishListPage = () => {
       top: 0,
       behavior: 'smooth',
     });
+  };
+
+  const handleToggleWishlist = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
   };
 
   if (isLoading) {
@@ -41,7 +51,11 @@ const WishListPage = () => {
       ) : (
         <>
           <div>
-            <WishCardList data={wishlist} layout="vertical" />
+            <WishCardList
+              data={wishlist}
+              layout="vertical"
+              onToggleWishlist={handleToggleWishlist}
+            />
           </div>
           <Pagination
             currentPage={data?.page || 1}

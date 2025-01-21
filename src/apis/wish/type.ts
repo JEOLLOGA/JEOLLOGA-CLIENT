@@ -9,9 +9,19 @@ export interface WishItem {
   liked: boolean;
 }
 
-export interface WishListResponse {
+export interface WishlistResponse {
   page: number;
   pageSize: number;
   totalPages: number;
   wishlist: WishItem[];
+}
+
+export interface WishlistRequest {
+  userId: number;
+  templestayId: number;
+}
+
+export interface SuccessResponse {
+  data: 'success';
+  msg: string | null;
 }

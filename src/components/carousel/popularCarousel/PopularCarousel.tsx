@@ -1,4 +1,5 @@
 import useGetRanking from '@apis/ranking';
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
@@ -23,6 +24,18 @@ const PopularCarousel = () => {
   if (isError) {
     return <p>Error</p>;
   }
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
+
+  const userId = Number(localStorage.getItem('userId'));
+
+  const handleLikeToggle = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
+  };
 
   return (
     <section ref={carouselRef} className={styles.carouselWrapper}>
@@ -33,6 +46,7 @@ const PopularCarousel = () => {
           onDragChange: handleDragChange,
           onDragEnd: handleDragEnd,
         })}>
+
         {data?.rankings &&
           data.rankings.map((rankings) => (
             <PopularCard
@@ -46,8 +60,10 @@ const PopularCarousel = () => {
               onClick={() => {
                 alert(`${rankings.templeName} 클릭됨!`);
               }}
+              onLikeToggle={(liked: boolean) => handleLikeToggle(data.id, liked)}
             />
           ))}
+
       </div>
     </section>
   );
