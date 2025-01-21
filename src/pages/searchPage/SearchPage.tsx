@@ -18,9 +18,12 @@ const recentData = [
 ];
 
 const SearchPage = () => {
+  const handleSearch = (text: string) => {
+    console.log(`${text}`); // 추후 api 연결
+  };
   return (
     <>
-      <SearchHeader />
+      <SearchHeader onSearch={handleSearch} />
       <div className={styles.paddingStyle}>
         <DetailTitle title="최근 검색" isTotal size="small" rigntBtnLabel="전체 삭제" />
       </div>
