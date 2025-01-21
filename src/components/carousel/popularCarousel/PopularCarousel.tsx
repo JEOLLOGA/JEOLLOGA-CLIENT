@@ -1,3 +1,4 @@
+import useGetRanking from '@apis/ranking';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
@@ -5,43 +6,23 @@ import React from 'react';
 
 import * as styles from './popularCarousel.css';
 
-const stayData = {
-  rankings: [
-    {
-      ranking: 1,
-      id: 1,
-      templeName: '대원사(보성)',
-      tag: '방긋방긋',
-      region: '전남',
-      liked: true,
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_13774.png',
-    },
-    {
-      ranking: 2,
-      id: 2,
-      templeName: '수원사',
-      tag: '방긋방긋',
-      region: '경기',
-      liked: true,
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_13774.png',
-    },
-    {
-      ranking: 3,
-      id: 3,
-      templeName: '용흥사',
-      tag: '방긋방긋',
-      region: '전남',
-      liked: false,
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_13774.png',
-    },
-  ],
-};
-
 const PopularCarousel = () => {
+  const userId = localStorage.getItem('userId');
+
+  const { data, isLoading, isError } = useGetRanking(userId);
+
   const { carouselRef, transformStyle, handleDragChange, handleDragEnd } = useCarousel({
-    itemCount: stayData.rankings.length,
+    itemCount: 3,
     moveDistance: 355,
   });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
 
   return (
     <section ref={carouselRef} className={styles.carouselWrapper}>
@@ -52,20 +33,21 @@ const PopularCarousel = () => {
           onDragChange: handleDragChange,
           onDragEnd: handleDragEnd,
         })}>
-        {stayData.rankings.map((data) => (
-          <PopularCard
-            key={data.id}
-            ranking={data.ranking}
-            templeName={data.templeName}
-            templeLoc={data.region}
-            templeImg={data.imgUrl}
-            isLiked={data.liked}
-            tag={data.tag}
-            onClick={() => {
-              alert(`${data.templeName} 클릭됨!`);
-            }}
-          />
-        ))}
+        {data?.rankings &&
+          data.rankings.map((rankings) => (
+            <PopularCard
+              key={rankings.templestayId}
+              ranking={rankings.ranking}
+              templeName={rankings.templeName}
+              templeLoc={rankings.region}
+              templeImg={rankings.imgUrl}
+              isLiked={rankings.liked}
+              tag={rankings.tag}
+              onClick={() => {
+                alert(`${rankings.templeName} 클릭됨!`);
+              }}
+            />
+          ))}
       </div>
     </section>
   );
