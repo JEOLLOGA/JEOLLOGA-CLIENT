@@ -4,11 +4,22 @@ import PageName from '@components/common/pageName/PageName';
 import TapBar from '@components/common/tapBar/TapBar';
 import FilterBox from '@components/filter/filterBox/FilterBox';
 import FILTERS from '@constants/filters';
+import useFilter from '@hooks/useFilter';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterPage.css';
 
 const FilterPage = () => {
+  const {
+    filtersState,
+    price,
+    totalCount,
+    toggleFilter,
+    updatePrice,
+    handleResetFilter,
+    handleClickSubmit,
+  } = useFilter();
+
   return (
     <div>
       <header className={styles.header}>
@@ -18,12 +29,25 @@ const FilterPage = () => {
       <main className={styles.main}>
         {Object.entries(FILTERS).map(([key, items]) => (
           <div key={key}>
-            <FilterBox title={titleMap[key]} items={items} id={key} />
+            <FilterBox
+              title={titleMap[key]}
+              items={items}
+              id={key}
+              filtersState={filtersState}
+              onToggleFilter={toggleFilter}
+              price={price}
+              updatePrice={updatePrice}
+            />
             <Divider />
           </div>
         ))}
       </main>
-      <ButtonBar type="reset" label="NN개의 템플스테이 보기" />
+      <ButtonBar
+        type="reset"
+        label={`${totalCount}개의 템플스테이 보기`}
+        handleClickSubmit={handleClickSubmit}
+        handleResetFilter={handleResetFilter}
+      />
     </div>
   );
 };

@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as styles from './priceSlider.css';
 
-const PriceSlider = () => {
-  const [minPrice, setMinPrice] = useState<number>(0);
-  const [maxPrice, setMaxPrice] = useState<number>(30);
+interface PriceSliderProps {
+  min: number;
+  max: number;
+  updatePrice: (min: number, max: number) => void;
+}
+
+const PriceSlider = ({ min, max, updatePrice }: PriceSliderProps) => {
+  const [minPrice, setMinPrice] = useState<number>(min);
+  const [maxPrice, setMaxPrice] = useState<number>(max);
 
   const MIN_PRICE = 0;
   const MAX_PRICE = 30;
+
+  useEffect(() => {
+    updatePrice(minPrice * 10000, maxPrice * 10000);
+  }, [minPrice, maxPrice, updatePrice]);
 
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.min(Number(event.target.value), maxPrice - 1);
