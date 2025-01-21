@@ -1,3 +1,4 @@
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
@@ -43,6 +44,19 @@ const PopularCarousel = () => {
     moveDistance: 355,
   });
 
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
+
+  const userId = Number(localStorage.getItem('userId'));
+
+  const handleLikeToggle = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
+  };
+
   return (
     <section ref={carouselRef} className={styles.carouselWrapper}>
       <div
@@ -64,6 +78,7 @@ const PopularCarousel = () => {
             onClick={() => {
               alert(`${data.templeName} 클릭됨!`);
             }}
+            onLikeToggle={(liked: boolean) => handleLikeToggle(data.id, liked)}
           />
         ))}
       </div>
