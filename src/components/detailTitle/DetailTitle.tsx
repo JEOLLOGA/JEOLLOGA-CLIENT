@@ -13,7 +13,7 @@ const DetailTitle = ({
   isTotal = false,
   onClick,
   size = 'medium',
-  rigntBtnLabel = '젠체보기',
+  rigntBtnLabel = '전체보기',
 }: DetailTitleProps) => {
   return (
     <div className={titleContainerStyle}>

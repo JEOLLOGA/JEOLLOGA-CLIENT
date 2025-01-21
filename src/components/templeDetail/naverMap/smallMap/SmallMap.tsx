@@ -22,7 +22,7 @@ const SmallMap = () => {
   );
 
   return (
-    <>
+    <div className={styles.mapContainerWrapper}>
       <DetailTitle title="지도" />
       <div className={styles.mapContainerStyle}>
         <div className={styles.addressDetailStyle}>
@@ -33,7 +33,7 @@ const SmallMap = () => {
           <MapContainer latitude={mapData.latitude} longitude={mapData.longitude} size="small" />
         </button>
       </div>
-    </>
+    </div>
   );
 };
 
