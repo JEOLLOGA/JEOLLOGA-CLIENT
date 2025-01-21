@@ -2,7 +2,7 @@ import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
 
 import * as styles from './detailCarousel.css';
-import NumberTag from './numberTag/NumberTag';
+import ImageItem from './DetailImage';
 
 const mainImageData = {
   total: 4,
@@ -31,6 +31,7 @@ const DetailCarousel = () => {
     itemCount: mainImageData.total,
     moveDistance: 355,
   });
+
   return (
     <section ref={carouselRef} className={styles.imageWrapper}>
       <div
@@ -41,12 +42,13 @@ const DetailCarousel = () => {
           onDragEnd: handleDragEnd,
         })}>
         {mainImageData.templestayImgs.map((image) => (
-          <div className={styles.imageBox} key={image.id}>
-            <img className={styles.imageStyle} src={image.imgUrl} alt={`Templestay ${image.id}`} />
-            <div className={styles.numberStyle}>
-              <NumberTag currentNum={image.id} totalNum={mainImageData.total} />
-            </div>
-          </div>
+          <ImageItem
+            key={image.id}
+            id={image.id}
+            imgUrl={image.imgUrl}
+            currentNum={image.id}
+            totalNum={mainImageData.total}
+          />
         ))}
       </div>
     </section>

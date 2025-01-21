@@ -6,6 +6,7 @@ export const imageWrapper = style({
   width: '33.5rem',
   overflow: 'hidden',
   touchAction: 'none',
+  cursor: 'pointer',
 });
 
 export const imageContainer = style({
@@ -25,7 +26,6 @@ export const imageStyle = style({
   overflow: 'hidden',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  cursor: 'pointer',
   borderRadius: 4,
 });
 
