@@ -20,7 +20,6 @@ export const loginWrapper = style({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '33.5rem',
 });
 
 export const contentWrapper = style({

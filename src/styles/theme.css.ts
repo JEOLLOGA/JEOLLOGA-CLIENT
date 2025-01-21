@@ -39,7 +39,7 @@ const theme = createGlobalTheme(':root', {
 
     gradient: 'linear-gradient(180deg, #00000000 61.26%, #000000BF 100%)',
 
-    filerDropshadow: '0px 4px 7px 0px #0000000D',
+    filerDropshadow: '0px 4px 7px 0px rgba(0, 0, 0, 0.05);',
     reserveBtnDropshadow: '0px -4px 7px 0px #0000000D',
     boxArrowBtnDropshadow: '0px 3px 19px 0px rgba(0, 0, 0, 0.08)',
   },
