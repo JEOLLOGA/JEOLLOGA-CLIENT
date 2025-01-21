@@ -9,6 +9,8 @@ const SearchPage = lazy(() => import('@pages/searchPage/SearchPage'));
 const ErrorPage = lazy(() => import('@pages/ErrorPage'));
 const FilterPage = lazy(() => import('@pages/filterPage/FilterPage'));
 const MyPage = lazy(() => import('@pages/myPage/MyPage'));
+const OnboardingPage = lazy(() => import('@pages/onboardingPage/OnboardingPage'));
+const WelcomePage = lazy(() => import('@pages/welcomePage/WelcomePage'));
 const WishListPage = lazy(() => import('@pages/wishList/WishListPage'));
 const LoginPage = lazy(() => import('@pages/loginPage/LoginPage'));
 
@@ -49,6 +51,14 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'onboarding',
+        element: <OnboardingPage />,
+      },
+      {
+        path: 'welcome',
+        element: <WelcomePage />,
       },
     ],
   },

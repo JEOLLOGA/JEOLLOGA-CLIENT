@@ -17,6 +17,11 @@ export const backButton = style({
   marginLeft: '1.2rem',
 });
 
+export const emptyBox = style({
+  width: '4rem',
+  height: '4rem',
+});
+
 export const barContainer = style({
   width: '100%',
   height: '0.2rem',
