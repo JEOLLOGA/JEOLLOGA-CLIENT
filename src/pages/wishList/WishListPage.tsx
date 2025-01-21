@@ -3,6 +3,7 @@ import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardL
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { useState } from 'react';
 
 import container from './wishListPage.css';
@@ -11,10 +12,7 @@ const WishListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const userId = Number(localStorage.getItem('userId'));
 
-  const {
-    data,
-    // isLoading,
-  } = useWishlistQuery(currentPage, userId);
+  const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);
 
   const wishlist = data?.wishlist || [];
   const totalPages = data?.totalPages || 1;
@@ -27,6 +25,13 @@ const WishListPage = () => {
       behavior: 'smooth',
     });
   };
+
+  if (isLoading) {
+    return <ExceptLayout type="loading" />;
+  }
+  if (isError) {
+    return <ExceptLayout type="networkError" />;
+  }
 
   return (
     <div className={container}>
