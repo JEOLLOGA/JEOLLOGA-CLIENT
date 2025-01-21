@@ -12,10 +12,10 @@ const UserInfo = () => {
   const postLogout = usePostLogout();
 
   const handleNoticeClick = () => {
-    alert('notice click');
+    window.open('https://www.notion.so/1817c7beb7788076bdddfd4ba4b43008?pvs=4', '_blank');
   };
   const handleQuestionClick = () => {
-    alert('question click');
+    window.open('https://www.notion.so/1807c7beb7788005a73bc799ce8719bf?pvs=4', '_blank');
   };
   const handleLogoutClick = () => {
     postLogout.mutate();
