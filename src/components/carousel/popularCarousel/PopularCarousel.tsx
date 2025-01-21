@@ -9,7 +9,7 @@ import * as styles from './popularCarousel.css';
 const PopularCarousel = () => {
   const userId = localStorage.getItem('userId');
 
-  const { data, isLoading, isError } = useGetRanking(userId);
+  const { data, isLoading, isError } = useGetRanking(Number(userId));
 
   const { carouselRef, transformStyle, handleDragChange, handleDragEnd } = useCarousel({
     itemCount: 3,
