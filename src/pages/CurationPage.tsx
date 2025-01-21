@@ -5,17 +5,7 @@ const CurationPage = () => {
   const { index } = useParams();
   const indexNum = parseInt(index || '0');
 
-  let images: string[] = [];
-
-  if (indexNum === 1) {
-    images = CURATION_IMAGES.popular;
-  } else if (indexNum === 2) {
-    images = CURATION_IMAGES.bonginsa;
-  } else if (indexNum === 3) {
-    images = CURATION_IMAGES.beginner;
-  } else if (indexNum === 4) {
-    images = CURATION_IMAGES.doglover;
-  }
+  const images = Object.values(CURATION_IMAGES)[indexNum - 1] || [];
 
   return (
     <section style={{ marginTop: '-1.2rem' }}>
