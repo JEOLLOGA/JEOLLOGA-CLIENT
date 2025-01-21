@@ -24,15 +24,26 @@ const UserInfo = () => {
     alert('delete click');
   };
 
+  const userId = localStorage.getItem('userId');
+  const { data, isLoading, isError } = useGetMyPage(userId);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
+
+  if (!data) {
+    return <p>No user information available</p>;
+  }
+
   return (
     <div className={infoContainerStyle}>
-      <TopInfo nickname={USER_INFO.nickname} email={USER_INFO.email} />
+      <TopInfo nickname={data.nickname} email={data.email} />
       <UserInfoSection title="회원정보">
-        <MemberInfo
-          ageRange={USER_INFO.ageRange}
-          gender={USER_INFO.gender}
-          religion={USER_INFO.religion}
-        />
+        <MemberInfo ageRange={data.ageRange} gender={data.gender} religion={data.religion} />
       </UserInfoSection>
       <UserInfoSection title="도움말">
         <HelpSection onNoticeClick={handleNoticeClick} onQuestionClick={handleQuestionClick} />
