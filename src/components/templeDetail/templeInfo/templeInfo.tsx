@@ -1,6 +1,6 @@
 import DetailTitle from '@components/detailTitle/DetailTitle';
+import useExpandHook from '@constants/hooks/useExpandHook/useExpandHook';
 import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
-import useExpandHook from '@hooks/useExpandHook/useExpandHook';
 import { useRef } from 'react';
 
 import ContentCollapse from './contentCollapse/ContentCollapse';

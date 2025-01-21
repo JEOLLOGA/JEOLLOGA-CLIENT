@@ -1,6 +1,6 @@
 import PageName from '@components/common/pageName/PageName';
+import useNavigateTo from '@constants/hooks/useNavigateTo';
 import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
-import useNavigateTo from '@hooks/useNavigateTo';
 
 const TempleTopbar = () => {
   const handleToBack = useNavigateTo(-1);

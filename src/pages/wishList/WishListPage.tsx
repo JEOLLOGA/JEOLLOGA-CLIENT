@@ -2,7 +2,8 @@ import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardL
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
-import { useState } from 'react';
+import useNavigateTo from '@constants/hooks/useNavigateTo';
+import React, { useState } from 'react';
 
 import container from './wishListPage.css';
 

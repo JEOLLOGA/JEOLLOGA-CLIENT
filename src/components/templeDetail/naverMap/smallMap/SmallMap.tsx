@@ -1,6 +1,6 @@
 import TextBtn from '@components/common/button/textBtn/TextBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
-import useNavigateTo from '@hooks/useNavigateTo';
+import useNavigateTo from '@constants/hooks/useNavigateTo';
 
 import * as styles from './smallMap.css';
 import MapContainer from '../MapContainer';

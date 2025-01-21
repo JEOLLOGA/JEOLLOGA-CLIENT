@@ -1,4 +1,5 @@
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
+import TapBar from '@components/common/tapBar/TapBar';
 import SmallMap from '@components/templeDetail/naverMap/smallMap/SmallMap';
 import TempleDetailInfo from '@components/templeDetail/templeDetailInfo/TempleDetailInfo';
 import TempleInfo from '@components/templeDetail/templeInfo/templeInfo';
@@ -12,10 +13,15 @@ import * as styles from './TempleDetailPage.css';
 
 const TempleDetailPage = () => {
   return (
-    <>
-      <TempleTopbar />
-      <TempleTitle />
-      <TempleDetailInfo />
+    <div className={styles.templeDetailWrapper}>
+      <div className={styles.topDetailContainer}>
+        <TempleTopbar />
+        <div className={styles.templeTitleBox}>
+          <TempleTitle />
+          <TempleDetailInfo />
+        </div>
+        <TapBar type="detail" />
+      </div>
       <div className={styles.templeDetailMiddle}>
         <TempleReview />
         <TempleSchedule />
@@ -24,7 +30,7 @@ const TempleDetailPage = () => {
       </div>
       <SmallMap />
       <ButtonBar type="wish" label="예약하러 가기" />
-    </>
+    </div>
   );
 };
 
