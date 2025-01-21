@@ -17,10 +17,6 @@ const meta = {
       control: { type: 'boolean' },
       description: 'Determines if the "전체보기" button is shown',
     },
-    onClick: {
-      action: 'clicked',
-      description: 'Function executed when the button is clicked',
-    },
   },
   args: {
     title: 'Default Title',
@@ -36,7 +32,6 @@ export const ReviewButton: Story = {
   args: {
     title: '리뷰',
     isTotal: true,
-    onClick: () => alert('전체보기로 이동'),
   },
 };
 
