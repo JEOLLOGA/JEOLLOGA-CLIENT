@@ -11,7 +11,7 @@ const CurationPage = () => {
     <section style={{ marginTop: '-1.2rem' }}>
       <div>
         {images.map((image, idx) => (
-          <img key={idx} src={image} alt="흠" />
+          <img key={idx} src={image} alt="큐레이션 이미지" />
         ))}
       </div>
     </section>
