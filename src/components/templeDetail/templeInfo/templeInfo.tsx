@@ -1,6 +1,6 @@
 import DetailTitle from '@components/detailTitle/DetailTitle';
-import useExpandHook from '@constants/hooks/useExpandHook/useExpandHook';
 import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
+import useExpandHook from '@hooks/useExpandHook/useExpandHook';
 import { useRef } from 'react';
 
 import ContentCollapse from './contentCollapse/ContentCollapse';
@@ -11,7 +11,7 @@ const TempleInfo = () => {
   const { isAppeared, isExpanded, handleToggleExpand } = useExpandHook(contentRef);
 
   return (
-    <div className={styles.templeInfoContainer}>
+    <div className={styles.templeInfoContainer} id="detail-section-3">
       <DetailTitle title="템플스테이 정보" />
       <div className={styles.templeInfoBoxStyle}>
         <h3 className={styles.templeInfoTitle}>{TEMPLE_DETAIL_DATA.introduction[0]}</h3>

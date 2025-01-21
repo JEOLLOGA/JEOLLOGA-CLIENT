@@ -25,11 +25,7 @@ export const topDetailContainer = style({
   flexDirection: 'column',
   gap: '1rem',
   alignItems: 'center',
-  paddingTop: '6.2rem',
-});
-
-export const tapBarContainer = style({
-  position: 'relative',
+  paddingTop: '5.2rem',
 });
 
 export const stickyTapBar = style({
@@ -37,6 +33,7 @@ export const stickyTapBar = style({
   top: '5.2rem',
   zIndex: 2,
   backgroundColor: 'white',
+  transition: 'all 0.3s ease-in-out',
 });
 
 export const templeTitleBox = style({

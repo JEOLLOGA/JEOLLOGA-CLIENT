@@ -1,5 +1,5 @@
 import ArrowBtn from '@components/common/button/arrowBtn/ArrowBtn';
-import useNavigateTo from '@constants/hooks/useNavigateTo';
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useLocation } from 'react-router-dom';
 
 import * as styles from './largeMap.css';

@@ -2,7 +2,7 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import ScheduleCard from '@components/schedule/ScheduleCard';
 import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
 
-import templeScheduleContainer from './templeSchedule.css';
+import templeScheduleContainer from '../templeDetailInfo/templeDetailInfo.css';
 
 interface ScheduleData {
   [day: string]: {
@@ -13,7 +13,7 @@ interface ScheduleData {
 const TempleSchedule = () => {
   const parsedSchedule: ScheduleData = JSON.parse(TEMPLE_DETAIL_DATA.schedule);
   return (
-    <div className={templeScheduleContainer}>
+    <div className={templeScheduleContainer} id="detail-section-1">
       <DetailTitle title="프로그램 일정" isTotal={false} />
       {Object.entries(parsedSchedule).map(([day, programs]) => (
         <ScheduleCard key={day} day={day} programs={programs} />

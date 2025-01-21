@@ -8,7 +8,7 @@ const priceData = {
 
 const TemplePrice = () => {
   return (
-    <div className={styles.templePriceWrapper}>
+    <div className={styles.templePriceWrapper} id="detail-section-2">
       <DetailTitle title="가격" />
       <div className={styles.templePriceBox}>
         <p className={styles.adultString}>성인(1인)</p>

@@ -5,7 +5,7 @@ import { TEMPLE_REVIEW_DATA } from '@constants/templeDetail';
 import * as styles from './templeReview.css';
 const TempleReview = () => {
   return (
-    <div className={styles.templeReviewWrapper}>
+    <div className={styles.templeReviewWrapper} id="detail-section-0">
       <DetailTitle title="리뷰" isTotal={true} />
       <div className={styles.templeReviewContainer}>
         {TEMPLE_REVIEW_DATA.reviews.map((review) => (

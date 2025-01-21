@@ -46,7 +46,7 @@ export const TEMPLE_REVIEW_DATA = {
       reviewLink: 'https://blog.naver.com/jscho7942/223621960425',
       reviewName: '흐름을 넘어서',
       reviewDescription:
-        '[네이버 지식백과] 대원사 티베트박물관 [Daewon Tibetan Museum, 大原寺─博物館] (두산백과 두피디아, 두산백과) https://terms.naver.com/entry.naver?docId=1219202&amp;cid=40942&amp;categoryId=39201 --- □ 대원사 템플스테이 전남 보성군에... ',
+        '[네이버 지식백과] 대원사 티베트박물관 [Daewon Tibetan Museum, 大原寺─博物館] (두산백과 두피디아, 두산백과) 대원사 템플스테이 전남 보성군에... ',
       reviewDate: '2024.10.17',
       reviewImgUrl: 'http://noms.templestay.com/images//RsImage/L_29376.png',
     },
@@ -56,7 +56,7 @@ export const TEMPLE_REVIEW_DATA = {
       reviewLink: 'https://blog.naver.com/jscho7942/223621960425',
       reviewName: '흐름을 넘어서',
       reviewDescription:
-        '[네이버 지식백과] 대원사 티베트박물관 [Daewon Tibetan Museum, 大原寺─博物館] (두산백과 두피디아, 두산백과) https://terms.naver.com/entry.naver?docId=1219202&amp;cid=40942&amp;categoryId=39201 --- □ 대원사 템플스테이 전남 보성군에... ',
+        '[네이버 지식백과] 대원사 티베트박물관 [Daewon Tibetan Museum, 大原寺─博物館] (두산백과 두피디아, 두산백과)  대원사 템플스테이 전남 보성군에... ',
       reviewDate: '2024.10.17',
       reviewImgUrl: 'http://noms.templestay.com/images//RsImage/L_29376.png',
     },

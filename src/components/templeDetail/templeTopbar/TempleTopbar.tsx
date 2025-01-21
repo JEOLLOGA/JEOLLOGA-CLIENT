@@ -1,9 +1,7 @@
 import PageName from '@components/common/pageName/PageName';
-import useNavigateTo from '@constants/hooks/useNavigateTo';
 import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
 
 const TempleTopbar = () => {
-  const handleToBack = useNavigateTo(-1);
   const handleToLikeButton = () => {
     alert('좋아요버튼클릭');
   };
@@ -11,7 +9,6 @@ const TempleTopbar = () => {
     <div>
       <PageName
         title={`${TEMPLE_DETAIL_DATA.templeName} ${TEMPLE_DETAIL_DATA.templestayName}`}
-        onLeftClick={handleToBack}
         onRightClick={handleToLikeButton}
         isLikeBtn={true}
       />

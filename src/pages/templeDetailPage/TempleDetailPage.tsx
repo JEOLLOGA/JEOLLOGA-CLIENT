@@ -1,3 +1,4 @@
+import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
 import TapBar from '@components/common/tapBar/TapBar';
 import SmallMap from '@components/templeDetail/naverMap/smallMap/SmallMap';
@@ -10,26 +11,33 @@ import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
 import { useEffect, useRef, useState } from 'react';
 
-import * as styles from './TempleDetailPage.css';
+import * as styles from './templeDetailPage.css';
 
 const TempleDetailPage = () => {
   const tapBarRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
+  const [initialOffsetTop, setInitialOffsetTop] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (tapBarRef.current) {
+      setInitialOffsetTop(tapBarRef.current.getBoundingClientRect().top);
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!tapBarRef.current) return;
+      if (initialOffsetTop === null) return;
 
-      const tapBarTop = tapBarRef.current.getBoundingClientRect().top;
+      const scrollTop = window.scrollY;
 
-      setIsSticky(tapBarTop <= 52);
+      setIsSticky(scrollTop >= initialOffsetTop - 62);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [initialOffsetTop]);
 
   return (
     <div className={styles.templeDetailWrapper}>
@@ -37,13 +45,12 @@ const TempleDetailPage = () => {
         <TempleTopbar />
       </div>
       <div className={styles.topDetailContainer}>
+        <DetailCarousel />
         <div className={styles.templeTitleBox}>
           <TempleTitle />
           <TempleDetailInfo />
         </div>
-        <div
-          className={`${styles.tapBarContainer} ${isSticky ? styles.stickyTapBar : ''}`}
-          ref={tapBarRef}>
+        <div ref={tapBarRef} className={`${isSticky ? styles.stickyTapBar : ''}`}>
           <TapBar type="detail" />
         </div>
       </div>

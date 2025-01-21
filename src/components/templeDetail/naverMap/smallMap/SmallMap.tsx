@@ -1,6 +1,6 @@
 import TextBtn from '@components/common/button/textBtn/TextBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
-import useNavigateTo from '@constants/hooks/useNavigateTo';
+import useNavigateTo from '@hooks/useNavigateTo';
 
 import * as styles from './smallMap.css';
 import MapContainer from '../MapContainer';
@@ -22,7 +22,7 @@ const SmallMap = () => {
   );
 
   return (
-    <div className={styles.mapContainerWrapper}>
+    <div className={styles.mapContainerWrapper} id="detail-section-4">
       <DetailTitle title="지도" />
       <div className={styles.mapContainerStyle}>
         <div className={styles.addressDetailStyle}>
