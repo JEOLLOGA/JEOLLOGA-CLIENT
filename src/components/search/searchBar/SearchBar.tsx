@@ -22,7 +22,7 @@ const SearchBar = () => {
         </div>
         <input
           className={styles.inputStyle}
-          placeholder="텍스트 텍스트"
+          placeholder="사찰명을 입력해 주세요"
           value={inputValue}
           onChange={handleChangeInput}
         />

@@ -23,11 +23,11 @@ const LookCard = ({ name }: LookCardProps) => {
       }}>
       <div className={styles.textBox}>
         <span>
-          <span className={styles.name}>{name}</span> 님은
+          <span className={styles.name}>{name}</span> 님을 위한
           <br />
-          어떤 템플스테이를
+          템플스테이,
           <br />
-          원하시나요?
+          찾으러 가볼까요?
         </span>
         <div>
           <BasicBtn
