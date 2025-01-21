@@ -5,7 +5,7 @@ import container from './wishCardList.css';
 
 interface WishCardListProps {
   data: {
-    id: number;
+    templestayId: number;
     templeName: string;
     templestayName: string;
     tag: string;
@@ -21,8 +21,8 @@ const WishCardList = ({ data, layout = 'vertical' }: WishCardListProps) => {
     <section className={container}>
       {data.map((temple) => (
         <TempleStayCard
-          key={temple.id}
-          id={temple.id}
+          key={temple.templestayId}
+          id={temple.templestayId}
           templeName={temple.templeName}
           templestayName={temple.templestayName}
           tag={temple.tag}
