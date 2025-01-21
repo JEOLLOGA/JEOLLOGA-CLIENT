@@ -1,7 +1,5 @@
-import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
-
 const HomePage = () => {
-  return <DetailCarousel />;
+  return <div>HomePage</div>;
 };
 
 export default HomePage;
