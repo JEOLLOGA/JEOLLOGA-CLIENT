@@ -8,6 +8,7 @@ export const cardWrapper = style({
   height: '33.1rem',
   borderRadius: 8,
   padding: '2rem',
+  marginTop: '1.2rem',
 });
 
 export const textBox = style({

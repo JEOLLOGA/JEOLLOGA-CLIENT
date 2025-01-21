@@ -14,9 +14,13 @@ const ProgressBar = ({ currentStep, totalSteps, onBackClick }: ProgressBarProps)
 
   return (
     <div className={ProgressBarStyle.container}>
-      <button className={ProgressBarStyle.backButton} onClick={onBackClick}>
-        <Icon.IcnArrowBlackLeft />
-      </button>
+      {currentStep > 1 ? (
+        <button className={ProgressBarStyle.backButton} onClick={onBackClick}>
+          <Icon.IcnArrowBlackLeft />
+        </button>
+      ) : (
+        <div className={ProgressBarStyle.emptyBox} />
+      )}
       <div className={ProgressBarStyle.barContainer}>
         <div
           className={ProgressBarStyle.barStyle}

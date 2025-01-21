@@ -10,6 +10,7 @@ export const mapWrapper = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  marginTop: '1.4rem',
 });
 
 export const titleBox = style({

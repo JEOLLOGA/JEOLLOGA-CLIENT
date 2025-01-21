@@ -10,7 +10,6 @@ export const carouselWrapper = style({
   width: '37.5rem',
   overflow: 'hidden',
   display: 'flex',
-  marginLeft: '-2rem',
 });
 
 export const carouselContainer = style({
