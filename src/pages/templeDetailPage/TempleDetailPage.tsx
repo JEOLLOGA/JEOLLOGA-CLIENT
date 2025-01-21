@@ -8,19 +8,44 @@ import TempleReview from '@components/templeDetail/templeReview/TempleReview';
 import TempleSchedule from '@components/templeDetail/templeSchedule/TempleSchedule';
 import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
+import { useEffect, useRef, useState } from 'react';
 
 import * as styles from './TempleDetailPage.css';
 
 const TempleDetailPage = () => {
+  const tapBarRef = useRef<HTMLDivElement>(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!tapBarRef.current) return;
+
+      const tapBarTop = tapBarRef.current.getBoundingClientRect().top;
+
+      setIsSticky(tapBarTop <= 52);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <div className={styles.templeDetailWrapper}>
-      <div className={styles.topDetailContainer}>
+      <div className={styles.headerBox}>
         <TempleTopbar />
+      </div>
+      <div className={styles.topDetailContainer}>
         <div className={styles.templeTitleBox}>
           <TempleTitle />
           <TempleDetailInfo />
         </div>
-        <TapBar type="detail" />
+        <div
+          className={`${styles.tapBarContainer} ${isSticky ? styles.stickyTapBar : ''}`}
+          ref={tapBarRef}>
+          <TapBar type="detail" />
+        </div>
       </div>
       <div className={styles.templeDetailMiddle}>
         <TempleReview />

@@ -2,7 +2,7 @@ import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const mapContainerWrapper = style({
-  paddingBottom: '5.8rem',
+  paddingBottom: '3rem',
 });
 
 export const mapContainerStyle = style({
