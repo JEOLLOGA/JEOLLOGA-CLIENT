@@ -1,5 +1,5 @@
 const REGISTER_OPTIONS: Record<'ageRange' | 'gender' | 'religion' | 'hasExperience', string[]> = {
-  ageRange: ['10대', '20대', '30대', '40대', '50대', '60대'],
+  ageRange: ['10대', '20대', '30대', '40대', '50대', '60대 이상'],
   gender: ['남자', '여자'],
   religion: [
     '불교',
