@@ -8,6 +8,9 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  args: {
+    onSearch: (text: string) => alert(`Search: ${text}`),
+  },
 } satisfies Meta<typeof SearchPage>;
 
 export default meta;
