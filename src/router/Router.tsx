@@ -14,6 +14,7 @@ const OnboardingPage = lazy(() => import('@pages/onboardingPage/OnboardingPage')
 const WelcomePage = lazy(() => import('@pages/welcomePage/WelcomePage'));
 const WishListPage = lazy(() => import('@pages/wishList/WishListPage'));
 const LoginPage = lazy(() => import('@pages/loginPage/LoginPage'));
+const CurationPage = lazy(() => import('@pages/CurationPage'));
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: 'welcome',
         element: <WelcomePage />,
+      },
+      {
+        path: 'curation/:index',
+        element: <CurationPage />,
       },
     ],
   },
