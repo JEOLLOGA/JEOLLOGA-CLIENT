@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useGetRanking = (userId: number | null) => {
   const { data, isLoading, isError } = useQuery<RankingResponse>({
-    queryKey: ['rankiing', userId],
+    queryKey: ['ranking', userId],
     queryFn: () => getRanking(userId),
   });
 
