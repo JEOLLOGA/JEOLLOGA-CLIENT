@@ -1,7 +1,7 @@
 const EXCEPT_INFOS = {
   loading: {
     title: '',
-    lottie: 'src/assets/lotties/',
+    lottie: 'src/assets/lotties/moktak_hit.lottie',
     subtitle: '연결 중...',
   },
   networkError: {

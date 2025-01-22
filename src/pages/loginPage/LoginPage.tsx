@@ -3,7 +3,6 @@ import PageName from '@components/common/pageName/PageName';
 import LOGIN_INFOS from '@constants/loginInfos';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import '@dotlottie/player-component';
 
 import * as styles from './loginPage.css';
 
