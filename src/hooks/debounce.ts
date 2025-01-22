@@ -2,13 +2,13 @@ const debounce = <T extends (...args: unknown[]) => void>(
   callback: T,
   delay: number,
 ): ((...args: Parameters<T>) => void) => {
-  let timer: NodeJS.Timeout | null = null;
-  const callbackRef = { current: callback }; // 최신 callback을 참조하는 객체
+  let timer: ReturnType<typeof setTimeout> | null = null; // 명확한 타입 지정
+  const callbackRef = callback; // 최신 콜백을 참조하는 변수
 
   return (...args: Parameters<T>) => {
     if (timer) clearTimeout(timer);
     timer = setTimeout(() => {
-      callbackRef.current(...args); // 최신 callback 호출
+      callbackRef(...args); // 최신 callback 호출
     }, delay);
   };
 };

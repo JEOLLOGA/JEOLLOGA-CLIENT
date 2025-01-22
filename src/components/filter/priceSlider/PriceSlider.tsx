@@ -1,7 +1,5 @@
-import debounce from '@hooks/debounce';
-import useFilter from '@hooks/useFilter';
 import { useAtom } from 'jotai';
-import React, { useCallback, useEffect, useRef } from 'react';
+import React from 'react';
 import { priceAtom } from 'src/store/store';
 
 import * as styles from './priceSlider.css';
@@ -11,33 +9,16 @@ const PriceSlider = () => {
   const MAX_PRICE = 30;
   const [price, setPrice] = useAtom(priceAtom);
 
-  const { getFilterCount } = useFilter();
-
-  const getFilterCountRef = useRef(getFilterCount);
-
-  useEffect(() => {
-    getFilterCountRef.current = getFilterCount;
-  }, [getFilterCount]);
-
-  const debouncedGetFilterCount = useCallback(
-    debounce(() => {
-      getFilterCountRef.current();
-    }, 300),
-    [],
-  );
-
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.min(Number(event.target.value), price.maxPrice - 1);
-    setPrice({ ...price, minPrice: value });
-
-    debouncedGetFilterCount();
+    const updatedPrice = { ...price, minPrice: value };
+    setPrice(updatedPrice);
   };
 
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = Math.max(Number(event.target.value), price.minPrice + 1);
-    setPrice({ ...price, maxPrice: value });
-
-    debouncedGetFilterCount();
+    const updatedPrice = { ...price, maxPrice: value };
+    setPrice(updatedPrice);
   };
   const getTrackStyle = () => ({
     left: `${((price.minPrice - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,

@@ -36,7 +36,12 @@ const TempleDetailPage = () => {
         <TempleInfo />
       </div>
       <SmallMap />
-      <ButtonBar type="wish" label="예약하러 가기" />
+      <ButtonBar
+        type="wish"
+        label="예약하러 가기"
+        handleSearch={() => {}}
+        handleResetFilter={() => {}}
+      />
     </div>
   );
 };
