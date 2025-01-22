@@ -8,6 +8,7 @@ globalStyle('html, body', {
   width: '100%',
   fontSize: '62.5%',
   scrollBehavior: 'smooth',
+  background: '#D3ECD8',
 });
 
 globalStyle('#root', {
@@ -20,6 +21,7 @@ globalStyle('#root', {
   minHeight: '100dvh',
   margin: '0 auto',
   paddingTop: '1.2rem',
+  background: 'white',
 });
 
 globalStyle('body, button, input, select, table, textarea', {

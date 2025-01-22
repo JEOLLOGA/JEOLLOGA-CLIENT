@@ -5,8 +5,12 @@ export const container = style({
   display: 'grid',
   gridTemplateColumns: '4rem 1fr 4rem',
   width: '33.5rem',
-  height: '4rem',
+  height: '5.2rem',
   alignItems: 'center',
+
+  background: theme.COLORS.white,
+  paddingTop: '1.2rem',
+  margin: '-1.2rem 2rem 1rem',
 });
 
 export const buttonLayout = style({

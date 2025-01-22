@@ -24,7 +24,6 @@ const useCarousel = ({ itemCount, moveDistance }: UseCarouselProps) => {
       // 오른쪽으로 드래그
       setCurrentIndex(currentIndex - 1 < 0 ? 0 : currentIndex - 1);
     }
-
     setTransX(0);
   };
 

@@ -1,3 +1,3 @@
-const PAGINATION_UNIT = 5;
+export const HEADER_HEIGHT = 92;
 
-export default PAGINATION_UNIT;
+export const PAGINATION_UNIT = 5;

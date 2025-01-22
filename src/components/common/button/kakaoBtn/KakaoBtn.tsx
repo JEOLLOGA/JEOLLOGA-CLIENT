@@ -10,7 +10,7 @@ const KakaoBtn = () => {
   return (
     <button className={loginBtn} onClick={handleLogin}>
       <Icon.IcnKakaoLogo />
-      카카오 로그인하기
+      카카오로 3초 만에 시작하기
     </button>
   );
 };

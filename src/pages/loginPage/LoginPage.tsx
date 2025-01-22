@@ -2,7 +2,7 @@ import KakaoBtn from '@components/common/button/kakaoBtn/KakaoBtn';
 import PageName from '@components/common/pageName/PageName';
 import LOGIN_INFOS from '@constants/loginInfos';
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import * as styles from './loginPage.css';
 
@@ -10,7 +10,6 @@ type LoginType = 'my' | 'wish';
 
 const LoginPage = () => {
   const location = useLocation();
-  const navigate = useNavigate();
 
   const type: LoginType = location.state?.type || 'my';
 
@@ -18,7 +17,7 @@ const LoginPage = () => {
 
   return (
     <section className={styles.loginWrapper}>
-      <PageName title={title} onLeftClick={() => navigate(-1)} isLikeBtn={false} />
+      <PageName title={title} isLikeBtn={false} />
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 

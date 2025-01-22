@@ -1,6 +1,5 @@
 import Icon from '@assets/svgs';
-import PAGINATION_UNIT from '@constants/constants';
-import React from 'react';
+import { PAGINATION_UNIT } from '@constants/constants';
 
 import * as styles from './pagination.css';
 import PageBtn from '../button/pageBtn/PageBtn';

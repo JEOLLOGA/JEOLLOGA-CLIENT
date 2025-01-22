@@ -24,6 +24,7 @@ export const textbox = style({
 
 export const title = style({
   ...theme.FONTS.h3Sb18,
+  whiteSpace: 'pre-line',
 });
 
 export const subtitle = style({

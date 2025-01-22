@@ -1,7 +1,10 @@
 import UnderlinedBtn from '@components/common/button/underlinedBtn/UnderlinedBtn';
 import tapBarContainer from '@components/common/tapBar/tapBar.css';
+import { HEADER_HEIGHT } from '@constants/constants';
+import FILTERS from '@constants/filters';
 import { TapType, TAPS } from '@constants/taps';
-import { useState } from 'react';
+import useMoveScroll from '@hooks/useMoveScroll';
+import useScrollTracker from '@hooks/useScrollTrack';
 
 interface TapBarProps {
   type: TapType;
@@ -9,10 +12,15 @@ interface TapBarProps {
 
 const TapBar = ({ type }: TapBarProps) => {
   const taplist = TAPS[type];
-  const [activeIndex, setActiveIndex] = useState(0);
+
+  const sectionIds = Object.keys(FILTERS);
+
+  const { scrollIndex, handleClick } = useScrollTracker(sectionIds, HEADER_HEIGHT);
+  const scrollToElement = useMoveScroll(HEADER_HEIGHT);
 
   const handleTabClick = (index: number) => {
-    setActiveIndex(index);
+    handleClick(index);
+    scrollToElement(sectionIds, index);
   };
 
   return (
@@ -21,7 +29,7 @@ const TapBar = ({ type }: TapBarProps) => {
         <UnderlinedBtn
           key={index}
           label={label}
-          isActive={activeIndex === index}
+          isActive={scrollIndex === index}
           onClick={() => handleTabClick(index)}
         />
       ))}

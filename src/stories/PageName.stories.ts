@@ -12,7 +12,6 @@ const meta = {
     title: {
       control: { type: 'text' },
     },
-    onLeftClick: { action: 'left button clicked' },
     onRightClick: { action: 'right button clicked' },
     isLikeBtn: {
       control: { type: 'boolean' },
@@ -21,7 +20,6 @@ const meta = {
   args: {
     title: 'GoToJeol',
     isLikeBtn: true,
-    onLeftClick: () => alert('click !'),
     onRightClick: () => alert('click !'),
   },
 } satisfies Meta<typeof PageName>;

@@ -15,12 +15,12 @@ export const OnboardingBtnStyle = recipe({
       true: {
         backgroundColor: theme.COLORS.green1,
         borderColor: theme.COLORS.primary200,
-        color: theme.COLORS.primary200,
+        color: theme.COLORS.green4,
         '& svg path': {
-          stroke: theme.COLORS.primary200,
+          stroke: theme.COLORS.primary400,
         },
         '& svg circle': {
-          stroke: theme.COLORS.primary200,
+          stroke: theme.COLORS.primary400,
         },
       },
       false: {

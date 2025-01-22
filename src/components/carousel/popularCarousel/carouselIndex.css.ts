@@ -25,6 +25,7 @@ const indexStyle = recipe({
 export const indexContainer = style({
   display: 'flex',
   gap: '0.4rem',
+  marginTop: '0.8rem',
 });
 
 export default indexStyle;

@@ -9,6 +9,7 @@ const tapBarContainer = style({
   height: '4.2rem',
   padding: '0 2rem',
 
+  background: theme.COLORS.white,
   boxShadow: theme.COLORS.filerDropshadow,
 });
 

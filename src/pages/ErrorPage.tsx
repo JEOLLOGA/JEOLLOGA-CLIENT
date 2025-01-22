@@ -1,5 +1,7 @@
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+
 const ErrorPage = () => {
-  return <div>ErrorPage</div>;
+  return <ExceptLayout type="networkError" />;
 };
 
 export default ErrorPage;
