@@ -17,7 +17,26 @@ const theme = createGlobalTheme(':root', {
     black: '#121212',
     white: '#ffffff',
     black60: 'rgba(18, 18, 18, 0.6)',
+    black60: 'rgba(18, 18, 18, 0.6)',
 
+    primary200: '#9FECAD',
+    primary400: '#65C677',
+    primary600: '#3EBD55',
+
+    green1: '#F7FFE9',
+    green2: '#D3ECD8',
+    green3: '#ABD6AE',
+    green4: '#6EBE7D',
+    green5: '#779971',
+    green6: '#EDF7F3',
+
+    pink1: '#FF9999',
+    pink2: '#FF8B8B',
+    brown1: '#FFF2EC',
+    brown2: '#E39371',
+    blue1: '#EBEFFF',
+    blue2: '#6A7394',
+    kakao: '#FEE500',
     primary200: '#9FECAD',
     primary400: '#65C677',
     primary600: '#3EBD55',
@@ -46,6 +65,10 @@ const theme = createGlobalTheme(':root', {
 
   FONTS: {
     //Heading
+    h0Sb22: {
+      fontSize: '2.2rem',
+      fontFamily: "'Pretendard-SemiBold', sans-serif",
+      lineHeight: '138%',
     h0Sb22: {
       fontSize: '2.2rem',
       fontFamily: "'Pretendard-SemiBold', sans-serif",
@@ -90,6 +113,13 @@ const theme = createGlobalTheme(':root', {
     },
 
     //Body
+    b0R22: {
+      fontSize: '2.2rem',
+      fontFamily: "'Pretendard-Regular', sans-serif",
+      lineHeight: '138%',
+      letterSpacing: '1%',
+    },
+
     b0R22: {
       fontSize: '2.2rem',
       fontFamily: "'Pretendard-Regular', sans-serif",
@@ -190,6 +220,31 @@ const theme = createGlobalTheme(':root', {
       letterSpacing: '2%',
     },
     c7R12: {
+    c3Sb14: {
+      fontSize: '1.4rem',
+      fontFamily: "'Pretendard-SemiBold', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+    c4M14: {
+      fontSize: '1.4rem',
+      fontFamily: "'Pretendard-Medium', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+    c5M13: {
+      fontSize: '1.3rem',
+      fontFamily: "'Pretendard-Medium', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+    c6R13: {
+      fontSize: '1.3rem',
+      fontFamily: "'Pretendard-Regular', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+    c7R12: {
       fontSize: '1.2rem',
       fontFamily: "'Pretendard-Regular', sans-serif",
       lineHeight: '128%',
@@ -212,8 +267,33 @@ const theme = createGlobalTheme(':root', {
     f3R10: {
       fontSize: '1rem',
       fontFamily: "'Pretendard-Regular', sans-serif",
+
+    //footer
+    f1Sb11: {
+      fontSize: '1.1rem',
+      fontFamily: "'Pretendard-SemiBold', sans-serif",
       lineHeight: '128%',
       letterSpacing: '2%',
+    },
+    f2Sb10: {
+      fontSize: '1rem',
+      fontFamily: "'Pretendard-SemiBold', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+    f3R10: {
+      fontSize: '1rem',
+      fontFamily: "'Pretendard-Regular', sans-serif",
+      lineHeight: '128%',
+      letterSpacing: '2%',
+    },
+
+    //inform
+    i1R15: {
+      fontSize: '1.5rem',
+      fontFamily: "'Pretendard-Regular', sans-serif",
+      lineHeight: '170%',
+      letterSpacing: '1%',
     },
 
     //inform

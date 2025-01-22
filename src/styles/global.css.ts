@@ -16,6 +16,10 @@ globalStyle('#root', {
   flexDirection: 'column',
   position: 'relative',
 
+  display: 'flex',
+  flexDirection: 'column',
+  position: 'relative',
+
   width: '100%',
   maxWidth: '37.5rem',
   minHeight: '100dvh',
