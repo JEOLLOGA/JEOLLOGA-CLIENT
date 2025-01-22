@@ -1,6 +1,7 @@
 import { useFetchFilteredList, useFetchFilteredCount } from '@apis/filter';
 import { useAtom } from 'jotai';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { filterListAtom, priceAtom, contentAtom } from 'src/store/store';
 
 const useFilter = () => {
@@ -11,7 +12,7 @@ const useFilter = () => {
   const [filtersState, setFiltersState] = useState(filterListInstance.getAllStates());
   const [totalCount, setTotalCount] = useState(0);
 
-  const { mutate: fetchFilterLists } = useFetchFilteredList();
+  const { mutateAsync: fetchFilterLists } = useFetchFilteredList();
   const { mutateAsync: fetchFilterCount } = useFetchFilteredCount();
 
   const toggleFilter = async (filterName: string) => {
@@ -37,15 +38,29 @@ const useFilter = () => {
     setTotalCount(response.count);
   };
 
-  const handleSearch = () => {
-    const groupedFilters = filterListInstance.getGroupedStates();
-    fetchFilterLists({
-      ...groupedFilters,
-      price,
-      content,
-    });
+  const navigate = useNavigate();
 
-    setPrice(price);
+  const handleSearch = async () => {
+    const groupedFilters = filterListInstance.getGroupedStates();
+
+    try {
+      const response = await fetchFilterLists({
+        ...groupedFilters,
+        price,
+        content,
+      });
+
+      navigate('/searchResult', {
+        state: {
+          selectedfilters: groupedFilters,
+          content,
+          results: response,
+          price,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleResetFilter = async () => {
