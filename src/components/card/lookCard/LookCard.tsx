@@ -1,6 +1,6 @@
 import ImgHookCard from '@assets/images/home_card_look.png';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
-import { useNavigate } from 'react-router-dom';
+import useFilter from '@hooks/useFilter';
 
 import * as styles from './lookCard.css';
 
@@ -9,11 +9,7 @@ interface LookCardProps {
 }
 
 const LookCard = ({ name }: LookCardProps) => {
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate('/look'); // 추후 변경예정
-  };
+  const { handleSearch } = useFilter();
 
   return (
     <section
@@ -31,7 +27,7 @@ const LookCard = ({ name }: LookCardProps) => {
         </span>
         <div>
           <BasicBtn
-            onClick={handleClick}
+            onClick={() => handleSearch()}
             variant="green"
             label="둘러보기"
             size="large"

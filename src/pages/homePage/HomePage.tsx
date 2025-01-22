@@ -6,10 +6,18 @@ import PopularCarousel from '@components/carousel/popularCarousel/PopularCarouse
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
+import useFilter from '@hooks/useFilter';
+import { useEffect } from 'react';
 
 import * as styles from './homePage.css';
 
 const HomePage = () => {
+  const { handleResetFilter } = useFilter();
+
+  useEffect(() => {
+    handleResetFilter();
+  }, []);
+
   return (
     <div className={styles.homeWrapper}>
       <Header />
