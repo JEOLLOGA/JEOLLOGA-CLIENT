@@ -7,7 +7,7 @@ const getKakaoLogin = async (code: string) => {
     },
   });
 
-  return res.data;
+  return res;
 };
 
 export default getKakaoLogin;
