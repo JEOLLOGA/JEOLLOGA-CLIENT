@@ -3,7 +3,7 @@ import REGISTER_OPTIONS from './registerOptions';
 export const ONBOARDING_STEPS = [
   {
     id: 'ageRange',
-    title: '\n나이를 알려주세요',
+    title: '\n연령대를 알려주세요',
     options: REGISTER_OPTIONS.ageRange,
     isNextDisabledInitially: true,
   },

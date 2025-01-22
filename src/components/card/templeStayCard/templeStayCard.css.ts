@@ -1,3 +1,4 @@
+import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const verticalContainer = style({
@@ -18,6 +19,7 @@ export const horizontalContainer = style({
 
   borderRadius: '4px',
   cursor: 'pointer',
+  backgroundColor: theme.COLORS.white,
 });
 
 export const horizontalImgSection = style({

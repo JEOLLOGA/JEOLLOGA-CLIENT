@@ -3,7 +3,7 @@ import { style } from '@vanilla-extract/css';
 export const largeMapContainer = style({
   width: '100%',
   height: '100vh',
-  margin: '-1.2rem -2rem 0',
+  margin: '-1.2rem 0',
   position: 'relative',
 });
 
