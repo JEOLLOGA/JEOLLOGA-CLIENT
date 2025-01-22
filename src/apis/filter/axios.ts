@@ -5,7 +5,7 @@ import { isAxiosError } from 'axios';
 
 export const fetchFilteredList = async (filterData: FilterData, page: number, userId: number) => {
   try {
-    const response = await instance.post(`/filter/list?page=${page}&userId=${userId}`, {
+    const response = await instance.post(`/search?page=${page}&userId=${userId}`, {
       ...filterData,
     });
     return response.data;
