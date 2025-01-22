@@ -5,16 +5,27 @@ import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterTypeBox.css';
 
-const FilterTypeBox = () => {
+interface FilterTypeBoxProps {
+  activeFilters: string[];
+}
+
+const FilterTypeBox = ({ activeFilters }: FilterTypeBoxProps) => {
   return (
     <div className={styles.container}>
       <button>
         <Icon.IcnFilter />
       </button>
       <div className={styles.scrollContainer}>
-        {Object.entries(titleMap).map(([key, label]) => (
-          <BasicBtn key={key} variant="grayOutlined" label={label} />
-        ))}
+        {Object.entries(titleMap).map(([key, label]) => {
+          return (
+            <BasicBtn
+              key={key}
+              variant="grayOutlined"
+              label={label}
+              isActive={activeFilters.includes(key)}
+            />
+          );
+        })}
       </div>
     </div>
   );
