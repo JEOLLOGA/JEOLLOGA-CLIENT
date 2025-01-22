@@ -1,6 +1,7 @@
 import Icon from '@assets/svgs';
 import useFilter from '@hooks/useFilter';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import * as styles from './searchBar.css';
 
@@ -12,6 +13,7 @@ const SearchBar = ({ searchText }: SearchBarProps) => {
   const [inputValue, setInputValue] = useState(searchText || '');
 
   const { handleSearch, handleResetFilter } = useFilter();
+  const location = useLocation();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -37,9 +39,9 @@ const SearchBar = ({ searchText }: SearchBarProps) => {
     }
   };
 
-  // 검색어를 입력할 때 기존 필터 지우기
+  // 검색 페이지에서 입력하면 기존 필터 지우기
   useEffect(() => {
-    if (!searchText) {
+    if (location.pathname === '/search') {
       handleResetFilter();
     }
   }, []);
