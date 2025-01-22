@@ -1,13 +1,18 @@
-import { FilterData } from '@apis/filter/type';
+import { FilterType, PriceType } from '@apis/filter/type';
 import instance from '@apis/instance';
 import MESSAGES from '@apis/messages';
 import { isAxiosError } from 'axios';
 
-export const fetchFilteredList = async (filterData: FilterData, page: number, userId: number) => {
+export const fetchFilteredList = async (
+  filterData: FilterType & { price: PriceType; content: string },
+  page: number,
+  userId?: string,
+) => {
   try {
-    const response = await instance.post(`/search?page=${page}&userId=${userId}`, {
+    const response = await instance.post(`/search?page=${page}&useId=${userId}`, {
       ...filterData,
     });
+
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;
@@ -15,11 +20,14 @@ export const fetchFilteredList = async (filterData: FilterData, page: number, us
   }
 };
 
-export const fetchFilteredCount = async (filterData: FilterData) => {
+export const fetchFilteredCount = async (
+  filterData: FilterType & { price: PriceType; content: string },
+) => {
   try {
     const response = await instance.post('/public/filter/count', {
       ...filterData,
     });
+
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) throw error;

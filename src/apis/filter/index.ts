@@ -1,21 +1,27 @@
-import { fetchFilteredList, fetchFilteredCount } from '@apis/filter/axios';
-import { FilterData } from '@apis/filter/type';
+import { fetchFilteredList } from '@apis/filter/axios';
+import { FetchFilteredListProps } from '@apis/filter/type';
 import { useMutation } from '@tanstack/react-query';
+import queryClient from 'src/queryClient';
 
-export const useFetchFilteredList = () => {
+const useFetchFilteredList = () => {
   return useMutation({
-    mutationFn: (groupedFilters: FilterData) => {
-      const page = 1;
-      const userId = 1;
-      return fetchFilteredList(groupedFilters, page, userId);
+    mutationFn: ({
+      groupedFilters,
+      adjustedPrice,
+      searchQuery,
+      page,
+      userId,
+    }: FetchFilteredListProps) => {
+      return fetchFilteredList(
+        { ...groupedFilters, price: adjustedPrice, content: searchQuery },
+        page,
+        userId,
+      );
+    },
+    onSuccess: (data, { groupedFilters, page, userId }: FetchFilteredListProps) => {
+      queryClient.setQueryData(['filteredList', groupedFilters, page, userId], data);
     },
   });
 };
 
-export const useFetchFilteredCount = () => {
-  return useMutation({
-    mutationFn: (groupedFilters: FilterData) => {
-      return fetchFilteredCount(groupedFilters);
-    },
-  });
-};
+export default useFetchFilteredList;
