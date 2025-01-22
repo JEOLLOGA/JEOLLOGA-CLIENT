@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const paddingStyle = style({
-  padding: '0 2rem',
+  padding: '2rem 2rem 0 2rem',
 });
 
 export const leftPaddingStyle = style({
