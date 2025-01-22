@@ -7,10 +7,12 @@ import {
 import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 
 export const useDelSearchRecord = () => {
+  const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (data: DelSearchRecordType) => delSearchRecord(data),
-    onSuccess: (response) => {
-      console.log('댓글 삭제 완료 :', response);
+    onSuccess: (response, variables) => {
+      queryClient.invalidateQueries({ queryKey: [variables.userId] });
     },
     onError: (error) => {
       console.error(error);

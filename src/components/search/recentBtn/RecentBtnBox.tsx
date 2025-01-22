@@ -1,10 +1,8 @@
 import { useGetSearchHistory, useDelSearchRecord } from '@apis/search';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
-
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
-
   const { data, isLoading, isError } = useGetSearchHistory(Number(userId));
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
 
