@@ -4,7 +4,7 @@ import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
 import { useAtomValue } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { filterListAtom } from 'src/store/store';
 
@@ -14,15 +14,25 @@ const SearchResultPage = () => {
   const location = useLocation();
   const { results, content, price } = location.state || {};
 
+  console.log(results, content);
+
+  useEffect(() => {
+    if (results) {
+      setTemplestays(results.templestays);
+      setCurrentPage(results.page);
+      setSearchText(content);
+    }
+  }, [results, content]);
+
   const [currentPage, setCurrentPage] = useState(results.page);
   const [templestays, setTemplestays] = useState(results.templestays);
   const [searchText, setSearchText] = useState(content);
 
-  const handleSearch = (text: string) => {
-    setSearchText(text);
-    setTemplestays(results.templestays);
-    setCurrentPage(results.page);
-  };
+  // const handleSearch = (text: string) => {
+  //   setSearchText(text);
+  //   setTemplestays(results.templestays);
+  //   setCurrentPage(results.page);
+  // };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -36,7 +46,7 @@ const SearchResultPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
-        <SearchHeader onSearch={handleSearch} />
+        <SearchHeader searchText={searchText} />
         <FilterTypeBox activeFilters={activeFilters} />
       </div>
       {templestays.length === 0 ? (

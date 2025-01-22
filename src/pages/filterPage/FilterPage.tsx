@@ -39,7 +39,9 @@ const FilterPage = () => {
       <ButtonBar
         type="reset"
         label={`${totalCount}개의 템플스테이 보기`}
-        handleSearch={handleSearch}
+        handleSearch={() => {
+          handleSearch();
+        }}
         handleResetFilter={handleResetFilter}
       />
     </div>

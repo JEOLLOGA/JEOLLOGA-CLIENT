@@ -7,13 +7,15 @@ import { filterListAtom, priceAtom, contentAtom } from 'src/store/store';
 const useFilter = () => {
   const [filterListInstance] = useAtom(filterListAtom);
   const [price, setPrice] = useAtom(priceAtom);
-  const [content] = useAtom(contentAtom);
+  const [content, setContent] = useAtom(contentAtom);
 
   const [filtersState, setFiltersState] = useState(filterListInstance.getAllStates());
   const [totalCount, setTotalCount] = useState(0);
 
   const { mutateAsync: fetchFilterLists } = useFetchFilteredList();
   const { mutateAsync: fetchFilterCount } = useFetchFilteredCount();
+
+  const navigate = useNavigate();
 
   const toggleFilter = async (filterName: string) => {
     try {
@@ -31,24 +33,38 @@ const useFilter = () => {
   const getFilterCount = async () => {
     const groupedFilters = filterListInstance.getGroupedStates();
 
+    const adjustedPrice = {
+      minPrice: price.minPrice * 10000,
+      maxPrice: price.maxPrice * 10000,
+    };
+
     const response = await fetchFilterCount({
       ...groupedFilters,
-      price,
+      price: adjustedPrice,
+      content,
     });
     setTotalCount(response.count);
   };
 
-  const navigate = useNavigate();
-
-  const handleSearch = async () => {
+  const handleSearch = async (searchContent?: string, currentPage?: number) => {
     const groupedFilters = filterListInstance.getGroupedStates();
+    const searchQuery = searchContent || content;
+    const searchPage = currentPage || 1;
 
+    const adjustedPrice = {
+      minPrice: price.minPrice * 10000,
+      maxPrice: price.maxPrice * 10000,
+    };
+
+    console.log('searchQuery  :', searchQuery, searchPage, adjustedPrice);
     try {
       const response = await fetchFilterLists({
         ...groupedFilters,
-        price,
-        content,
+        price: adjustedPrice,
+        content: searchQuery,
       });
+
+      setContent(searchQuery);
 
       window.scrollTo({
         top: 0,
@@ -58,7 +74,7 @@ const useFilter = () => {
       navigate('/searchResult', {
         state: {
           selectedfilters: groupedFilters,
-          content,
+          content: searchQuery,
           results: response,
           price,
         },
