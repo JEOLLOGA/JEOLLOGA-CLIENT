@@ -8,7 +8,8 @@ const useGetKakaoLogin = () => {
   return useMutation({
     mutationFn: (authCode: string) => getKakaoLogin(authCode),
     onSuccess: (response) => {
-      const userId = response.id;
+      const userId = response.userId;
+
       if (userId) {
         localStorage.setItem('userId', JSON.stringify(userId));
         navigate('/');
