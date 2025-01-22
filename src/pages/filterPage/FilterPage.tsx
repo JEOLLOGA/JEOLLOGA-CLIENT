@@ -5,16 +5,21 @@ import TapBar from '@components/common/tapBar/TapBar';
 import FilterBox from '@components/filter/filterBox/FilterBox';
 import FILTERS from '@constants/filters';
 import useFilter from '@hooks/useFilter';
+import { useAtomValue } from 'jotai';
 import { useLocation } from 'react-router-dom';
+import { filterListAtom } from 'src/store/store';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterPage.css';
 
 const FilterPage = () => {
-  const { filtersState, totalCount, toggleFilter, handleResetFilter, handleSearch } = useFilter();
+  const { totalCount, toggleFilter, handleResetFilter, handleSearch } = useFilter();
 
   const location = useLocation();
   const { selectedTap } = location.state || {};
+  const filterInstance = useAtomValue(filterListAtom);
+
+  const filtersState = filterInstance.getAllStates();
 
   return (
     <div>

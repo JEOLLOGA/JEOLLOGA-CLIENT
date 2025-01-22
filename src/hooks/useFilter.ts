@@ -8,21 +8,16 @@ const useFilter = () => {
   const [filterListInstance] = useAtom(filterListAtom);
   const [price, setPrice] = useAtom(priceAtom);
   const [content, setContent] = useAtom(contentAtom);
-
-  const [filtersState, setFiltersState] = useState(filterListInstance.getAllStates());
   const [totalCount, setTotalCount] = useState(0);
+
+  const navigate = useNavigate();
 
   const { mutateAsync: fetchFilterLists } = useFetchFilteredList();
   const { mutateAsync: fetchFilterCount } = useFetchFilteredCount();
 
-  const navigate = useNavigate();
-
   const toggleFilter = async (filterName: string) => {
     try {
       filterListInstance.toggleStatus(filterName);
-
-      const updatedState = filterListInstance.getAllStates();
-      setFiltersState(updatedState);
 
       await getFilterCount();
     } catch (error) {
@@ -86,8 +81,8 @@ const useFilter = () => {
 
   const handleResetFilter = async () => {
     filterListInstance.resetAllStates();
-    setFiltersState(filterListInstance.getAllStates());
     setPrice({ minPrice: 0, maxPrice: 30 });
+    setContent('');
 
     const groupedFilters = filterListInstance.getGroupedStates();
 
@@ -99,7 +94,6 @@ const useFilter = () => {
   };
 
   return {
-    filtersState,
     price,
     totalCount,
     toggleFilter,

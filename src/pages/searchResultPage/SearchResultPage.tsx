@@ -14,8 +14,6 @@ const SearchResultPage = () => {
   const location = useLocation();
   const { results, content, price } = location.state || {};
 
-  console.log(results, content);
-
   useEffect(() => {
     if (results) {
       setTemplestays(results.templestays);
@@ -28,20 +26,17 @@ const SearchResultPage = () => {
   const [templestays, setTemplestays] = useState(results.templestays);
   const [searchText, setSearchText] = useState(content);
 
-  // const handleSearch = (text: string) => {
-  //   setSearchText(text);
-  //   setTemplestays(results.templestays);
-  //   setCurrentPage(results.page);
-  // };
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  const filterList = useAtomValue(filterListAtom);
+  const filterInstance = useAtomValue(filterListAtom);
   const isPriceChanged = price.minPrice !== 0 || price.maxPrice !== 30;
 
-  const activeFilters = [...filterList.getFilteredGroups(), ...(isPriceChanged ? ['price'] : [])];
+  const activeFilters = [
+    ...filterInstance.getFilteredGroups(),
+    ...(isPriceChanged ? ['price'] : []),
+  ];
 
   return (
     <div className={styles.container}>
