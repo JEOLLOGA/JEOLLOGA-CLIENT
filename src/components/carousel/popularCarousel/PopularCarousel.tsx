@@ -8,7 +8,10 @@ import React from 'react';
 import * as styles from './popularCarousel.css';
 
 const PopularCarousel = () => {
-  const userId = localStorage.getItem('userId');
+  const userId = Number(localStorage.getItem('userId'));
+
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
 
   const { data, isLoading, isError } = useGetRanking(userId);
 
@@ -24,10 +27,6 @@ const PopularCarousel = () => {
   if (isError) {
     return <p>Error</p>;
   }
-  const addWishlistMutation = useAddWishlist();
-  const removeWishlistMutation = useRemoveWishlist();
-
-  const userId = Number(localStorage.getItem('userId'));
 
   const handleLikeToggle = (templestayId: number, liked: boolean) => {
     if (liked) {
@@ -46,7 +45,6 @@ const PopularCarousel = () => {
           onDragChange: handleDragChange,
           onDragEnd: handleDragEnd,
         })}>
-
         {data?.rankings &&
           data.rankings.map((rankings) => (
             <PopularCard
@@ -60,10 +58,9 @@ const PopularCarousel = () => {
               onClick={() => {
                 alert(`${rankings.templeName} 클릭됨!`);
               }}
-              onLikeToggle={(liked: boolean) => handleLikeToggle(data.id, liked)}
+              onLikeToggle={(liked: boolean) => handleLikeToggle(rankings.templestayId, liked)}
             />
           ))}
-
       </div>
     </section>
   );

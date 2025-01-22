@@ -4,7 +4,7 @@ import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import container from './wishListPage.css';
 
@@ -18,6 +18,14 @@ const WishListPage = () => {
 
   const wishlist = data?.wishlist || [];
   const totalPages = data?.totalPages || 1;
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      if (totalPages > 0 && currentPage > totalPages) {
+        setCurrentPage(totalPages);
+      }
+    }
+  }, [isLoading, data, currentPage, totalPages]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -46,7 +54,7 @@ const WishListPage = () => {
   return (
     <div className={container}>
       <PageName title="위시리스트" isLikeBtn={false} />
-      {wishlist.length === 0 ? (
+      {totalPages === 1 && wishlist.length === 0 ? (
         <WishEmpty />
       ) : (
         <>
