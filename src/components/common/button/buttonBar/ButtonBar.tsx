@@ -7,11 +7,11 @@ import { useState } from 'react';
 interface ButtonBarProps {
   type: 'reset' | 'wish';
   label: string;
-  handleClickSubmit: () => void;
+  handleSearch: () => void;
   handleResetFilter: () => void;
 }
 
-const ButtonBar = ({ type, label, handleClickSubmit, handleResetFilter }: ButtonBarProps) => {
+const ButtonBar = ({ type, label, handleSearch, handleResetFilter }: ButtonBarProps) => {
   const [isActive, setIsActive] = useState(false);
 
   const onClickLefthBtn = () => {
@@ -34,7 +34,7 @@ const ButtonBar = ({ type, label, handleClickSubmit, handleResetFilter }: Button
   return (
     <div className={buttonBarContainer}>
       {renderLeftButton()}
-      <PageBottomBtn btnText={label} size="small" onClick={handleClickSubmit} />
+      <PageBottomBtn btnText={label} size="small" onClick={handleSearch} />
     </div>
   );
 };
