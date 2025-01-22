@@ -5,6 +5,7 @@ export const templeInfoContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.4rem',
+  paddingBottom: '0.7rem',
 });
 
 export const templeInfoBoxStyle = style({
