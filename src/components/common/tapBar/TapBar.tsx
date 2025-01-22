@@ -11,12 +11,15 @@ interface TapBarProps {
 }
 
 const TapBar = ({ type }: TapBarProps) => {
+  const headerHeight = HEADER_HEIGHT;
   const taplist = TAPS[type];
+  const sectionIds =
+    type === 'filter'
+      ? Object.keys(FILTERS)
+      : TAPS.detail.map((_, index) => `detail-section-${index}`);
 
-  const sectionIds = Object.keys(FILTERS);
-
-  const { scrollIndex, handleClick } = useScrollTracker(sectionIds, HEADER_HEIGHT);
-  const scrollToElement = useMoveScroll(HEADER_HEIGHT);
+  const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
+  const scrollToElement = useMoveScroll(headerHeight);
 
   const handleTabClick = (index: number) => {
     handleClick(index);

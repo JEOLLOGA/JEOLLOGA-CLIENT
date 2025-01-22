@@ -14,7 +14,12 @@ const OnboardingPage = lazy(() => import('@pages/onboardingPage/OnboardingPage')
 const WelcomePage = lazy(() => import('@pages/welcomePage/WelcomePage'));
 const WishListPage = lazy(() => import('@pages/wishList/WishListPage'));
 const LoginPage = lazy(() => import('@pages/loginPage/LoginPage'));
+const DetailPage = lazy(() => import('@pages/templeDetailPage/TempleDetailPage'));
+const LargeMap = lazy(() => import('@components/templeDetail/naverMap/largeMap/LargeMap'));
+const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/TemplePhotoPage'));
+const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
 const CurationPage = lazy(() => import('@pages/CurationPage'));
+
 
 const router = createBrowserRouter([
   {
@@ -65,6 +70,22 @@ const router = createBrowserRouter([
       {
         path: 'welcome',
         element: <WelcomePage />,
+      },
+      {
+        path: 'detail/:templestayid',
+        element: <DetailPage />,
+      },
+      {
+        path: 'detail/:templestayid/photo',
+        element: <DetailPhoto />,
+      },
+      {
+        path: '/detail/:templestayid/blog',
+        element: <DetailBlog />,
+      },
+      {
+        path: '/detail/:templestayid/map',
+        element: <LargeMap />,
       },
       {
         path: 'curation/:index',

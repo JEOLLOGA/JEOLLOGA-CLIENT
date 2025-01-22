@@ -1,6 +1,10 @@
 import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
+export const mapContainerWrapper = style({
+  paddingBottom: '3rem',
+});
+
 export const mapContainerStyle = style({
   display: 'flex',
   flexDirection: 'column',
