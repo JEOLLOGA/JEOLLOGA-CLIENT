@@ -1,12 +1,14 @@
 import { useFetchFilteredList, useFetchFilteredCount } from '@apis/filter';
-import FILTERS from '@constants/filters';
-import { useCallback, useMemo, useState } from 'react';
-import FilterList from 'src/model/filter/filterList';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
+import { filterListAtom, priceAtom, contentAtom } from 'src/store/store';
 
 const useFilter = () => {
-  const filterListInstance = useMemo(() => new FilterList(FILTERS), []);
+  const [filterListInstance] = useAtom(filterListAtom);
+  const [price, setPrice] = useAtom(priceAtom);
+  const [content] = useAtom(contentAtom);
+
   const [filtersState, setFiltersState] = useState(filterListInstance.getAllStates());
-  const [price, setPrice] = useState({ minPrice: 0, maxPrice: 30 });
   const [totalCount, setTotalCount] = useState(0);
 
   const { mutate: fetchFilterLists } = useFetchFilteredList();
@@ -35,16 +37,15 @@ const useFilter = () => {
     setTotalCount(response.count);
   };
 
-  const updatePrice = useCallback((min: number, max: number) => {
-    setPrice({ minPrice: min, maxPrice: max });
-  }, []);
-
-  const handleClickSubmit = () => {
+  const handleSearch = () => {
     const groupedFilters = filterListInstance.getGroupedStates();
     fetchFilterLists({
       ...groupedFilters,
       price,
+      content,
     });
+
+    setPrice(price);
   };
 
   const handleResetFilter = async () => {
@@ -52,7 +53,13 @@ const useFilter = () => {
     setFiltersState(filterListInstance.getAllStates());
     setPrice({ minPrice: 0, maxPrice: 30 });
 
-    await getFilterCount();
+    const groupedFilters = filterListInstance.getGroupedStates();
+
+    const response = await fetchFilterCount({
+      ...groupedFilters,
+      price: { minPrice: 0, maxPrice: 30 },
+    });
+    setTotalCount(response.count);
   };
 
   return {
@@ -60,9 +67,9 @@ const useFilter = () => {
     price,
     totalCount,
     toggleFilter,
-    updatePrice,
     handleResetFilter,
-    handleClickSubmit,
+    handleSearch,
+    getFilterCount,
   };
 };
 

@@ -1,37 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import debounce from '@hooks/debounce';
+import useFilter from '@hooks/useFilter';
+import { useAtom } from 'jotai';
+import React, { useCallback, useEffect, useRef } from 'react';
+import { priceAtom } from 'src/store/store';
 
 import * as styles from './priceSlider.css';
 
-interface PriceSliderProps {
-  min: number;
-  max: number;
-  updatePrice: (min: number, max: number) => void;
-}
-
-const PriceSlider = ({ min, max, updatePrice }: PriceSliderProps) => {
-  const [minPrice, setMinPrice] = useState<number>(min);
-  const [maxPrice, setMaxPrice] = useState<number>(max);
-
+const PriceSlider = () => {
   const MIN_PRICE = 0;
   const MAX_PRICE = 30;
+  const [price, setPrice] = useAtom(priceAtom);
+
+  const { getFilterCount } = useFilter();
+
+  const getFilterCountRef = useRef(getFilterCount);
 
   useEffect(() => {
-    updatePrice(minPrice * 10000, maxPrice * 10000);
-  }, [minPrice, maxPrice, updatePrice]);
+    getFilterCountRef.current = getFilterCount;
+  }, [getFilterCount]);
+
+  const debouncedGetFilterCount = useCallback(
+    debounce(() => {
+      getFilterCountRef.current();
+    }, 300),
+    [],
+  );
 
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(event.target.value), maxPrice - 1);
-    setMinPrice(value);
+    const value = Math.min(Number(event.target.value), price.maxPrice - 1);
+    setPrice({ ...price, minPrice: value });
+
+    debouncedGetFilterCount();
   };
 
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(Number(event.target.value), minPrice + 1);
-    setMaxPrice(value);
-  };
+    const value = Math.max(Number(event.target.value), price.minPrice + 1);
+    setPrice({ ...price, maxPrice: value });
 
+    debouncedGetFilterCount();
+  };
   const getTrackStyle = () => ({
-    left: `${((minPrice - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-    width: `${((maxPrice - minPrice) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+    left: `${((price.minPrice - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+    width: `${((price.maxPrice - price.minPrice) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
   });
 
   return (
@@ -39,7 +49,7 @@ const PriceSlider = ({ min, max, updatePrice }: PriceSliderProps) => {
       <p className={styles.descriptionStyle}>*1인 프로그램 신청 기준</p>
       <div className={styles.priceSlider}>
         <p className={styles.titleStyle}>
-          {minPrice}만원 ~ {maxPrice}만원
+          {price.minPrice}만원 ~ {price.maxPrice}만원
         </p>
 
         <div className={styles.sliderContainer}>
@@ -50,7 +60,7 @@ const PriceSlider = ({ min, max, updatePrice }: PriceSliderProps) => {
             type="range"
             min={MIN_PRICE}
             max={MAX_PRICE}
-            value={minPrice}
+            value={price.minPrice}
             onChange={handleMinChange}
             className={styles.thumb}
           />
@@ -58,7 +68,7 @@ const PriceSlider = ({ min, max, updatePrice }: PriceSliderProps) => {
             type="range"
             min={MIN_PRICE}
             max={MAX_PRICE}
-            value={maxPrice}
+            value={price.maxPrice}
             onChange={handleMaxChange}
             className={styles.thumb}
           />

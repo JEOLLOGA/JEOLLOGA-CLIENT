@@ -9,24 +9,14 @@ interface FilterBoxProps {
   id: string;
   filtersState: Record<string, number>;
   onToggleFilter: (filterName: string) => void;
-  price: { minPrice: number; maxPrice: number };
-  updatePrice: (min: number, max: number) => void;
 }
 
-const FilterBox = ({
-  title,
-  items,
-  id,
-  filtersState,
-  onToggleFilter,
-  price,
-  updatePrice,
-}: FilterBoxProps) => {
+const FilterBox = ({ title, items, id, filtersState, onToggleFilter }: FilterBoxProps) => {
   return (
     <div className={styles.filterBoxContainer} id={id}>
       <h1 className={styles.titleStyle}>{title}</h1>
       {title === '가격' ? (
-        <PriceSlider min={price.minPrice} max={price.maxPrice} updatePrice={updatePrice} />
+        <PriceSlider />
       ) : (
         <div className={styles.buttonWrapper}>
           {items.map((item, index) => {

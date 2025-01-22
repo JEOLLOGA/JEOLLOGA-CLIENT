@@ -10,15 +10,7 @@ import titleMap from 'src/type/titleMap';
 import * as styles from './filterPage.css';
 
 const FilterPage = () => {
-  const {
-    filtersState,
-    price,
-    totalCount,
-    toggleFilter,
-    updatePrice,
-    handleResetFilter,
-    handleClickSubmit,
-  } = useFilter();
+  const { filtersState, totalCount, toggleFilter, handleResetFilter, handleSearch } = useFilter();
 
   return (
     <div>
@@ -35,8 +27,6 @@ const FilterPage = () => {
               id={key}
               filtersState={filtersState}
               onToggleFilter={toggleFilter}
-              price={price}
-              updatePrice={updatePrice}
             />
             <Divider />
           </div>
@@ -45,7 +35,7 @@ const FilterPage = () => {
       <ButtonBar
         type="reset"
         label={`${totalCount}개의 템플스테이 보기`}
-        handleClickSubmit={handleClickSubmit}
+        handleSearch={handleSearch}
         handleResetFilter={handleResetFilter}
       />
     </div>
