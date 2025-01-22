@@ -5,6 +5,7 @@ import TapBar from '@components/common/tapBar/TapBar';
 import FilterBox from '@components/filter/filterBox/FilterBox';
 import FILTERS from '@constants/filters';
 import useFilter from '@hooks/useFilter';
+import { useLocation } from 'react-router-dom';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterPage.css';
@@ -12,11 +13,14 @@ import * as styles from './filterPage.css';
 const FilterPage = () => {
   const { filtersState, totalCount, toggleFilter, handleResetFilter, handleSearch } = useFilter();
 
+  const location = useLocation();
+  const { selectedTap } = location.state || {};
+
   return (
     <div>
       <header className={styles.header}>
         <PageName title="필터" isLikeBtn={false} />
-        <TapBar type="filter" />
+        <TapBar type="filter" selectedTap={selectedTap} />
       </header>
       <main className={styles.main}>
         {Object.entries(FILTERS).map(([key, items]) => (

@@ -5,7 +5,6 @@ class FilterList {
 
   constructor(initData: Record<string, string[]>) {
     this.filters = new Map();
-    console.log('init');
 
     Object.entries(initData).forEach(([group, filterNames]) => {
       filterNames.forEach((filterName) => {

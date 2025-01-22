@@ -50,6 +50,11 @@ const useFilter = () => {
         content,
       });
 
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+
       navigate('/searchResult', {
         state: {
           selectedfilters: groupedFilters,
