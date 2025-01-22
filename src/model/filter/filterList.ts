@@ -62,6 +62,18 @@ class FilterList {
       filter.setState(0);
     });
   }
+
+  getFilteredGroups(): string[] {
+    const groupsWithStateOne = new Set<string>();
+
+    this.filters.forEach((filter) => {
+      if (filter.getState() === 1) {
+        groupsWithStateOne.add(filter.getGroup());
+      }
+    });
+
+    return Array.from(groupsWithStateOne);
+  }
 }
 
 export default FilterList;
