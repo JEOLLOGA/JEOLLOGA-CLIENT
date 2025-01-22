@@ -9,6 +9,7 @@ const SearchPage = lazy(() => import('@pages/searchPage/SearchPage'));
 const ErrorPage = lazy(() => import('@pages/ErrorPage'));
 const FilterPage = lazy(() => import('@pages/filterPage/FilterPage'));
 const MyPage = lazy(() => import('@pages/myPage/MyPage'));
+const SearchResultPage = lazy(() => import('@pages/searchResultPage/SearchResultPage'));
 const OnboardingPage = lazy(() => import('@pages/onboardingPage/OnboardingPage'));
 const WelcomePage = lazy(() => import('@pages/welcomePage/WelcomePage'));
 const WishListPage = lazy(() => import('@pages/wishList/WishListPage'));
@@ -17,6 +18,8 @@ const DetailPage = lazy(() => import('@pages/templeDetailPage/TempleDetailPage')
 const LargeMap = lazy(() => import('@components/templeDetail/naverMap/largeMap/LargeMap'));
 const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/TemplePhotoPage'));
 const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
+const CurationPage = lazy(() => import('@pages/CurationPage'));
+
 
 const router = createBrowserRouter([
   {
@@ -31,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: 'search',
         element: <SearchPage />,
+      },
+      {
+        path: 'searchResult',
+        element: <SearchResultPage />,
       },
       {
         path: 'filter',
@@ -79,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: '/detail/:templestayid/map',
         element: <LargeMap />,
+      },
+      {
+        path: 'curation/:index',
+        element: <CurationPage />,
       },
     ],
   },

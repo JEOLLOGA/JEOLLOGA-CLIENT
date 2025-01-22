@@ -16,11 +16,11 @@ const HomePage = () => {
       <LookCard name="절로가" />
       <MapCard />
       <div className={styles.curationCarouselStyle}>
-        <DetailTitle title="절로가 큐레이션" />
+        <DetailTitle title="절로가 PICK!" />
         <CurationCarousel />
       </div>
       <div className={styles.popularCarouselStyle}>
-        <DetailTitle title="이번주 인기스테이" />
+        <DetailTitle title="이번 주 인기 템플스테이" />
         <PopularCarousel />
         <CarouselIndex total={3} currentIndex={1} />
       </div>

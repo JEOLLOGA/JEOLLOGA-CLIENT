@@ -39,13 +39,13 @@ const theme = createGlobalTheme(':root', {
 
     gradient: 'linear-gradient(180deg, #00000000 61.26%, #000000BF 100%)',
 
-    filerDropshadow: '0px 4px 7px 0px #0000000D',
+    filerDropshadow: '0px 4px 7px 0px rgba(0, 0, 0, 0.05)',
     reserveBtnDropshadow: '0px -4px 7px 0px #0000000D',
     boxArrowBtnDropshadow: '0px 3px 19px 0px rgba(0, 0, 0, 0.08)',
   },
 
   FONTS: {
-    //Heading
+    // Heading
     h0Sb22: {
       fontSize: '2.2rem',
       fontFamily: "'Pretendard-SemiBold', sans-serif",
@@ -89,14 +89,13 @@ const theme = createGlobalTheme(':root', {
       letterSpacing: '1%',
     },
 
-    //Body
+    // Body
     b0R22: {
       fontSize: '2.2rem',
       fontFamily: "'Pretendard-Regular', sans-serif",
       lineHeight: '138%',
       letterSpacing: '1%',
     },
-
     b1M20: {
       fontSize: '2rem',
       fontFamily: "'Pretendard-Medium', sans-serif",
@@ -152,7 +151,7 @@ const theme = createGlobalTheme(':root', {
       letterSpacing: '1%',
     },
 
-    //caption
+    // Caption
     c1Sb15: {
       fontSize: '1.5rem',
       fontFamily: "'Pretendard-SemiBold', sans-serif",
@@ -196,7 +195,7 @@ const theme = createGlobalTheme(':root', {
       letterSpacing: '2%',
     },
 
-    //footer
+    // Footer
     f1Sb11: {
       fontSize: '1.1rem',
       fontFamily: "'Pretendard-SemiBold', sans-serif",
@@ -216,7 +215,7 @@ const theme = createGlobalTheme(':root', {
       letterSpacing: '2%',
     },
 
-    //inform
+    // Inform
     i1R15: {
       fontSize: '1.5rem',
       fontFamily: "'Pretendard-Regular', sans-serif",
