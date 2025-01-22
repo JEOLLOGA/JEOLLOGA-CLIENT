@@ -3,6 +3,7 @@ import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
+import useFilter from '@hooks/useFilter';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -25,9 +26,11 @@ const SearchResultPage = () => {
   const [currentPage, setCurrentPage] = useState(results.page);
   const [templestays, setTemplestays] = useState(results.templestays);
   const [searchText, setSearchText] = useState(content);
+  const { handleSearch } = useFilter();
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    handleSearch(searchText, page);
   };
 
   const filterInstance = useAtomValue(filterListAtom);

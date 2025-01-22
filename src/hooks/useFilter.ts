@@ -1,4 +1,4 @@
-import { useFetchFilteredList } from '@apis/filter';
+import useFetchFilteredList from '@apis/filter';
 import { fetchFilteredCount } from '@apis/filter/axios';
 import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
@@ -36,8 +36,6 @@ const useFilter = () => {
       return response.count;
     },
     staleTime: 0,
-    refetchOnWindowFocus: true,
-    refetchOnMount: true,
   });
 
   // 필터 상태 토글
@@ -54,19 +52,21 @@ const useFilter = () => {
     }
   };
 
+  const getUserId = () => localStorage.getItem('userId') || '';
+
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {
     const groupedFilters = getGroupedFilters();
     const searchQuery = searchContent || content;
     const adjustedPrice = getAdjustedPrice();
 
-    console.log('Search query:', searchQuery, 'Page:', currentPage, 'Price:', adjustedPrice);
-
     try {
       const response = await fetchFilterLists({
-        ...groupedFilters,
-        price: adjustedPrice,
-        content: searchQuery,
+        groupedFilters,
+        adjustedPrice,
+        searchQuery,
+        page: currentPage,
+        userId: getUserId(),
       });
 
       setContent(searchQuery);
@@ -82,7 +82,7 @@ const useFilter = () => {
         },
       });
     } catch (error) {
-      console.error(error);
+      console.error('Error executing search:', error);
     }
   };
 
