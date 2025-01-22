@@ -1,57 +1,67 @@
-import { useFetchFilteredList, useFetchFilteredCount } from '@apis/filter';
+import { useFetchFilteredList } from '@apis/filter';
+import { fetchFilteredCount } from '@apis/filter/axios';
+import { useQuery } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import queryClient from 'src/queryClient';
 import { filterListAtom, priceAtom, contentAtom } from 'src/store/store';
 
 const useFilter = () => {
   const [filterListInstance] = useAtom(filterListAtom);
   const [price, setPrice] = useAtom(priceAtom);
   const [content, setContent] = useAtom(contentAtom);
-  const [totalCount, setTotalCount] = useState(0);
 
   const navigate = useNavigate();
-
   const { mutateAsync: fetchFilterLists } = useFetchFilteredList();
-  const { mutateAsync: fetchFilterCount } = useFetchFilteredCount();
 
+  const getAdjustedPrice = () => ({
+    minPrice: price.minPrice * 10000,
+    maxPrice: price.maxPrice * 10000,
+  });
+
+  const getGroupedFilters = () => filterListInstance.getGroupedStates();
+
+  const { data: totalCount = 0 } = useQuery({
+    queryKey: ['filteredCount', price, content],
+    queryFn: async () => {
+      const groupedFilters = getGroupedFilters();
+      const adjustedPrice = getAdjustedPrice();
+
+      const response = await fetchFilteredCount({
+        ...groupedFilters,
+        price: adjustedPrice,
+        content,
+      });
+
+      return response.count;
+    },
+    staleTime: 0,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
+  });
+
+  // 필터 상태 토글
   const toggleFilter = async (filterName: string) => {
     try {
       filterListInstance.toggleStatus(filterName);
 
-      await getFilterCount();
+      queryClient.invalidateQueries({
+        queryKey: ['filteredCount'],
+        exact: false,
+      });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const getFilterCount = async () => {
-    const groupedFilters = filterListInstance.getGroupedStates();
-
-    const adjustedPrice = {
-      minPrice: price.minPrice * 10000,
-      maxPrice: price.maxPrice * 10000,
-    };
-
-    const response = await fetchFilterCount({
-      ...groupedFilters,
-      price: adjustedPrice,
-      content,
-    });
-    setTotalCount(response.count);
-  };
-
-  const handleSearch = async (searchContent?: string, currentPage?: number) => {
-    const groupedFilters = filterListInstance.getGroupedStates();
+  // 검색 실행 함수
+  const handleSearch = async (searchContent?: string, currentPage = 1) => {
+    const groupedFilters = getGroupedFilters();
     const searchQuery = searchContent || content;
-    const searchPage = currentPage || 1;
+    const adjustedPrice = getAdjustedPrice();
 
-    const adjustedPrice = {
-      minPrice: price.minPrice * 10000,
-      maxPrice: price.maxPrice * 10000,
-    };
+    console.log('Search query:', searchQuery, 'Page:', currentPage, 'Price:', adjustedPrice);
 
-    console.log('searchQuery  :', searchQuery, searchPage, adjustedPrice);
     try {
       const response = await fetchFilterLists({
         ...groupedFilters,
@@ -61,10 +71,7 @@ const useFilter = () => {
 
       setContent(searchQuery);
 
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
 
       navigate('/searchResult', {
         state: {
@@ -79,18 +86,15 @@ const useFilter = () => {
     }
   };
 
+  // 필터 초기화
   const handleResetFilter = async () => {
     filterListInstance.resetAllStates();
     setPrice({ minPrice: 0, maxPrice: 30 });
-    setContent('');
 
-    const groupedFilters = filterListInstance.getGroupedStates();
-
-    const response = await fetchFilterCount({
-      ...groupedFilters,
-      price: { minPrice: 0, maxPrice: 30 },
+    queryClient.invalidateQueries({
+      queryKey: ['filteredCount'],
+      exact: false,
     });
-    setTotalCount(response.count);
   };
 
   return {
@@ -99,7 +103,6 @@ const useFilter = () => {
     toggleFilter,
     handleResetFilter,
     handleSearch,
-    getFilterCount,
   };
 };
 
