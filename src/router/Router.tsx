@@ -20,7 +20,6 @@ const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/Templ
 const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
 const CurationPage = lazy(() => import('@pages/CurationPage'));
 
-
 const router = createBrowserRouter([
   {
     path: '/',
