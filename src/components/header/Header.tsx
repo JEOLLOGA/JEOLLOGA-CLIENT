@@ -1,4 +1,5 @@
 import Icon from '@assets/svgs';
+import useNavigateTo from '@hooks/useNavigateTo';
 
 import * as styles from './header.css';
 
@@ -11,9 +12,9 @@ const Header = () => {
         <Icon.SmallLogo />
       </button>
       <nav className={styles.iconBox}>
-        <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={() => handleClick()} />
-        <Icon.IcnWish className={styles.iconStyle} onClick={() => handleClick()} />
-        <Icon.IcnMyPage className={styles.iconStyle} onClick={() => handleClick()} />
+        <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={useNavigateTo('/search')} />
+        <Icon.IcnWish className={styles.iconStyle} onClick={useNavigateTo('/wishlist')} />
+        <Icon.IcnMyPage className={styles.iconStyle} onClick={useNavigateTo('/mypage')} />
       </nav>
     </header>
   );
