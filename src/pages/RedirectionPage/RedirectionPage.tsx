@@ -1,4 +1,4 @@
-import useGetKakaoLogin from '@apis/login';
+import { useGetKakaoLogin } from '@apis/auth';
 import React, { useEffect } from 'react';
 
 const RedirectionPage = () => {

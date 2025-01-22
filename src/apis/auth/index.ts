@@ -1,8 +1,8 @@
-import getKakaoLogin from '@apis/login/axios';
+import { getKakaoLogin, postLogout } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-const useGetKakaoLogin = () => {
+export const useGetKakaoLogin = () => {
   const navigate = useNavigate();
 
   return useMutation({
@@ -13,9 +13,10 @@ const useGetKakaoLogin = () => {
       const refreshToken = response.headers['refreshtoken'];
 
       if (userId) {
-        localStorage.setItem('userId', JSON.stringify(userId));
-        localStorage.setItem('Authorization', JSON.stringify(accessToken));
-        localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
+        localStorage.setItem('userId', userId);
+        localStorage.setItem('Authorization', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+
         navigate('/');
       }
     },
@@ -25,4 +26,18 @@ const useGetKakaoLogin = () => {
   });
 };
 
-export default useGetKakaoLogin;
+export const usePostLogout = () => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: () => postLogout(),
+    onSuccess: () => {
+      localStorage.removeItem('Authorization');
+      navigate('/');
+    },
+
+    onError: (error) => {
+      console.log(error);
+    },
+  });
+};
