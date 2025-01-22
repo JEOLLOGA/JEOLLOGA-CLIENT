@@ -1,4 +1,4 @@
-import fetchUserNickname from '@apis/user/axios';
+import { fetchUserNickname } from '@apis/user/axios';
 import welcomeImg from '@assets/images/img_login_finish.png';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
 import { WELCOME_TEXT } from '@constants/onboarding/onboardingSteps';

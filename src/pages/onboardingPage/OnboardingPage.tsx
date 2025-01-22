@@ -1,4 +1,6 @@
-import fetchUserNickname from '@apis/user/axios';
+import useRegisterUser from '@apis/user';
+import { fetchUserNickname } from '@apis/user/axios';
+import { OnboardingUserRequest } from '@apis/user/type';
 import ProgressBar from '@components/common/progressBar/ProgressBar';
 import OnboardingSection from '@components/onboarding/OnboardingSection';
 import { ONBOARDING_STEPS, COMMON_DESCRIPTION } from '@constants/onboarding/onboardingSteps';
@@ -21,9 +23,11 @@ const OnboardingPage = () => {
   });
 
   const [userName, setUserName] = useState<string>('');
+  const userId = Number(localStorage.getItem('userId'));
+  const { mutate: registerUserMutate } = useRegisterUser();
 
   useEffect(() => {
-    const userId = Number(localStorage.getItem('userId') || '');
+    const userId = Number(localStorage.getItem('userId'));
     if (userId) {
       fetchUserNickname(userId).then((data) => setUserName(data.nickname));
     }
@@ -48,9 +52,21 @@ const OnboardingPage = () => {
     setSelections((prev) => ({ ...prev, [stepId]: selected }));
   };
 
-  const handleFinalSubmit = () => {
-    localStorage.removeItem('onboardingSelections');
-    nextStep();
+  const handleFinalSubmit = async () => {
+    const requestData: OnboardingUserRequest = {
+      userId,
+      ageRange: selections['ageRange'],
+      gender: selections['gender'],
+      religion: selections['religion'],
+      hasExperience: selections['hasExperience'],
+    };
+
+    registerUserMutate(requestData, {
+      onSuccess: () => {
+        localStorage.removeItem('onboardingSelections');
+        nextStep();
+      },
+    });
   };
 
   return (

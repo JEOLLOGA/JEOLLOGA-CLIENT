@@ -1,4 +1,4 @@
-import fetchUserNickname from '@apis/user/axios';
+import { fetchUserNickname } from '@apis/user/axios';
 import LookCard from '@components/card/lookCard/LookCard';
 import MapCard from '@components/card/mapCard/MapCard';
 import CurationCarousel from '@components/carousel/curationCarousel/CurationCarousel';

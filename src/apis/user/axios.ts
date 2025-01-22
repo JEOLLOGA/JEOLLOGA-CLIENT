@@ -1,8 +1,8 @@
 import { privateInstance } from '@apis/instance';
 
-import { UserNicknameResponse } from './type';
+import { OnboardingUserRequest, UserNicknameResponse } from './type';
 
-const fetchUserNickname = async (userId: number): Promise<UserNicknameResponse> => {
+export const fetchUserNickname = async (userId: number): Promise<UserNicknameResponse> => {
   const response = await privateInstance.get<UserNicknameResponse>(`/user/register/success`, {
     params: {
       userId,
@@ -11,4 +11,6 @@ const fetchUserNickname = async (userId: number): Promise<UserNicknameResponse> 
   return response.data;
 };
 
-export default fetchUserNickname;
+export const registerUser = async (data: OnboardingUserRequest): Promise<void> => {
+  await privateInstance.post('/user/register', data);
+};
