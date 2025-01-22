@@ -25,8 +25,8 @@ export const useDelAllSearchRecord = () => {
 
   return useMutation({
     mutationFn: (data: DelAllSearchRecordType) => delAllSearchRecord(data),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['userId'] });
+    onSuccess: (response, variables) => {
+      queryClient.invalidateQueries({ queryKey: [variables.userId] });
     },
     onError: (error) => {
       console.error(error);
