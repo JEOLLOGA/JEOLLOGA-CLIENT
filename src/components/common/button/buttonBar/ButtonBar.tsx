@@ -7,7 +7,6 @@ import { useState } from 'react';
 interface ButtonBarProps {
   type: 'reset' | 'wish';
   label: string;
-  url?: string;
   largeBtnClick: () => void;
   handleResetFilter?: () => void;
 }
