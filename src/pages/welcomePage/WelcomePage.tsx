@@ -1,14 +1,22 @@
+import fetchUserNickname from '@apis/user/axios';
 import welcomeImg from '@assets/images/img_login_finish.png';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
 import { WELCOME_TEXT } from '@constants/onboarding/onboardingSteps';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as styles from './welcomePage.css';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
-  const [userName] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+
+  useEffect(() => {
+    const userId = Number(localStorage.getItem('userId') || '');
+    if (userId) {
+      fetchUserNickname(userId).then((data) => setUserName(data.nickname));
+    }
+  }, []);
 
   const handleStart = () => {
     navigate('/');

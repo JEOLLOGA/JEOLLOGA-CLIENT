@@ -1,3 +1,4 @@
+import fetchUserNickname from '@apis/user/axios';
 import ProgressBar from '@components/common/progressBar/ProgressBar';
 import OnboardingSection from '@components/onboarding/OnboardingSection';
 import { ONBOARDING_STEPS, COMMON_DESCRIPTION } from '@constants/onboarding/onboardingSteps';
@@ -19,7 +20,14 @@ const OnboardingPage = () => {
       : ONBOARDING_STEPS.reduce((acc, step) => ({ ...acc, [step.id]: null }), {});
   });
 
-  const [userName] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+
+  useEffect(() => {
+    const userId = Number(localStorage.getItem('userId') || '');
+    if (userId) {
+      fetchUserNickname(userId).then((data) => setUserName(data.nickname));
+    }
+  }, []);
 
   const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
   useEffect(() => {
