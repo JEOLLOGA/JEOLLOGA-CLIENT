@@ -9,7 +9,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    id: {
+    templestayId: {
       control: { type: 'number' },
     },
     templeName: {
@@ -38,9 +38,12 @@ const meta = {
       control: { type: 'select' },
       options: ['vertical', 'horizontal'],
     },
+    onToggleWishlist: {
+      action: 'onToggleWishlist',
+    },
   },
   args: {
-    id: 1,
+    templestayId: 1,
     templeName: '봉인사',
     templestayName: '사불산(四佛山)... 옛길을 걷다',
     tag: '연예인이 다녀간',
@@ -50,6 +53,8 @@ const meta = {
       'https://file.percenty.co.kr/public/65a89c361aa1f25215b17f4a/products/660db89df900ac2f15094bc4/47272ce2-f477-4472-955e-f2e8eddc521e.jpg',
     liked: false,
     layout: 'horizontal',
+    onToggleWishlist: (templestayId: number, liked: boolean) =>
+      alert(`Wishlist ${templestayId}: ${liked}`),
   },
 } satisfies Meta<typeof TempleStayCard>;
 

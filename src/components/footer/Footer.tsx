@@ -23,7 +23,7 @@ const Footer = () => {
           </ul>
           <ul className={styles.contentBody}>
             <li>조아영</li>
-            <li>qq4807@naver.com</li>
+            <li>jjeolloga@gmail.com</li>
           </ul>
         </div>
       </nav>
