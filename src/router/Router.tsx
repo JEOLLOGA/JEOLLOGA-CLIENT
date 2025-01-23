@@ -1,4 +1,5 @@
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import RedirectionPage from '@pages/RedirectionPage/RedirectionPage';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from 'src/App';
@@ -19,7 +20,6 @@ const LargeMap = lazy(() => import('@components/templeDetail/naverMap/largeMap/L
 const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/TemplePhotoPage'));
 const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
 const CurationPage = lazy(() => import('@pages/CurationPage'));
-
 
 const router = createBrowserRouter([
   {
@@ -62,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'auth',
+        element: <RedirectionPage />,
       },
       {
         path: 'onboarding',

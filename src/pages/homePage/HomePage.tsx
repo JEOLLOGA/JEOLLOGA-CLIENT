@@ -1,3 +1,4 @@
+import { fetchUserNickname } from '@apis/user/axios';
 import LookCard from '@components/card/lookCard/LookCard';
 import MapCard from '@components/card/mapCard/MapCard';
 import CurationCarousel from '@components/carousel/curationCarousel/CurationCarousel';
@@ -7,21 +8,26 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import useFilter from '@hooks/useFilter';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import * as styles from './homePage.css';
 
 const HomePage = () => {
   const { handleResetFilter } = useFilter();
+  const [nickname, setNickname] = useState<string>('');
 
   useEffect(() => {
     handleResetFilter();
+    const userId = Number(localStorage.getItem('userId'));
+    if (userId) {
+      fetchUserNickname(userId).then((data) => setNickname(data.nickname));
+    }
   }, []);
 
   return (
     <div className={styles.homeWrapper}>
       <Header />
-      <LookCard name="절로가" />
+      <LookCard name={nickname} />
       <MapCard />
       <div className={styles.curationCarouselStyle}>
         <DetailTitle title="절로가 PICK!" />

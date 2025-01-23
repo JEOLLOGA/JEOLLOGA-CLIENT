@@ -5,6 +5,8 @@ import * as styles from './header.css';
 
 const Header = () => {
   const handleClick = () => {};
+  const navigateToWishList = useNavigateTo('/wishList');
+  const navigateToMyPage = useNavigateTo('/myPage');
 
   return (
     <header className={styles.headerContainer}>
@@ -13,8 +15,9 @@ const Header = () => {
       </button>
       <nav className={styles.iconBox}>
         <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={useNavigateTo('/search')} />
-        <Icon.IcnWish className={styles.iconStyle} onClick={useNavigateTo('/wishlist')} />
-        <Icon.IcnMyPage className={styles.iconStyle} onClick={useNavigateTo('/mypage')} />
+        <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={() => handleClick()} />
+        <Icon.IcnWish className={styles.iconStyle} onClick={navigateToWishList} />
+        <Icon.IcnMyPage className={styles.iconStyle} onClick={navigateToMyPage} />
       </nav>
     </header>
   );

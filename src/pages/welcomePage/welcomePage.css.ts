@@ -15,3 +15,10 @@ export const titleStyle = style({
   textAlign: 'center',
   whiteSpace: 'pre-line',
 });
+
+export const lottieStyle = style({
+  width: '33.5rem',
+  height: '34.8rem',
+  borderRadius: 8,
+  overflow: 'hidden',
+});

@@ -6,7 +6,7 @@ export const container = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '0.6rem',
-  marginTop: '13.1rem',
+  marginTop: '12.5rem',
 });
 
 export const textStyle = style({
@@ -21,9 +21,4 @@ export const textStyle = style({
 export const highlight = style({
   ...theme.FONTS.h4Sb17,
   color: theme.COLORS.green4,
-});
-
-export const imgStyle = style({
-  width: '15rem',
-  height: '10.3rem',
 });

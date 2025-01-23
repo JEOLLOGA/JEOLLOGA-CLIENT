@@ -1,3 +1,4 @@
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import Pagination from '@components/common/pagination/Pagination';
@@ -14,6 +15,10 @@ import * as styles from './searchResultPage.css';
 const SearchResultPage = () => {
   const location = useLocation();
   const { results, content, price } = location.state || {};
+  const userId = Number(localStorage.getItem('userId'));
+
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
 
   useEffect(() => {
     if (results) {
@@ -40,6 +45,14 @@ const SearchResultPage = () => {
     ...filterInstance.getFilteredGroups(),
     ...(isPriceChanged ? ['price'] : []),
   ];
+  
+  const handleToggleWishlist = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -51,7 +64,11 @@ const SearchResultPage = () => {
         <SearchEmpty text={searchText} />
       ) : (
         <div className={styles.bodyContainer}>
-          <SearchCardList data={templestays} layout="horizontal" />
+          <SearchCardList
+            data={templestays}
+            layout="horizontal"
+            onToggleWishlist={handleToggleWishlist}
+          />
           <Pagination
             currentPage={currentPage}
             totalPages={results.totalPages}

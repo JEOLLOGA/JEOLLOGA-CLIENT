@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import * as styles from './templeStayCard.css';
 
 interface TempleStayCardProps {
-  id: number;
+  templestayId: number;
   templeName: string;
   templestayName: string;
   tag: string;
@@ -15,9 +15,11 @@ interface TempleStayCardProps {
   imgUrl: string;
   liked: boolean;
   layout: 'vertical' | 'horizontal';
+  onToggleWishlist: (templestayId: number, liked: boolean) => void;
 }
 
 const TempleStayCard = ({
+  templestayId,
   templeName,
   templestayName,
   tag,
@@ -26,6 +28,7 @@ const TempleStayCard = ({
   imgUrl,
   liked,
   layout,
+  onToggleWishlist,
 }: TempleStayCardProps) => {
   const [isWished, setIsWished] = useState(liked);
   const navigate = useNavigate();
@@ -34,6 +37,7 @@ const TempleStayCard = ({
   const onClickWishBtn = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsWished((prev) => !prev);
+    onToggleWishlist(templestayId, isWished);
   };
   const handleCardClick = () => {
     navigate('/');
