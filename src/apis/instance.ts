@@ -6,6 +6,7 @@ const API_URL = `${import.meta.env.VITE_APP_BASE_URL}`;
 // 토큰이 필요없는 api 요청
 const instance = axios.create({
   baseURL: API_URL,
+  withCredentials: true, // 쿠키를 포함한 요청 허용
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,7 +17,7 @@ export const privateInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
   },
 });
 
