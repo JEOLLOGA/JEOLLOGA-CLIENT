@@ -1,3 +1,4 @@
+import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const templeReviewWrapper = style({
@@ -16,4 +17,12 @@ export const templeReviewContainer = style({
       display: 'none',
     },
   },
+});
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '35.2rem',
+  ...theme.FONTS.c2R14,
+  color: theme.COLORS.gray7,
 });

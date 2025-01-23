@@ -1,8 +1,8 @@
 import * as styles from './cardInfo.css';
 
 interface CardInfoProps {
-  reviewName: string | null;
-  reviewDate: string;
+  reviewName?: string | null;
+  reviewDate?: string;
 }
 
 const CardInfo = ({ reviewName, reviewDate }: CardInfoProps) => {
