@@ -36,12 +36,12 @@ const DetailCarousel = () => {
           onDragChange: handleDragChange,
           onDragEnd: handleDragEnd,
         })}>
-        {data.templestayImgs.map((image) => (
+        {data.templestayImgs.map((image, index) => (
           <ImageItem
             key={image.imageUrlId}
             id={image.imageUrlId}
             imgUrl={image.imgUrl}
-            currentNum={image.imageUrlId}
+            currentNum={index + 1}
             totalNum={data.total}
           />
         ))}

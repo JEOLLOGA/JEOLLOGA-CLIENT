@@ -28,6 +28,9 @@ export const titleStyle = style({
   textAlign: 'center',
   width: '20.3rem',
   margin: '0 auto',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   ...theme.FONTS.h3Sb18,
   color: theme.COLORS.black,
 });

@@ -1,10 +1,17 @@
 import { style } from '@vanilla-extract/css';
 
+export const photoContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+});
+
 export const photoGrid = style({
   display: 'flex',
   flexWrap: 'wrap',
+  width: '33.5rem',
   gap: '1rem 1.1rem',
-  justifyContent: 'center',
+  justifyContent: 'flex-start',
   paddingBottom: '1rem',
 });
 

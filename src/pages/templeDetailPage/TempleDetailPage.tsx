@@ -2,6 +2,7 @@ import useGetTempleDetails from '@apis/templeDetail';
 import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
 import TapBar from '@components/common/tapBar/TapBar';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import SmallMap from '@components/templeDetail/naverMap/smallMap/SmallMap';
 import StickyTapBar from '@components/templeDetail/stickyTapBar/StickyTapBar';
 import TempleDetailInfo from '@components/templeDetail/templeDetailInfo/TempleDetailInfo';
@@ -21,11 +22,11 @@ const TempleDetailPage = () => {
   const { data, isLoading, isError } = useGetTempleDetails(String(templestayId), String(userId));
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   if (!data) {

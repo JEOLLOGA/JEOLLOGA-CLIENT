@@ -1,6 +1,7 @@
 import useGetTempleReviews from '@apis/templeReviews';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import DetailTitle from '@components/detailTitle/DetailTitle';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useParams } from 'react-router-dom';
 
@@ -9,19 +10,21 @@ import * as styles from './templeReview.css';
 const TempleReview = () => {
   const { templestayId } = useParams();
   const navigateToLargeReview = useNavigateTo(`/detail/${templestayId}/blog`);
+
   const { data, isLoading, isError } = useGetTempleReviews(String(templestayId), Number(1));
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
-  if (!data || !data.reviews || data.reviews.length === 0) {
+  if (!(data && data.reviews && data.reviews.length)) {
     return (
       <div className={styles.emptyContainer}>
+        <DetailTitle title="리뷰" isTotal={false} />
         <p>리뷰가 없어요</p>
       </div>
     );
