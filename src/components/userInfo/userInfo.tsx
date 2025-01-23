@@ -24,7 +24,8 @@ const UserInfo = () => {
     alert('delete click');
   };
 
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('userId') || '';
+
   const { data, isLoading, isError } = useGetMyPage(userId);
 
   if (isLoading) {
@@ -43,7 +44,11 @@ const UserInfo = () => {
     <div className={infoContainerStyle}>
       <TopInfo nickname={data.nickname} email={data.email} />
       <UserInfoSection title="회원정보">
-        <MemberInfo ageRange={data.ageRange} gender={data.gender} religion={data.religion} />
+        <MemberInfo
+          ageRange={data.ageRange || '정보 없음'}
+          gender={data.gender || '정보 없음'}
+          religion={data.religion || '정보 없음'}
+        />
       </UserInfoSection>
       <UserInfoSection title="도움말">
         <HelpSection onNoticeClick={handleNoticeClick} onQuestionClick={handleQuestionClick} />
