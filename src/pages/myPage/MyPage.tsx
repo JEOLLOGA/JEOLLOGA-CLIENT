@@ -2,13 +2,15 @@ import PageName from '@components/common/pageName/PageName';
 import Footer from '@components/footer/Footer';
 import UserInfo from '@components/userInfo/userInfo';
 
-import myPageWrapper from './myPage.css';
+import * as styles from './myPage.css';
 
 const MyPage = () => {
   return (
-    <div className={myPageWrapper}>
-      <PageName title="마이페이지" isLikeBtn={false} />
-      <UserInfo />
+    <div className={styles.myPageWrapper}>
+      <div className={styles.userInfoContainer}>
+        <PageName title="마이페이지" isLikeBtn={false} />
+        <UserInfo />
+      </div>
       <Footer />
     </div>
   );

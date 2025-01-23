@@ -1,9 +1,12 @@
 import { style } from '@vanilla-extract/css';
 
-const myPageWrapper = style({
+export const myPageWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
 });
 
-export default myPageWrapper;
+export const userInfoContainer = style({
+  minHeight: '75rem',
+  position: 'relative',
+});

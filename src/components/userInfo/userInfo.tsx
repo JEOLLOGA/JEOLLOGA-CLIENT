@@ -1,5 +1,5 @@
 import { usePostLogout } from '@apis/auth';
-import useGetMyPage from '@apis/myPage';
+import useGetMyPage from '@apis/user';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 
 import infoContainerStyle from './userInfo.css';
