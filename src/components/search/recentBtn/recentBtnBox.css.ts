@@ -23,3 +23,7 @@ export const emptyResult = style({
   color: theme.COLORS.gray7,
   ...theme.FONTS.c2R14,
 });
+
+export const paddingStyle = style({
+  padding: '2rem 2rem 0 0',
+});
