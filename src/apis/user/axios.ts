@@ -14,3 +14,10 @@ export const fetchUserNickname = async (userId: number): Promise<UserNicknameRes
 export const registerUser = async (data: OnboardingUserRequest): Promise<void> => {
   await privateInstance.post('/user/register', data);
 };
+
+export const getMyPage = async (userId: string) => {
+  const res = await privateInstance.get('/user/mypage', {
+    params: { userId },
+  });
+  return res.data;
+};
