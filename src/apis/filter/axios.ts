@@ -1,5 +1,5 @@
 import { FilterType, PriceType } from '@apis/filter/type';
-import instance from '@apis/instance';
+import instance, { getAxiosInstance } from '@apis/instance';
 import MESSAGES from '@apis/messages';
 import { isAxiosError } from 'axios';
 
@@ -8,8 +8,10 @@ export const fetchFilteredList = async (
   page: number,
   userId?: string,
 ) => {
+  const axiosInstance = getAxiosInstance();
+
   try {
-    const response = await instance.post(`/search?page=${page}&useId=${userId}`, {
+    const response = await axiosInstance.post(`/search?page=${page}&useId=${userId}`, {
       ...filterData,
     });
 
