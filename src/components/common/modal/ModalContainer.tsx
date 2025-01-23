@@ -1,5 +1,4 @@
 import Modal from '@components/common/modal/Modal';
-
 interface ModalProps {
   modalTitle: string;
   modalBody: string;
@@ -8,6 +7,7 @@ interface ModalProps {
   handleSubmit: () => void;
   leftBtnLabel: string;
   rightBtnLabel: string;
+  reverse?: boolean;
 }
 
 const ModalContainer = ({
@@ -18,8 +18,10 @@ const ModalContainer = ({
   handleSubmit,
   leftBtnLabel,
   rightBtnLabel,
+  reverse = false,
 }: ModalProps) => {
   if (!isOpen) return null;
+
   return (
     <Modal isOpen={isOpen} handleClose={handleClose}>
       <Modal.TextBox>
@@ -31,6 +33,7 @@ const ModalContainer = ({
         handleSubmit={handleSubmit}
         leftBtnLabel={leftBtnLabel}
         rightBtnLabel={rightBtnLabel}
+        reverse={reverse}
       />
     </Modal>
   );

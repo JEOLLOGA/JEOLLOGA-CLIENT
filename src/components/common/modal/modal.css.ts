@@ -6,6 +6,7 @@ export const modalContainer = style({
   flexDirection: 'column',
   alignItems: 'center',
   gap: '2.8rem',
+  position: 'fixed',
 
   width: '33.1rem',
   height: '18.1rem',
@@ -35,7 +36,7 @@ export const modalTextBox = style({
   gap: '0.4rem',
   alignItems: 'center',
 
-  width: '22rem',
+  width: '29.1rem',
   height: '5.3rem',
 });
 
