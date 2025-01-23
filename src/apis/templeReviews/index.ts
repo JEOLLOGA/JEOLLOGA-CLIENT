@@ -5,7 +5,7 @@ import { ReviewsResponse } from './type';
 
 const useGetTempleReviews = (templestayId: string, page: number) => {
   const { data, isLoading, isError } = useQuery<ReviewsResponse>({
-    queryKey: ['reviews', page],
+    queryKey: ['reviews', templestayId, page],
     queryFn: () => getTempleReviews(templestayId, page),
   });
 
