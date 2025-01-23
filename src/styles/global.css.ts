@@ -9,6 +9,7 @@ globalStyle('html, body', {
   fontSize: '62.5%',
   scrollBehavior: 'smooth',
   background: '#D3ECD8',
+  WebkitOverflowScrolling: 'touch',
 });
 
 globalStyle('#root', {
