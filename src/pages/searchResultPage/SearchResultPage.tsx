@@ -4,117 +4,48 @@ import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
-import React, { useState } from 'react';
+import useFilter from '@hooks/useFilter';
+import { useAtomValue } from 'jotai';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { filterListAtom } from 'src/store/store';
 
 import * as styles from './searchResultPage.css';
 
-const mockSearchData = {
-  page: 1,
-  pageSize: 10,
-  totalPages: 5,
-  templestays: [
-    {
-      templestayId: 1,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_28471.png',
-      liked: true,
-    },
-    {
-      templestayId: 2,
-      templeName: '불국사',
-      templestayName: '쉼. 멈춤. 비우기.',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images/RsImage/S_28469.png',
-      liked: false,
-    },
-    {
-      templestayId: 3,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_28471.png',
-      liked: true,
-    },
-    {
-      templestayId: 4,
-      templeName: '불국사',
-      templestayName: '쉼. 멈춤. 비우기.',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images/RsImage/S_28469.png',
-      liked: false,
-    },
-    {
-      templestayId: 5,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_28471.png',
-      liked: true,
-    },
-    {
-      templestayId: 6,
-      templeName: '불국사',
-      templestayName: '쉼. 멈춤. 비우기.',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images/RsImage/S_28469.png',
-      liked: false,
-    },
-    {
-      templestayId: 7,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images//RsImage/L_28471.png',
-      liked: true,
-    },
-    {
-      templestayId: 8,
-      templeName: '불국사',
-      templestayName: '쉼. 멈춤. 비우기.',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'http://noms.templestay.com/images/RsImage/S_28469.png',
-      liked: false,
-    },
-  ],
-};
-
 const SearchResultPage = () => {
-  const [currentPage, setCurrentPage] = useState(mockSearchData.page);
-  const [templestays, setTemplestays] = useState(mockSearchData.templestays);
-  const [searchText, setSearchText] = useState('');
+  const location = useLocation();
+  const { results, content, price } = location.state || {};
   const userId = Number(localStorage.getItem('userId'));
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
 
-  const handleSearch = (text: string) => {
-    setSearchText(text);
-    setTemplestays(mockSearchData.templestays);
-    setCurrentPage(mockSearchData.page);
-  };
+  useEffect(() => {
+    if (results) {
+      setTemplestays(results.templestays);
+      setCurrentPage(results.page);
+      setSearchText(content);
+    }
+  }, [results, content]);
+
+  const [currentPage, setCurrentPage] = useState(results.page);
+  const [templestays, setTemplestays] = useState(results.templestays);
+  const [searchText, setSearchText] = useState(content);
+  const { handleSearch } = useFilter();
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    handleSearch(searchText, page);
   };
 
+  const filterInstance = useAtomValue(filterListAtom);
+  const isPriceChanged = price.minPrice !== 0 || price.maxPrice !== 30;
+
+  const activeFilters = [
+    ...filterInstance.getFilteredGroups(),
+    ...(isPriceChanged ? ['price'] : []),
+  ];
+  
   const handleToggleWishlist = (templestayId: number, liked: boolean) => {
     if (liked) {
       removeWishlistMutation.mutate({ userId, templestayId });
@@ -126,8 +57,8 @@ const SearchResultPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
-        <SearchHeader onSearch={handleSearch} />
-        <FilterTypeBox />
+        <SearchHeader searchText={searchText} />
+        <FilterTypeBox activeFilters={activeFilters} />
       </div>
       {templestays.length === 0 ? (
         <SearchEmpty text={searchText} />
@@ -140,7 +71,7 @@ const SearchResultPage = () => {
           />
           <Pagination
             currentPage={currentPage}
-            totalPages={mockSearchData.totalPages}
+            totalPages={results.totalPages}
             onPageChange={handlePageChange}
             color="white"
           />

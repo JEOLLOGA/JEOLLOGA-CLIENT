@@ -14,6 +14,7 @@ const Header = () => {
         <Icon.SmallLogo />
       </button>
       <nav className={styles.iconBox}>
+        <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={useNavigateTo('/search')} />
         <Icon.IcnSearchLargeBlack className={styles.iconStyle} onClick={() => handleClick()} />
         <Icon.IcnWish className={styles.iconStyle} onClick={navigateToWishList} />
         <Icon.IcnMyPage className={styles.iconStyle} onClick={navigateToMyPage} />

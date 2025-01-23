@@ -5,12 +5,14 @@ import FILTERS from '@constants/filters';
 import { TapType, TAPS } from '@constants/taps';
 import useMoveScroll from '@hooks/useMoveScroll';
 import useScrollTracker from '@hooks/useScrollTrack';
+import { useEffect } from 'react';
 
 interface TapBarProps {
   type: TapType;
+  selectedTap?: string;
 }
 
-const TapBar = ({ type }: TapBarProps) => {
+const TapBar = ({ type, selectedTap }: TapBarProps) => {
   const headerHeight = HEADER_HEIGHT;
   const taplist = TAPS[type];
   const sectionIds =
@@ -25,6 +27,16 @@ const TapBar = ({ type }: TapBarProps) => {
     handleClick(index);
     scrollToElement(sectionIds, index);
   };
+
+  useEffect(() => {
+    if (selectedTap) {
+      const selectedIndex = sectionIds.indexOf(selectedTap);
+      if (selectedIndex !== -1) {
+        handleClick(selectedIndex);
+        scrollToElement(sectionIds, selectedIndex);
+      }
+    }
+  }, []);
 
   return (
     <div className={tapBarContainer}>
