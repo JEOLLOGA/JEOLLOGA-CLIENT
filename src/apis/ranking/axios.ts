@@ -1,7 +1,9 @@
-import { privateInstance } from '@apis/instance';
+import { getAxiosInstance } from '@apis/instance';
 
 const getRanking = async (userId: number | null) => {
-  const res = await privateInstance.get('/ranking', {
+  const axiosInstance = getAxiosInstance();
+
+  const res = await axiosInstance.get('/ranking', {
     params: { userId },
   });
   return res.data;
