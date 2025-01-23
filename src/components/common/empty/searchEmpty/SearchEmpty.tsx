@@ -15,7 +15,7 @@ const SearchEmpty = ({ text }: SearchEmptyProps) => {
         </p>
         <dotlottie-player
           key="search"
-          src="src/assets/lotties/moktak_sad.lottie"
+          src="/lotties/moktak_sad.lottie"
           autoplay
           loop
           style={{ width: '15rem', height: '10.3rem' }}
