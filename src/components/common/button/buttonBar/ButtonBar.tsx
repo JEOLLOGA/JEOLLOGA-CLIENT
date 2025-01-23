@@ -8,8 +8,8 @@ interface ButtonBarProps {
   label: string;
   largeBtnClick: () => void;
   handleResetFilter?: () => void;
-  liked: boolean;
-  onToggleWishlist: () => void;
+  liked?: boolean;
+  onToggleWishlist?: () => void;
 }
 
 const ButtonBar = ({

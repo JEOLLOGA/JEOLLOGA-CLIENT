@@ -6,8 +6,8 @@ interface FlowerBtnProps {
   isRightIcn?: boolean;
   isLeftIcn?: boolean;
   label: string;
-  isActive: boolean;
-  onClick: () => void;
+  isActive?: boolean;
+  onClick?: () => void;
 }
 
 const FlowerBtn = ({
