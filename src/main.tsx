@@ -15,7 +15,9 @@ import queryClient from './queryClient.ts';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <div style={{ fontSize: '16px' }}>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </div>
       <Provider>
         <Router />
       </Provider>
