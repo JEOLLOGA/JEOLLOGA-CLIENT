@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import TempleStayCard from '../TempleStayCard';
 import container from './searchCardList.css';
@@ -19,6 +20,12 @@ interface SearchCardListProps {
 }
 
 const SearchCardList = ({ data, layout = 'horizontal', onToggleWishlist }: SearchCardListProps) => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (templestayId: number) => {
+    navigate(`/detail/${templestayId}`);
+  };
+
   return (
     <section className={container}>
       {data.map((temple) => (
@@ -34,6 +41,7 @@ const SearchCardList = ({ data, layout = 'horizontal', onToggleWishlist }: Searc
           liked={temple.liked}
           layout={layout}
           onToggleWishlist={onToggleWishlist}
+          onClick={() => handleCardClick(temple.templestayId)}
         />
       ))}
     </section>
