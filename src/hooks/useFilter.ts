@@ -77,8 +77,8 @@ const useFilter = () => {
       if (!isLoggedIn) {
         const searchHistory = JSON.parse(localStorage.getItem('searchKeyword') || '[]');
         const updatedHistory = [
-          searchQuery,
-          ...searchHistory.filter((item: string) => item !== searchQuery),
+          { searchId: new Date().getTime(), content: searchQuery },
+          ...searchHistory,
         ];
         localStorage.setItem('searchKeyword', JSON.stringify(updatedHistory.slice(0, 10))); // 최대 10개까지만 저장
       }
