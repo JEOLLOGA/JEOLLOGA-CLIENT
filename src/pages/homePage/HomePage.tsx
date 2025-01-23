@@ -2,7 +2,6 @@ import { fetchUserNickname } from '@apis/user/axios';
 import LookCard from '@components/card/lookCard/LookCard';
 import MapCard from '@components/card/mapCard/MapCard';
 import CurationCarousel from '@components/carousel/curationCarousel/CurationCarousel';
-import CarouselIndex from '@components/carousel/popularCarousel/CarouselIndex';
 import PopularCarousel from '@components/carousel/popularCarousel/PopularCarousel';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import Footer from '@components/footer/Footer';
@@ -33,7 +32,6 @@ const HomePage = () => {
       <div className={styles.popularCarouselStyle}>
         <DetailTitle title="이번 주 인기 템플스테이" />
         <PopularCarousel />
-        <CarouselIndex total={3} currentIndex={1} />
       </div>
       <Footer />
     </div>
