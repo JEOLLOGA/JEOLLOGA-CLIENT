@@ -1,7 +1,7 @@
-import { privateInstance } from '@apis/instance';
+import instance from '@apis/instance';
 
-const getTempleDetails = async (templestayId: string | null, userId: string | null) => {
-  const res = await privateInstance.get('/templestay', {
+const getTempleDetails = async (templestayId: string, userId: string) => {
+  const res = await instance.get('/templestay', {
     params: { templestayId, userId },
   });
 
