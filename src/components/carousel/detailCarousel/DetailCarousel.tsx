@@ -1,4 +1,4 @@
-import useGetTempleImages from '@apis/templeImages';
+import { useGetTempleImages } from '@apis/templeInfo';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
 import { useParams } from 'react-router-dom';

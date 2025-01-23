@@ -1,4 +1,4 @@
-import useGetTempleReviews from '@apis/templeReviews';
+import { useGetTempleReviews } from '@apis/templeInfo';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
