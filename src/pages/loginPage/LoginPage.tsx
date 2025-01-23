@@ -13,7 +13,7 @@ const LoginPage = () => {
 
   const type: LoginType = location.state?.type || 'my';
 
-  const { title, text, imageSrc, alt } = LOGIN_INFOS[type];
+  const { title, text, lottie } = LOGIN_INFOS[type];
 
   return (
     <section className={styles.loginWrapper}>
@@ -21,7 +21,12 @@ const LoginPage = () => {
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 
-        <img src={imageSrc} alt={alt} className={styles.imgStyle} width={270} />
+        <dotlottie-player
+          src={lottie}
+          autoplay
+          loop
+          style={{ width: '27rem', height: '28.8rem' }}
+        />
       </div>
       <KakaoBtn />
     </section>
