@@ -15,7 +15,7 @@ interface TempleStayCardProps {
   liked: boolean;
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const TempleStayCard = ({
