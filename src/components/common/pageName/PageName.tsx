@@ -11,7 +11,7 @@ interface PageNameProps {
 }
 
 const PageName = ({ title, onRightClick, isLikeBtn = true, isLiked = false }: PageNameProps) => {
-  const handleToBack = useNavigateTo(-1);
+  const handleToBack = useNavigateTo('/');
 
   return (
     <nav className={PageNameStyle.container}>
