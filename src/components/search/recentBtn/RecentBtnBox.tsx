@@ -1,4 +1,4 @@
-import { useGetSearchHistory, useDelSearchRecord, useDelAllSearchRecord } from '@apis/search';
+import { useGetSearchHistory, useDelAllSearchRecord } from '@apis/search';
 import { Content } from '@apis/search/type';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react';
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
   const { data, isLoading, isError } = useGetSearchHistory(userId ? Number(userId) : null);
-  const { mutate: deleteSearchRecord } = useDelSearchRecord();
+  // const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
 
   const [searchData, setSearchData] = useState<Content[]>([]);
@@ -22,19 +22,19 @@ const RecentBtnBox = () => {
     }
   }, [data, userId]);
 
-  const handleDeleteSearch = (searchId: number) => {
-    if (userId) {
-      deleteSearchRecord({ userId: Number(userId), searchId });
-    } else {
-      // 로컬 스토리지에서 검색 기록 삭제
-      const localSearchHistory: Content[] = JSON.parse(
-        localStorage.getItem('searchHistory') || '[]',
-      );
-      const updatedHistory = localSearchHistory.filter((item) => item.searchId !== searchId);
-      localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
-      setSearchData(updatedHistory);
-    }
-  };
+  // const handleDeleteSearch = (searchId: number) => {
+  //   if (userId) {
+  //     deleteSearchRecord({ userId: Number(userId), searchId });
+  //   } else {
+  //     // 로컬 스토리지에서 검색 기록 삭제
+  //     const localSearchHistory: Content[] = JSON.parse(
+  //       localStorage.getItem('searchHistory') || '[]',
+  //     );
+  //     const updatedHistory = localSearchHistory.filter((item) => item.searchId !== searchId);
+  //     localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
+  //     setSearchData(updatedHistory);
+  //   }
+  // };
 
   const handleDeleteAll = () => {
     if (userId) {
@@ -75,8 +75,8 @@ const RecentBtnBox = () => {
               label={item.content}
               variant="lightGrayOutlined"
               size="small"
-              rightIcon="IcnCloseSmallGray"
-              onClick={() => handleDeleteSearch(item.searchId)}
+              // rightIcon="IcnCloseSmallGray"
+              // onClick={() => handleDeleteSearch(item.searchId)}
             />
           ))
         )}
