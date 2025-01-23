@@ -49,27 +49,16 @@ const SearchResultPage = () => {
   ];
 
   const handleToggleWishlist = (templestayId: number, liked: boolean) => {
-    if (liked) {
-      removeWishlistMutation.mutate(
-        { userId, templestayId },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
-            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
-          },
+    const mutation = liked ? removeWishlistMutation : addWishlistMutation;
+    mutation.mutate(
+      { userId, templestayId },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+          queryClient.refetchQueries({ queryKey: ['ranking', userId] });
         },
-      );
-    } else {
-      addWishlistMutation.mutate(
-        { userId, templestayId },
-        {
-          onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
-            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
-          },
-        },
-      );
-    }
+      },
+    );
   };
 
   const prevPath = localStorage.getItem('prevPage') || '';

@@ -1,4 +1,5 @@
 import useGetTempleDetails from '@apis/templeDetail';
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
 import TapBar from '@components/common/tapBar/TapBar';
@@ -12,6 +13,8 @@ import TempleReview from '@components/templeDetail/templeReview/TempleReview';
 import TempleSchedule from '@components/templeDetail/templeSchedule/TempleSchedule';
 import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
+import { useQueryClient } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import * as styles from './templeDetailPage.css';
@@ -20,6 +23,32 @@ const TempleDetailPage = () => {
   const userId = localStorage.getItem('userId');
   const { templestayId } = useParams();
   const { data, isLoading, isError } = useGetTempleDetails(String(templestayId), String(userId));
+  const queryClient = useQueryClient();
+
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
+
+  const [liked, setLiked] = useState(false);
+  useEffect(() => {
+    if (data) {
+      setLiked(data.liked);
+    }
+  }, [data]);
+
+  const handleToggleWishlist = () => {
+    const mutation = liked ? removeWishlistMutation : addWishlistMutation;
+
+    mutation.mutate(
+      { userId: Number(userId), templestayId: Number(templestayId) },
+      {
+        onSuccess: () => {
+          setLiked(!liked);
+          queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+          queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+        },
+      },
+    );
+  };
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -40,7 +69,12 @@ const TempleDetailPage = () => {
   return (
     <div className={styles.templeDetailWrapper}>
       <div className={styles.headerBox}>
-        <TempleTopbar templeName={data.templeName} templestayName={data.templestayName} />
+        <TempleTopbar
+          templeName={data.templeName}
+          templestayName={data.templestayName}
+          liked={liked}
+          onToggleWishlist={handleToggleWishlist}
+        />
       </div>
       <div className={styles.topDetailContainer}>
         <DetailCarousel />
@@ -67,7 +101,13 @@ const TempleDetailPage = () => {
         latitude={data.latitude}
         longitude={data.longitude}
       />
-      <ButtonBar type="wish" label="예약하러 가기" largeBtnClick={handleBottomButtonClick} />
+      <ButtonBar
+        type="wish"
+        label="예약하러 가기"
+        largeBtnClick={handleBottomButtonClick}
+        liked={liked}
+        onToggleWishlist={handleToggleWishlist}
+      />
     </div>
   );
 };

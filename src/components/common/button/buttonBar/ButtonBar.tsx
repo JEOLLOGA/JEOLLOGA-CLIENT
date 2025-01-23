@@ -2,13 +2,14 @@ import buttonBarContainer from '@components/common/button/buttonBar/buttonBar.cs
 import FlowerBtn from '@components/common/button/flowerBtn/FlowerBtn';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
 import TextBtn from '@components/common/button/textBtn/TextBtn';
-import { useState } from 'react';
 
 interface ButtonBarProps {
   type: 'reset' | 'wish';
   label: string;
   largeBtnClick: () => void;
   handleResetFilter?: () => void;
+  liked: boolean;
+  onToggleWishlist: () => void;
 }
 
 const ButtonBar = ({
@@ -16,23 +17,19 @@ const ButtonBar = ({
   label,
   largeBtnClick,
   handleResetFilter = () => {},
+  liked,
+  onToggleWishlist,
 }: ButtonBarProps) => {
-  const [isActive, setIsActive] = useState(false);
-
-  const onClickLeftBtn = () => {
-    setIsActive((prev) => !prev);
-  };
-
   const renderLeftButton = () =>
     type === 'wish' ? (
-      <FlowerBtn label="찜하기" isActive={isActive} isLeftIcn onClick={onClickLeftBtn} />
+      <FlowerBtn label="찜하기" isActive={liked} isLeftIcn onClick={onToggleWishlist} />
     ) : (
       <TextBtn
         text="초기화"
         onClick={handleResetFilter}
         leftIcon="IcnReset"
         size="medium"
-        clicked={isActive}
+        clicked={liked}
       />
     );
 
