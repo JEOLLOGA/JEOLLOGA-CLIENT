@@ -15,7 +15,13 @@ const ExceptLayout = ({ type }: ExceptLayoutProps) => {
     <section className={styles.exceptWrapper}>
       <span className={styles.title}>{title}</span>
       <div className={styles.imgContainer}>
-        <dotlottie-player src={lottie} autoplay loop style={{ width: 210, height: 210 }} />
+        <dotlottie-player
+          key={type}
+          src={lottie}
+          autoplay
+          loop
+          style={{ width: 210, height: 210 }}
+        />
       </div>
       <span className={styles.subtitle[type]}>{subtitle}</span>
     </section>

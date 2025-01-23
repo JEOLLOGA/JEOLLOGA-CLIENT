@@ -13,6 +13,7 @@ const LookCard = ({ name }: LookCardProps) => {
   return (
     <section className={styles.cardWrapper}>
       <dotlottie-player
+        key="look"
         className={styles.lottieStyle}
         src="src/assets/lotties/home.lottie"
         autoplay

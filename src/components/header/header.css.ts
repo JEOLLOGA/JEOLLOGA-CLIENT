@@ -22,3 +22,8 @@ export const iconBox = style({
 export const iconStyle = style({
   cursor: 'pointer',
 });
+
+export const flowerPinkStyle = style({
+  width: '2.8rem',
+  height: '2.8rem',
+});

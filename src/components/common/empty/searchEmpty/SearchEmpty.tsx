@@ -14,7 +14,8 @@ const SearchEmpty = ({ text }: SearchEmptyProps) => {
           '<span className={styles.highlight}>{`${text}`}</span>'{'에 대한\n검색결과가 없어요'}
         </p>
         <dotlottie-player
-          src="src/assets/lotties/moktak_hit.lottie"
+          key="search"
+          src="src/assets/lotties/moktak_sad.lottie"
           autoplay
           loop
           style={{ width: '15rem', height: '10.3rem' }}

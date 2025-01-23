@@ -22,6 +22,7 @@ const LoginPage = () => {
         <h2 className={styles.textStyle}>{text}</h2>
 
         <dotlottie-player
+          key={type}
           src={lottie}
           autoplay
           loop
