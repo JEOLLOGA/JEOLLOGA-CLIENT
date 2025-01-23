@@ -1,4 +1,4 @@
-import { useGetTempleDetails } from '@apis/templeInfo';
+import useGetTempleDetails from '@apis/templeDetail';
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';

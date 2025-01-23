@@ -1,4 +1,4 @@
-import { useGetTempleReviews } from '@apis/templeInfo';
+import useGetTempleReviews from '@apis/templeReviews';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';

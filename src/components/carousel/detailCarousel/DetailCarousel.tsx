@@ -1,4 +1,4 @@
-import { useGetTempleImages } from '@apis/templeInfo';
+import useGetTempleImages from '@apis/templeImages';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
