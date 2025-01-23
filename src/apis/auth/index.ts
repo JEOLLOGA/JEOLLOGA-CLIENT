@@ -11,12 +11,16 @@ export const useGetKakaoLogin = () => {
       const userId = response.data.userId;
       const accessToken = response.headers['authorization'].replace('Bearer ', '');
       const refreshToken = response.headers['refreshtoken'];
+      const userNickname = response.data.nickname;
 
-      if (userId) {
-        localStorage.setItem('userId', userId);
-        localStorage.setItem('Authorization', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
+      localStorage.setItem('userId', userId);
+      localStorage.setItem('Authorization', accessToken);
+      localStorage.setItem('refreshToken', refreshToken);
+      localStorage.removeItem('searchKeyword');
 
+      if (!userNickname) {
+        navigate('/onboarding');
+      } else {
         navigate('/');
       }
     },
@@ -32,7 +36,7 @@ export const usePostLogout = () => {
   return useMutation({
     mutationFn: () => postLogout(),
     onSuccess: () => {
-      localStorage.removeItem('Authorization');
+      localStorage.clear();
       navigate('/');
     },
 

@@ -1,7 +1,7 @@
-import useRegisterUser from '@apis/user';
-import { fetchUserNickname } from '@apis/user/axios';
+import { useGetNickname, useRegisterUser } from '@apis/user';
 import { OnboardingUserRequest } from '@apis/user/type';
 import ProgressBar from '@components/common/progressBar/ProgressBar';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import OnboardingSection from '@components/onboarding/OnboardingSection';
 import { ONBOARDING_STEPS, COMMON_DESCRIPTION } from '@constants/onboarding/onboardingSteps';
 import useFunnel from '@hooks/useFunnel';
@@ -22,17 +22,10 @@ const OnboardingPage = () => {
       : ONBOARDING_STEPS.reduce((acc, step) => ({ ...acc, [step.id]: null }), {});
   });
 
-  const [userName, setUserName] = useState<string>('');
   const userId = Number(localStorage.getItem('userId'));
   const { mutate: registerUserMutate } = useRegisterUser();
 
-  useEffect(() => {
-    const userId = Number(localStorage.getItem('userId'));
-    if (userId) {
-      fetchUserNickname(userId).then((data) => setUserName(data.nickname));
-    }
-  }, []);
-
+  const { data, isLoading } = useGetNickname(userId);
   const [isInitialLoad, setIsInitialLoad] = useState<boolean>(true);
   useEffect(() => {
     if (isInitialLoad) {
@@ -69,6 +62,10 @@ const OnboardingPage = () => {
     });
   };
 
+  if (isLoading) {
+    return <ExceptLayout type="loading" />;
+  }
+
   return (
     <div className={container}>
       <ProgressBar
@@ -82,7 +79,9 @@ const OnboardingPage = () => {
             <Step key={id} name={id}>
               <OnboardingSection
                 id={id}
-                title={id === 'ageRange' || id === 'gender' ? [`${userName}님의`, title] : title}
+                title={
+                  id === 'ageRange' || id === 'gender' ? [`${data?.nickname}님의`, title] : title
+                }
                 description={COMMON_DESCRIPTION}
                 options={options}
                 isNextDisabledInitially={isNextDisabledInitially || false}

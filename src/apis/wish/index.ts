@@ -5,7 +5,7 @@ import { WishlistRequest, WishlistResponse, SuccessResponse } from './type';
 
 export const useWishlistQuery = (page: number, userId: number) => {
   return useQuery<WishlistResponse>({
-    queryKey: ['wishlist', page],
+    queryKey: ['wishlist', userId, page],
     queryFn: () => fetchWishlist({ page, userId }),
     staleTime: 0,
   });
