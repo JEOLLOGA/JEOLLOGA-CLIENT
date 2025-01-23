@@ -2,6 +2,7 @@ import useGetRanking from '@apis/ranking';
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import CarouselIndex from '@components/carousel/popularCarousel/CarouselIndex';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import { useQueryClient } from '@tanstack/react-query';
 import registDragEvent from '@utils/registDragEvent';
@@ -10,7 +11,11 @@ import { useNavigate } from 'react-router-dom';
 
 import * as styles from './popularCarousel.css';
 
-const PopularCarousel = () => {
+interface PopularCarouselProps {
+  onRequireLogin: () => void;
+}
+
+const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
   const userId = Number(localStorage.getItem('userId'));
   const queryClient = useQueryClient();
 
@@ -28,16 +33,20 @@ const PopularCarousel = () => {
   const navigate = useNavigate();
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   const handleLikeToggle = (templestayId: number, liked: boolean) => {
-    const mutation = liked ? removeWishlistMutation : addWishlistMutation;
+    if (!userId) {
+      onRequireLogin();
+      return;
+    }
 
+    const mutation = liked ? removeWishlistMutation : addWishlistMutation;
     mutation.mutate(
       { userId, templestayId },
       {

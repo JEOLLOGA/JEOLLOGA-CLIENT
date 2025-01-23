@@ -29,6 +29,13 @@ const PopularCard = ({
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+
+    const userId = Number(localStorage.getItem('userId'));
+    if (!userId) {
+      onLikeToggle(liked);
+      return;
+    }
+
     setLiked((prev) => !prev);
     onLikeToggle(liked);
   };

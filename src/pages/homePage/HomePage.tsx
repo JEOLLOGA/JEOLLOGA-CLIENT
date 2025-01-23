@@ -3,6 +3,7 @@ import LookCard from '@components/card/lookCard/LookCard';
 import MapCard from '@components/card/mapCard/MapCard';
 import CurationCarousel from '@components/carousel/curationCarousel/CurationCarousel';
 import PopularCarousel from '@components/carousel/popularCarousel/PopularCarousel';
+import ModalContainer from '@components/common/modal/ModalContainer';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Footer from '@components/footer/Footer';
@@ -17,6 +18,19 @@ import * as styles from './homePage.css';
 const HomePage = () => {
   const { handleResetFilter } = useFilter();
   const setContent = useSetAtom(contentAtom);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLoginRedirect = () => {
+    window.location.href = '/login';
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     setContent('');
@@ -33,6 +47,20 @@ const HomePage = () => {
 
   return (
     <div className={styles.homeWrapper}>
+      {isModalOpen && (
+        <div className={styles.modalOverlay}>
+          <ModalContainer
+            modalTitle="로그인 하시겠어요?"
+            modalBody="찜하려면 로그인이 필요해요."
+            isOpen={isModalOpen}
+            handleClose={closeModal}
+            handleSubmit={handleLoginRedirect}
+            leftBtnLabel="취소"
+            rightBtnLabel="로그인하기"
+          />
+        </div>
+      )}
+
       <Header />
       <LookCard name={data?.nickname} />
       <MapCard />
@@ -42,7 +70,7 @@ const HomePage = () => {
       </div>
       <div className={styles.popularCarouselStyle}>
         <DetailTitle title="이번 주 인기 템플스테이" />
-        <PopularCarousel />
+        <PopularCarousel onRequireLogin={openModal} />
       </div>
       <Footer />
     </div>
