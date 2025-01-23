@@ -8,15 +8,19 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import useFilter from '@hooks/useFilter';
+import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
+import { contentAtom } from 'src/store/store';
 
 import * as styles from './homePage.css';
 
 const HomePage = () => {
   const { handleResetFilter } = useFilter();
   const [nickname, setNickname] = useState<string>('');
+  const setContent = useSetAtom(contentAtom);
 
   useEffect(() => {
+    setContent('');
     handleResetFilter();
     const userId = Number(localStorage.getItem('userId'));
     if (userId) {
