@@ -1,15 +1,31 @@
-import TEMPLE_PHOTO_DATA from '@constants/templePhoto';
+import useGetTempleImages from '@apis/templeImages';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
+import { useParams } from 'react-router-dom';
 
 import * as styles from './detailCarousel.css';
 import ImageItem from './DetailImage';
 
 const DetailCarousel = () => {
+  const { templestayId } = useParams();
+  const { data, isLoading, isError } = useGetTempleImages(String(templestayId));
+
   const { carouselRef, transformStyle, handleDragChange, handleDragEnd } = useCarousel({
-    itemCount: TEMPLE_PHOTO_DATA.total,
+    itemCount: data?.total || 0,
     moveDistance: 355,
   });
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
+
+  if (!data) {
+    return <p>No user information available</p>;
+  }
 
   return (
     <section ref={carouselRef} className={styles.imageWrapper}>
@@ -20,13 +36,13 @@ const DetailCarousel = () => {
           onDragChange: handleDragChange,
           onDragEnd: handleDragEnd,
         })}>
-        {TEMPLE_PHOTO_DATA.templestayImgs.map((image) => (
+        {data.templestayImgs.map((image, index) => (
           <ImageItem
-            key={image.id}
-            id={image.id}
+            key={image.imageUrlId}
+            id={image.imageUrlId}
             imgUrl={image.imgUrl}
-            currentNum={image.id}
-            totalNum={TEMPLE_PHOTO_DATA.total}
+            currentNum={index + 1}
+            totalNum={data.total}
           />
         ))}
       </div>

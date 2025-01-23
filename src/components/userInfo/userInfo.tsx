@@ -1,5 +1,6 @@
 import { usePostLogout } from '@apis/auth';
 import useGetMyPage from '@apis/myPage';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 
 import infoContainerStyle from './userInfo.css';
 import AccountActions from './userInfoContent/accountAction/AccountAction';
@@ -29,11 +30,11 @@ const UserInfo = () => {
   const { data, isLoading, isError } = useGetMyPage(userId);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   if (!data) {

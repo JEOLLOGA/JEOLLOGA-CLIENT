@@ -13,6 +13,7 @@ interface ImageItemProps {
 
 const ImageItem = ({ id, imgUrl, currentNum, totalNum }: ImageItemProps) => {
   const { templestayId } = useParams();
+
   const navigateToPhoto = useNavigateTo(`/detail/${templestayId}/photo`);
 
   return (

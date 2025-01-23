@@ -2,6 +2,7 @@ import useGetTempleReviews from '@apis/templeReviews';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -32,11 +33,11 @@ const BlogReviewPage = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   if (!data) {
