@@ -43,6 +43,7 @@ const SearchBar = ({ searchText }: SearchBarProps) => {
   useEffect(() => {
     if (location.pathname === '/search') {
       handleResetFilter();
+      localStorage.setItem('prevPage', '/search');
     }
   }, []);
 

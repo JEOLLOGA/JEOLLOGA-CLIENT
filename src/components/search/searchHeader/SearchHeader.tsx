@@ -5,10 +5,11 @@ import useNavigateTo from '@hooks/useNavigateTo';
 
 interface SearchHeader {
   searchText?: string;
+  prevPath: string | number;
 }
 
-const SearchHeader = ({ searchText }: SearchHeader) => {
-  const handleToBack = useNavigateTo(-1);
+const SearchHeader = ({ searchText, prevPath }: SearchHeader) => {
+  const handleToBack = useNavigateTo(prevPath);
 
   return (
     <header className={searchHeaderStyle}>

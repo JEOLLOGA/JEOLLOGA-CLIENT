@@ -22,6 +22,8 @@ const HomePage = () => {
   useEffect(() => {
     setContent('');
     handleResetFilter();
+    localStorage.setItem('prevPage', '/');
+
     const userId = Number(localStorage.getItem('userId'));
     if (userId) {
       fetchUserNickname(userId).then((data) => setNickname(data.nickname));
