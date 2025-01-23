@@ -14,4 +14,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    detailAddress: '123 Temple Street',
+    latitude: 37.5665,
+    longitude: 126.978,
+  },
+};

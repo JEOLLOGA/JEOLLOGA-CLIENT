@@ -24,4 +24,11 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    type: 'reset',
+    label: '템플스테이 보기',
+    largeBtnClick: () => {},
+    handleResetFilter: () => {},
+  },
+};

@@ -5,6 +5,7 @@ export const templeInfoContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.4rem',
+  paddingBottom: '0.7rem',
 });
 
 export const templeInfoBoxStyle = style({
@@ -34,4 +35,12 @@ export const templeInfoContent = style({
 export const expandedContent = style({
   WebkitLineClamp: 'unset',
   overflow: 'visible',
+});
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '35.6rem',
+  ...theme.FONTS.c2R14,
+  color: theme.COLORS.gray7,
 });

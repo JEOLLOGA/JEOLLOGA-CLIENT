@@ -7,22 +7,29 @@ import { useState } from 'react';
 interface ButtonBarProps {
   type: 'reset' | 'wish';
   label: string;
+  largeBtnClick: () => void;
+  handleResetFilter?: () => void;
 }
 
-const ButtonBar = ({ type, label }: ButtonBarProps) => {
+const ButtonBar = ({
+  type,
+  label,
+  largeBtnClick,
+  handleResetFilter = () => {},
+}: ButtonBarProps) => {
   const [isActive, setIsActive] = useState(false);
 
-  const onClickLefthBtn = () => {
+  const onClickLeftBtn = () => {
     setIsActive((prev) => !prev);
   };
 
   const renderLeftButton = () =>
     type === 'wish' ? (
-      <FlowerBtn label="찜하기" isActive={isActive} isLeftIcn onClick={onClickLefthBtn} />
+      <FlowerBtn label="찜하기" isActive={isActive} isLeftIcn onClick={onClickLeftBtn} />
     ) : (
       <TextBtn
         text="초기화"
-        onClick={onClickLefthBtn}
+        onClick={handleResetFilter}
         leftIcon="IcnReset"
         size="medium"
         clicked={isActive}
@@ -32,7 +39,7 @@ const ButtonBar = ({ type, label }: ButtonBarProps) => {
   return (
     <div className={buttonBarContainer}>
       {renderLeftButton()}
-      <PageBottomBtn btnText={label} size="small" onClick={() => {}} />
+      <PageBottomBtn btnText={label} size="small" onClick={largeBtnClick} />
     </div>
   );
 };

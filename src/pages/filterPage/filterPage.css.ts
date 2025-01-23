@@ -9,4 +9,5 @@ export const header = style({
 
 export const main = style({
   padding: '0 2rem',
+  marginBottom: '7rem',
 });

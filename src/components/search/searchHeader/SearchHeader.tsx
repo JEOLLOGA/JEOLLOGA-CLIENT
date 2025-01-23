@@ -1,16 +1,22 @@
 import Icon from '@assets/svgs';
 import SearchBar from '@components/search/searchBar/SearchBar';
 import searchHeaderStyle from '@components/search/searchHeader/searchHeader.css';
+import useNavigateTo from '@hooks/useNavigateTo';
 
-interface SearchHeaderProps {
-  onSearch: (text: string) => void;
+interface SearchHeader {
+  searchText?: string;
+  prevPath: string | number;
 }
 
-const SearchHeader = ({ onSearch }: SearchHeaderProps) => {
+const SearchHeader = ({ searchText, prevPath }: SearchHeader) => {
+  const handleToBack = useNavigateTo(prevPath);
+
   return (
     <header className={searchHeaderStyle}>
-      <Icon.IcnArrowBlackLeft />
-      <SearchBar onSearch={onSearch} />
+      <button onClick={handleToBack}>
+        <Icon.IcnArrowBlackLeft />
+      </button>
+      <SearchBar searchText={searchText} />
     </header>
   );
 };

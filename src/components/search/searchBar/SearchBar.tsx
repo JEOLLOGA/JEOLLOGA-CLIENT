@@ -1,14 +1,19 @@
 import Icon from '@assets/svgs';
-import { useState } from 'react';
+import useFilter from '@hooks/useFilter';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import * as styles from './searchBar.css';
 
 interface SearchBarProps {
-  onSearch: (text: string) => void;
+  searchText?: string;
 }
 
-const SearchBar = ({ onSearch }: SearchBarProps) => {
-  const [inputValue, setInputValue] = useState('');
+const SearchBar = ({ searchText }: SearchBarProps) => {
+  const [inputValue, setInputValue] = useState(searchText || '');
+
+  const { handleSearch, handleResetFilter } = useFilter();
+  const location = useLocation();
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -19,21 +24,28 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   const handleClearInput = () => {
     setInputValue('');
-    onSearch('');
   };
 
-  const handleSearch = () => {
+  const handleClickSearch = () => {
     if (inputValue.trim() === '') return;
-    onSearch(inputValue);
-    setInputValue('');
+
+    handleSearch(inputValue);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
       e.preventDefault();
-      handleSearch();
+      handleClickSearch();
     }
   };
+
+  // 검색 페이지에서 입력하면 기존 필터 지우기
+  useEffect(() => {
+    if (location.pathname === '/search') {
+      handleResetFilter();
+      localStorage.setItem('prevPage', '/search');
+    }
+  }, []);
 
   return (
     <div className={styles.searchBarContainer}>
@@ -42,8 +54,8 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
           className={styles.pointer}
           role="button"
           tabIndex={0}
-          onClick={handleSearch}
-          onKeyDown={(e) => e.key === 'Enter' && handleSearch()}>
+          onClick={() => handleClickSearch()}
+          onKeyDown={(e) => e.key === 'Enter' && handleClickSearch()}>
           <Icon.IcnSearchMediumGray />
         </div>
         <input
@@ -55,9 +67,9 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
           maxLength={10}
         />
       </div>
-      <div className={styles.pointer}>
-        <Icon.IcnCloseLargeGray onClick={handleClearInput} />
-      </div>
+      <button className={styles.pointer} onClick={() => handleClearInput()}>
+        <Icon.IcnCloseLargeGray />
+      </button>
     </div>
   );
 };

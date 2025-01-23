@@ -1,17 +1,34 @@
+import { useGetSearchHistory, useDelSearchRecord } from '@apis/search';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
+const RecentBtnBox = () => {
+  const userId = localStorage.getItem('userId');
+  const { data, isLoading, isError } = useGetSearchHistory(Number(userId));
+  const { mutate: deleteSearchRecord } = useDelSearchRecord();
 
-const RecentBtnBox = ({ data }: { data: { id: number; content: string }[] }) => {
+  const handleDeleteSearch = (searchId: number) => {
+    deleteSearchRecord({ userId: Number(userId), searchId });
+  };
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (isError) {
+    return <p>Error</p>;
+  }
+
   return (
     <div className={styles.recentBtnBox}>
-      {data.length > 0 ? (
-        data.map((item) => (
+      {data && data.searchHistory.length > 0 ? (
+        data.searchHistory.map((item) => (
           <BasicBtn
-            key={item.id}
+            key={item.searchId}
             label={item.content}
             variant="lightGrayOutlined"
             size="small"
             rightIcon="IcnCloseSmallGray"
+            onClick={() => handleDeleteSearch(item.searchId)}
           />
         ))
       ) : (

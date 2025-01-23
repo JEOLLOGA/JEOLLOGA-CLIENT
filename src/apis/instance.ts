@@ -6,6 +6,7 @@ const API_URL = `${import.meta.env.VITE_APP_BASE_URL}`;
 // 토큰이 필요없는 api 요청
 const instance = axios.create({
   baseURL: API_URL,
+  withCredentials: true, // 쿠키를 포함한 요청 허용
   headers: {
     'Content-Type': 'application/json',
   },
@@ -16,7 +17,7 @@ export const privateInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+    Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
   },
 });
 
@@ -30,7 +31,7 @@ export const postRefreshToken = async () => {
       {
         headers: {
           'Content-Type': 'application/json',
-          refreshToken: localStorage.getItem('refreshToken'),
+          Authorization: localStorage.getItem('Authorization'),
         },
       },
     );
@@ -56,17 +57,17 @@ privateInstance.interceptors.response.use(
 
         if (response.status === 200) {
           const originRequest = config;
-          const newAccessToken = response.headers.Authorization;
-          localStorage.setItem('accessToken', newAccessToken);
+          const newAuthorization = response.headers.Authorization;
+          localStorage.setItem('Authorization', newAuthorization);
 
-          axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
+          axios.defaults.headers.common.Authorization = `Bearer ${newAuthorization}`;
           // 진행중이던 요청 이어서 하기
-          originRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+          originRequest.headers.Authorization = `Bearer ${newAuthorization}`;
 
           return axios(originRequest);
         }
       } catch (error) {
-        localStorage.removeItem('accessToken');
+        localStorage.removeItem('Authorization');
         localStorage.removeItem('refreshToken');
 
         console.error(error);
@@ -77,5 +78,11 @@ privateInstance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+// 로그인 상태에 따라 axios인스턴스 선택을 위한 훅
+export const getAxiosInstance = () => {
+  const isLoggedIn = !!localStorage.getItem('Authorization');
+  return isLoggedIn ? privateInstance : instance;
+};
 
 export default instance;

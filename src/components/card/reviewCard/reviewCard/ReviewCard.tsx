@@ -1,13 +1,15 @@
+import Icon from '@assets/svgs';
+
 import * as styles from './reviewCard.css';
 import CardInfo from '../cardInfo/CardInfo';
 
 interface ReviewCardProps {
-  reviewTitle: string;
-  reviewDate: string;
-  reviewName: string | null;
-  reviewLink: string;
+  reviewTitle?: string;
+  reviewDate?: string;
+  reviewName?: string | null;
+  reviewLink?: string;
   reviewDescription?: string | null;
-  blogImage: string | null;
+  blogImage?: string | null;
   size: 'small' | 'large';
 }
 
@@ -21,7 +23,7 @@ const ReviewCard = ({
   size,
 }: ReviewCardProps) => {
   const handleButtonClick = () => {
-    window.location.href = reviewLink;
+    window.open(reviewLink, '_blank');
   };
 
   return (
@@ -29,11 +31,9 @@ const ReviewCard = ({
       {blogImage ? (
         <img className={styles.cardImage({ size })} src={blogImage} alt="thumbnail" />
       ) : (
-        <img
-          className={styles.cardImage({ size })}
-          src="/default-image.png"
-          alt="Default thumbnail"
-        />
+        <div className={styles.emptyImage({ size })}>
+          <Icon.IcnEmptyImage />
+        </div>
       )}
       <div className={styles.cardContent({ size })}>
         <div>

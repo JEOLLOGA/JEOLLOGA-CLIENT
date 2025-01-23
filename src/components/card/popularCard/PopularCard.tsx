@@ -12,6 +12,7 @@ interface PopularCardProps {
   tag: string;
   onClick: () => void;
   isLiked?: boolean;
+  onLikeToggle: (liked: boolean) => void;
 }
 
 const PopularCard = ({
@@ -22,12 +23,14 @@ const PopularCard = ({
   tag,
   onClick,
   isLiked = false,
+  onLikeToggle,
 }: PopularCardProps) => {
   const [liked, setLiked] = useState(isLiked);
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     setLiked((prev) => !prev);
+    onLikeToggle(liked);
   };
 
   return (

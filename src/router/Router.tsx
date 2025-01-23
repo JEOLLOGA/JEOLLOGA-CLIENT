@@ -1,4 +1,5 @@
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import RedirectionPage from '@pages/RedirectionPage/RedirectionPage';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from 'src/App';
@@ -14,6 +15,10 @@ const OnboardingPage = lazy(() => import('@pages/onboardingPage/OnboardingPage')
 const WelcomePage = lazy(() => import('@pages/welcomePage/WelcomePage'));
 const WishListPage = lazy(() => import('@pages/wishList/WishListPage'));
 const LoginPage = lazy(() => import('@pages/loginPage/LoginPage'));
+const DetailPage = lazy(() => import('@pages/templeDetailPage/TempleDetailPage'));
+const LargeMap = lazy(() => import('@components/templeDetail/naverMap/largeMap/LargeMap'));
+const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/TemplePhotoPage'));
+const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
 const CurationPage = lazy(() => import('@pages/CurationPage'));
 
 const router = createBrowserRouter([
@@ -59,12 +64,32 @@ const router = createBrowserRouter([
         element: <LoginPage />,
       },
       {
+        path: 'auth',
+        element: <RedirectionPage />,
+      },
+      {
         path: 'onboarding',
         element: <OnboardingPage />,
       },
       {
         path: 'welcome',
         element: <WelcomePage />,
+      },
+      {
+        path: 'detail/:templestayId',
+        element: <DetailPage />,
+      },
+      {
+        path: 'detail/:templestayId/photo',
+        element: <DetailPhoto />,
+      },
+      {
+        path: '/detail/:templestayId/blog',
+        element: <DetailBlog />,
+      },
+      {
+        path: '/detail/:templestayId/map',
+        element: <LargeMap />,
       },
       {
         path: 'curation/:index',

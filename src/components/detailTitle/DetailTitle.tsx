@@ -3,17 +3,17 @@ import { titleContainerStyle, titleStyle, buttonStyle } from './detailTitle.css'
 interface DetailTitleProps {
   title: string;
   isTotal?: boolean;
-  onClick?: () => void;
   size?: 'small' | 'medium';
   rigntBtnLabel?: string;
+  onClick?: () => void;
 }
 
 const DetailTitle = ({
   title,
   isTotal = false,
-  onClick,
   size = 'medium',
-  rigntBtnLabel = '젠체보기',
+  rigntBtnLabel,
+  onClick,
 }: DetailTitleProps) => {
   return (
     <div className={titleContainerStyle}>
