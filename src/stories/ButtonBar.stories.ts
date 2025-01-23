@@ -28,7 +28,7 @@ export const Default: Story = {
   args: {
     type: 'reset',
     label: '템플스테이 보기',
-    handleSearch: () => {},
+    largeBtnClick: () => {},
     handleResetFilter: () => {},
   },
 };

@@ -29,7 +29,7 @@ const SmallMap = ({ detailAddress, latitude, longitude }: MapDataProps) => {
       <DetailTitle title="지도" />
       <div className={styles.mapContainerStyle}>
         <div className={styles.addressDetailStyle}>
-          <p>{detailAddress}</p>
+          <p className={styles.addressWord}>{detailAddress}</p>
           <TextBtn text="복사하기" leftIcon="IcnPaste" onClick={copyToClipboard} />
         </div>
         <button className={styles.mapStyle} onClick={navigateToHome}>
