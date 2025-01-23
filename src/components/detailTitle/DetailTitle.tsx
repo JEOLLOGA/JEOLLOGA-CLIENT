@@ -1,4 +1,4 @@
-import useNavigateTo from '@hooks/useNavigateTo';
+import { useDelAllSearchRecord } from '@apis/search';
 
 import { titleContainerStyle, titleStyle, buttonStyle } from './detailTitle.css';
 
@@ -15,17 +15,17 @@ const DetailTitle = ({
   size = 'medium',
   rigntBtnLabel = '전체보기',
 }: DetailTitleProps) => {
-  const navigateToLargeReview = useNavigateTo(`/detail/blog`);
+  const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
 
-  const handleClick = () => {
-    navigateToLargeReview();
+  const handleDeleteAll = () => {
+    const userId = localStorage.getItem('userId');
+    deleteAllSearchRecords({ userId: Number(userId) });
   };
-
   return (
     <div className={titleContainerStyle}>
       <p className={titleStyle({ size })}>{title}</p>
       {isTotal && (
-        <button className={buttonStyle} onClick={handleClick}>
+        <button className={buttonStyle} onClick={handleDeleteAll}>
           {rigntBtnLabel}
         </button>
       )}
