@@ -76,12 +76,7 @@ const TempleDetailPage = () => {
   return (
     <div className={styles.templeDetailWrapper}>
       <div className={styles.headerBox}>
-        <TempleTopbar
-          templeName={data.templeName}
-          templestayName={data.templestayName}
-          liked={liked}
-          onToggleWishlist={handleToggleWishlist}
-        />
+        <TempleTopbar templeName={data.templeName} templestayName={data.templestayName} />
       </div>
       <div className={styles.topDetailContainer}>
         <DetailCarousel />
