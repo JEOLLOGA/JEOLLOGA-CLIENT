@@ -11,7 +11,7 @@ interface WishCardListProps {
     tag: string;
     region: string;
     type: string;
-    imgUrl: string;
+    imgUrl?: string;
     liked: boolean;
   }[];
   layout: 'vertical' | 'horizontal';

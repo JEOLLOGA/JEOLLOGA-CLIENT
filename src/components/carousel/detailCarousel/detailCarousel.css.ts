@@ -1,3 +1,4 @@
+import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const imageWrapper = style({
@@ -34,4 +35,14 @@ export const numberStyle = style({
   bottom: '0.8rem',
   right: '0.8rem',
   zIndex: 2,
+});
+
+export const emptyImageContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  height: '21rem',
+  width: '33.5rem',
+  backgroundColor: theme.COLORS.gray2,
+  borderRadius: 4,
 });

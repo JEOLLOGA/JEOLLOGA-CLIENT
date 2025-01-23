@@ -6,7 +6,7 @@ const buttonBarContainer = style({
   bottom: 0,
   left: '50%',
   transform: 'translateX(-50%)',
-  zIndex: 999,
+  zIndex: 1,
 
   display: 'flex',
   alignItems: 'center',

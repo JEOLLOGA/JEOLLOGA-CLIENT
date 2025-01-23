@@ -76,3 +76,41 @@ export const wishBtn = style({
 
   zIndex: '2',
 });
+
+export const verticalEmptyImgSection = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: '4px',
+  backgroundColor: theme.COLORS.gray2,
+
+  transition: '0.15s ease-out',
+
+  selectors: {
+    [`${verticalContainer}:hover &`]: {
+      filter: 'brightness(88%)',
+    },
+  },
+});
+
+export const horizontalEmptyImgSection = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: '4px 0 0 4px',
+  backgroundColor: theme.COLORS.gray2,
+
+  transition: '0.15s ease-out',
+
+  selectors: {
+    [`${horizontalContainer}:hover &`]: {
+      filter: 'brightness(88%)',
+    },
+  },
+});

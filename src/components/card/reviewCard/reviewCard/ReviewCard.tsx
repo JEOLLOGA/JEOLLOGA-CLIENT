@@ -1,4 +1,5 @@
-import Icon from '@assets/svgs';
+import emptyMediumImage from '@assets/images/img_gray_light_leaf_medium.png';
+import emptySmallImage from '@assets/images/img_gray_light_leaf_small.png';
 
 import * as styles from './reviewCard.css';
 import CardInfo from '../cardInfo/CardInfo';
@@ -25,6 +26,7 @@ const ReviewCard = ({
   const handleButtonClick = () => {
     window.open(reviewLink, '_blank');
   };
+  const emptyImage = size === 'small' ? emptyMediumImage : emptySmallImage;
 
   return (
     <button className={styles.cardContainer({ size })} onClick={handleButtonClick}>
@@ -32,7 +34,7 @@ const ReviewCard = ({
         <img className={styles.cardImage({ size })} src={blogImage} alt="thumbnail" />
       ) : (
         <div className={styles.emptyImage({ size })}>
-          <Icon.IcnEmptyImage />
+          <img src={emptyImage} alt="빈 이미지"></img>
         </div>
       )}
       <div className={styles.cardContent({ size })}>
