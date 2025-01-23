@@ -16,6 +16,7 @@ interface TempleStayCardProps {
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
   onClick?: () => void;
+  onRequireLogin?: () => void;
 }
 
 const TempleStayCard = ({
@@ -30,12 +31,20 @@ const TempleStayCard = ({
   layout,
   onToggleWishlist,
   onClick,
+  onRequireLogin,
 }: TempleStayCardProps) => {
   const [isWished, setIsWished] = useState(liked);
   const isHorizontal = layout === 'horizontal';
 
   const onClickWishBtn = (e: React.MouseEvent) => {
     e.stopPropagation();
+
+    const userId = Number(localStorage.getItem('userId'));
+    if (!userId) {
+      onRequireLogin?.();
+      return;
+    }
+
     setIsWished((prev) => !prev);
     onToggleWishlist(templestayId, isWished);
   };

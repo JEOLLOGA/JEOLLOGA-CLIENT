@@ -1,6 +1,7 @@
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
+import ModalContainer from '@components/common/modal/ModalContainer';
 import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
@@ -30,10 +31,14 @@ const SearchResultPage = () => {
     }
   }, [results, content]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(results.page);
   const [templestays, setTemplestays] = useState(results.templestays);
   const [searchText, setSearchText] = useState(content);
   const { handleSearch } = useFilter();
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -65,6 +70,18 @@ const SearchResultPage = () => {
 
   return (
     <div className={styles.container}>
+      {isModalOpen && (
+        <ModalContainer
+          modalTitle="로그인 하시겠어요?"
+          modalBody="찜하려면 로그인이 필요해요."
+          isOpen={isModalOpen}
+          handleClose={closeModal}
+          handleSubmit={() => (window.location.href = '/login')}
+          leftBtnLabel="취소"
+          rightBtnLabel="로그인하기"
+        />
+      )}
+
       <div className={styles.headerContainer}>
         <SearchHeader searchText={searchText} prevPath={prevPath} />
         <FilterTypeBox activeFilters={activeFilters} />
@@ -77,6 +94,7 @@ const SearchResultPage = () => {
             data={templestays}
             layout="horizontal"
             onToggleWishlist={handleToggleWishlist}
+            onRequireLogin={openModal}
           />
           <Pagination
             currentPage={currentPage}

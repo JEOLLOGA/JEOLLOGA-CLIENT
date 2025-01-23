@@ -10,7 +10,7 @@ import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import useFilter from '@hooks/useFilter';
 import { useSetAtom } from 'jotai';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { contentAtom } from 'src/store/store';
 
 import * as styles from './homePage.css';

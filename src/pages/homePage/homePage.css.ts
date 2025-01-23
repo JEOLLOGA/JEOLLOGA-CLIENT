@@ -1,3 +1,4 @@
+import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 const flexCenterColumn = style({
@@ -6,6 +7,7 @@ const flexCenterColumn = style({
   alignItems: 'center',
   justifyContent: 'center',
   touchAction: 'none',
+  position: 'relative',
 });
 
 export const homeWrapper = flexCenterColumn;
@@ -27,12 +29,13 @@ export const popularCarouselStyle = style([
 ]);
 
 export const modalOverlay = style({
-  position: 'fixed',
+  position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  height: 'calc(100% + 1.2rem)',
+  marginTop: '-1.2rem',
+  backgroundColor: theme.COLORS.black60,
   justifyContent: 'center',
   alignItems: 'center',
   zIndex: 1,
