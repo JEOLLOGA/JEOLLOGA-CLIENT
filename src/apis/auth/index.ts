@@ -20,8 +20,8 @@ export const useGetKakaoLogin = () => {
 
       if (!userNickname) {
         navigate('/onboarding');
-      }
-      else navigate('/');
+      } else {
+        navigate('/');
       }
     },
     onError: (error) => {
