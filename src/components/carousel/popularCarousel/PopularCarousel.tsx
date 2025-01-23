@@ -19,7 +19,7 @@ const PopularCarousel = () => {
     });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p>Loading..</p>;
   }
 
   if (isError) {
