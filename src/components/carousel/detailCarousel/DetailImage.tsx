@@ -1,4 +1,5 @@
 import useNavigateTo from '@hooks/useNavigateTo';
+import { useParams } from 'react-router-dom';
 
 import * as styles from './detailCarousel.css';
 import NumberTag from './numberTag/NumberTag';
@@ -11,7 +12,9 @@ interface ImageItemProps {
 }
 
 const ImageItem = ({ id, imgUrl, currentNum, totalNum }: ImageItemProps) => {
-  const navigateToPhoto = useNavigateTo('/detail/photo');
+  const { templestayId } = useParams();
+
+  const navigateToPhoto = useNavigateTo(`/detail/${templestayId}/photo`);
 
   return (
     <div

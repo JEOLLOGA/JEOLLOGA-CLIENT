@@ -1,24 +1,24 @@
 import * as styles from './templeTitle.css';
 
-const priceData = {
-  tag: '초보자에게 추천, 절밥이 맛있는, 주차 가능',
-  templeName: '봉은사',
-  templestayName: '상월선원 템플스테이 (참선정진 집중프로그램) (금요일 7시 시작)',
-};
+interface TempleTitleProps {
+  tag?: string;
+  templeName: string;
+  templestayName: string;
+}
 
-const TempleTitle = () => {
+const TempleTitle = ({ tag, templeName, templestayName }: TempleTitleProps) => {
   return (
     <section className={styles.titleWrapper}>
       <div className={styles.tagBox}>
-        {priceData.tag.split(',').map((tag, index) => (
+        {tag?.split(',').map((tagItem, index) => (
           <span key={index} className={styles.tagBox}>
-            #{tag.trim()}
+            #{tagItem.trim()}
           </span>
         ))}
       </div>
       <div className={styles.templeNameBox}>
         <h1 className={styles.templeNameContext}>
-          {priceData.templeName} {priceData.templestayName}
+          {templeName} {templestayName}
         </h1>
       </div>
     </section>

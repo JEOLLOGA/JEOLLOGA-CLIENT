@@ -45,7 +45,7 @@ const SearchResultPage = () => {
     ...filterInstance.getFilteredGroups(),
     ...(isPriceChanged ? ['price'] : []),
   ];
-  
+
   const handleToggleWishlist = (templestayId: number, liked: boolean) => {
     if (liked) {
       removeWishlistMutation.mutate({ userId, templestayId });
@@ -54,10 +54,12 @@ const SearchResultPage = () => {
     }
   };
 
+  const prevPath = localStorage.getItem('prevPage') || '';
+
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
-        <SearchHeader searchText={searchText} />
+        <SearchHeader searchText={searchText} prevPath={prevPath} />
         <FilterTypeBox activeFilters={activeFilters} />
       </div>
       {templestays.length === 0 ? (

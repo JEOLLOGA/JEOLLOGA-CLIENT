@@ -2,7 +2,14 @@ import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const mapContainerWrapper = style({
-  paddingBottom: '3rem',
+  paddingBottom: '13rem',
+});
+
+export const addressWord = style({
+  width: '26rem',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
 });
 
 export const mapContainerStyle = style({

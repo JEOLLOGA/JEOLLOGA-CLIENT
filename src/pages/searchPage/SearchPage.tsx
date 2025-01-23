@@ -5,7 +5,7 @@ import leftPaddingStyle from '@pages/searchPage/searchPage.css';
 const SearchPage = () => {
   return (
     <>
-      <SearchHeader />
+      <SearchHeader prevPath={'/'}/>
       <div className={leftPaddingStyle}>
         <RecentBtnBox />
       </div>

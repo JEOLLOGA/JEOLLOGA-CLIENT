@@ -19,3 +19,11 @@ export const adultString = style({
 export const priceString = style({
   ...theme.FONTS.h5Sb16,
 });
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '35.2rem',
+  ...theme.FONTS.c2R14,
+  color: theme.COLORS.gray7,
+});

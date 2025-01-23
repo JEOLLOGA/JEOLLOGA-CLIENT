@@ -1,23 +1,36 @@
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ScheduleCard from '@components/schedule/ScheduleCard';
-import { TEMPLE_DETAIL_DATA } from '@constants/templeDetail';
 
-import templeScheduleContainer from '../templeDetailInfo/templeDetailInfo.css';
+import * as styles from './templeSchedule.css';
 
+interface TempleScheduleProps {
+  schedule?: string;
+}
 interface ScheduleData {
   [day: string]: {
     [time: string]: string;
   };
 }
 
-const TempleSchedule = () => {
-  const parsedSchedule: ScheduleData = JSON.parse(TEMPLE_DETAIL_DATA.schedule);
+const TempleSchedule = ({ schedule }: TempleScheduleProps) => {
+  let parsedSchedule: ScheduleData | null = null;
+
+  if (schedule) {
+    parsedSchedule = JSON.parse(schedule);
+  }
+
   return (
-    <div className={templeScheduleContainer} id="detail-section-1">
+    <div className={styles.templeScheduleContainer} id="detail-section-1">
       <DetailTitle title="프로그램 일정" isTotal={false} />
-      {Object.entries(parsedSchedule).map(([day, programs]) => (
-        <ScheduleCard key={day} day={day} programs={programs} />
-      ))}
+      {parsedSchedule ? (
+        Object.entries(parsedSchedule).map(([day, programs]) => (
+          <ScheduleCard key={day} day={day} programs={programs} />
+        ))
+      ) : (
+        <div className={styles.emptyContainer}>
+          <p>프로그램 일정이 없어요</p>
+        </div>
+      )}
     </div>
   );
 };

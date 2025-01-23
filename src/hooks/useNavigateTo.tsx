@@ -9,6 +9,7 @@ const useNavigateTo = (routePage: string | number) => {
     } else if (typeof routePage === 'number') {
       navigate(routePage);
     }
+    window.scrollTo(0, 0);
   };
 
   return navigateToPage;

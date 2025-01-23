@@ -1,5 +1,5 @@
-import { usePostLogout } from '@apis/auth';
-import useGetMyPage from '@apis/myPage';
+import { useGetMyPage } from '@apis/user';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 
 import infoContainerStyle from './userInfo.css';
 import AccountActions from './userInfoContent/accountAction/AccountAction';
@@ -8,20 +8,18 @@ import TopInfo from './userInfoContent/nameContent/NameContent';
 import MemberInfo from './userInfoContent/userDetailInfo.tsx/UserDetailInfo';
 import UserInfoSection from './userInfoContent/userInfoSection/userInfoSection';
 
-const UserInfo = () => {
-  const postLogout = usePostLogout();
+interface UserInfoProps {
+  onLogoutClick: () => void;
+  onDeleteClick: () => void;
+}
 
+const UserInfo = ({ onLogoutClick, onDeleteClick }: UserInfoProps) => {
   const handleNoticeClick = () => {
     window.open('https://www.notion.so/1817c7beb7788076bdddfd4ba4b43008?pvs=4', '_blank');
   };
+
   const handleQuestionClick = () => {
     window.open('https://www.notion.so/1807c7beb7788005a73bc799ce8719bf?pvs=4', '_blank');
-  };
-  const handleLogoutClick = () => {
-    postLogout.mutate();
-  };
-  const handleDeleteClick = () => {
-    alert('delete click');
   };
 
   const userId = localStorage.getItem('userId') || '';
@@ -29,11 +27,11 @@ const UserInfo = () => {
   const { data, isLoading, isError } = useGetMyPage(userId);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   if (!data) {
@@ -53,7 +51,7 @@ const UserInfo = () => {
       <UserInfoSection title="도움말">
         <HelpSection onNoticeClick={handleNoticeClick} onQuestionClick={handleQuestionClick} />
       </UserInfoSection>
-      <AccountActions onLogoutClick={handleLogoutClick} onDeleteClick={handleDeleteClick} />
+      <AccountActions onLogoutClick={onLogoutClick} onDeleteClick={onDeleteClick} />
     </div>
   );
 };
