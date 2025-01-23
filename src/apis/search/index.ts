@@ -38,6 +38,7 @@ export const useGetSearchHistory = (userId: number | null) => {
   const { data, isLoading, isError } = useQuery<SearchHistoryResponse>({
     queryKey: [userId],
     queryFn: () => getSearchHistory(userId),
+    enabled: userId !== null && userId !== 0,
   });
 
   return { data, isLoading, isError };
