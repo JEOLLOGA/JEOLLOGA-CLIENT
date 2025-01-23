@@ -20,6 +20,10 @@ import { useParams } from 'react-router-dom';
 import * as styles from './templeDetailPage.css';
 
 const TempleDetailPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const userId = localStorage.getItem('userId');
   const { templestayId } = useParams();
   const { data, isLoading, isError } = useGetTempleDetails(String(templestayId), String(userId));

@@ -67,8 +67,7 @@ privateInstance.interceptors.response.use(
           return axios(originRequest);
         }
       } catch (error) {
-        localStorage.removeItem('Authorization');
-        localStorage.removeItem('refreshToken');
+        localStorage.clear();
 
         console.error(error);
         alert(MESSAGES.EXPIRED);
