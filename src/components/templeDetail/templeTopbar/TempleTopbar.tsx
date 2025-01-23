@@ -14,7 +14,7 @@ const TempleTopbar = ({ templeName, templestayName }: TempleTopbarProps) => {
       <PageName
         title={`${templeName} ${templestayName}`}
         onRightClick={navigateToWishlist}
-        isLikeBtn={true}
+        isLikeBtn={false}
       />
     </div>
   );
