@@ -21,7 +21,3 @@ export const modalOverlay = style({
   justifyContent: 'center',
   alignItems: 'center',
 });
-
-export const hidden = style({
-  display: 'none',
-});
