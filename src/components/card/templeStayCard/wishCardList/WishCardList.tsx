@@ -1,6 +1,6 @@
+import TempleStayCard from '@components/card/templeStayCard/TempleStayCard';
 import React from 'react';
 
-import TempleStayCard from '../TempleStayCard';
 import container from './wishCardList.css';
 
 interface WishCardListProps {
