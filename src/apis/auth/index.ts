@@ -37,7 +37,7 @@ export const usePostLogout = () => {
     },
 
     onError: (error) => {
-      console.log(error);
+      console.error(error);
     },
   });
 };

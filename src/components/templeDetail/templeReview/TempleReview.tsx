@@ -1,12 +1,14 @@
 import useGetTempleReviews from '@apis/templeReviews';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import DetailTitle from '@components/detailTitle/DetailTitle';
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useParams } from 'react-router-dom';
 
 import * as styles from './templeReview.css';
 
 const TempleReview = () => {
   const { templestayId } = useParams();
+  const navigateToLargeReview = useNavigateTo(`/detail/${templestayId}/blog`);
   const { data, isLoading, isError } = useGetTempleReviews(String(templestayId), Number(1));
 
   if (isLoading) {
@@ -27,7 +29,12 @@ const TempleReview = () => {
 
   return (
     <div className={styles.templeReviewWrapper} id="detail-section-0">
-      <DetailTitle title="리뷰" isTotal={true} />
+      <DetailTitle
+        title="리뷰"
+        isTotal={true}
+        rigntBtnLabel="전체보기"
+        onClick={navigateToLargeReview}
+      />
       <div className={styles.templeReviewContainer}>
         {data.reviews.slice(0, 5).map((review) => (
           <div key={review.reviewId}>
