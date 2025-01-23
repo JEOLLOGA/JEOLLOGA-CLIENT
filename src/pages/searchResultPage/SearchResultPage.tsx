@@ -5,6 +5,7 @@ import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
 import useFilter from '@hooks/useFilter';
+import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
@@ -16,6 +17,7 @@ const SearchResultPage = () => {
   const location = useLocation();
   const { results, content, price } = location.state || {};
   const userId = Number(localStorage.getItem('userId'));
+  const queryClient = useQueryClient();
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
@@ -48,9 +50,25 @@ const SearchResultPage = () => {
 
   const handleToggleWishlist = (templestayId: number, liked: boolean) => {
     if (liked) {
-      removeWishlistMutation.mutate({ userId, templestayId });
+      removeWishlistMutation.mutate(
+        { userId, templestayId },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+          },
+        },
+      );
     } else {
-      addWishlistMutation.mutate({ userId, templestayId });
+      addWishlistMutation.mutate(
+        { userId, templestayId },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+          },
+        },
+      );
     }
   };
 
