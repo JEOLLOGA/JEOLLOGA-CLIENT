@@ -1,8 +1,8 @@
 import Tag from '@components/common/tag/Tag';
 
 interface numberTagProps {
-  currentNum: number;
-  totalNum: number;
+  currentNum?: number;
+  totalNum?: number;
 }
 
 const NumberTag = ({ currentNum, totalNum }: numberTagProps) => {

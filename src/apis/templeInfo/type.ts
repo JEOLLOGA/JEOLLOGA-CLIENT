@@ -19,11 +19,11 @@ export interface ReviewsResponse {
 
 export interface TemplestayImg {
   imageUrlId: number;
-  imgUrl: string;
+  imgUrl?: string;
 }
 
 export interface TemplestayImgsResponse {
-  total: number;
+  total?: number;
   templestayImgs: TemplestayImg[];
 }
 

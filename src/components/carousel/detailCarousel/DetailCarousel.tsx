@@ -1,4 +1,5 @@
 import { useGetTempleImages } from '@apis/templeInfo';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
 import { useParams } from 'react-router-dom';
@@ -16,11 +17,11 @@ const DetailCarousel = () => {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
 
   if (!data) {
