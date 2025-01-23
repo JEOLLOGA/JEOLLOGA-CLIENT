@@ -26,7 +26,10 @@ const TempleDetailPage = () => {
 
   const userId = localStorage.getItem('userId');
   const { templestayId } = useParams();
-  const { data, isLoading, isError } = useGetTempleDetails(String(templestayId), userId);
+  const { data, isLoading, isError } = useGetTempleDetails(
+    String(templestayId),
+    userId || undefined,
+  );
   const queryClient = useQueryClient();
 
   const addWishlistMutation = useAddWishlist();
