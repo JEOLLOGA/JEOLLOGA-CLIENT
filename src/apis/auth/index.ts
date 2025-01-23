@@ -16,9 +16,13 @@ export const useGetKakaoLogin = () => {
       localStorage.setItem('userId', userId);
       localStorage.setItem('Authorization', accessToken);
       localStorage.setItem('refreshToken', refreshToken);
+      localStorage.removeItem('searchKeyword');
 
-      if (!userNickname) navigate('/onboarding');
+      if (!userNickname) {
+        navigate('/onboarding');
+      }
       else navigate('/');
+      }
     },
     onError: (error) => {
       console.error(error);
@@ -32,8 +36,8 @@ export const usePostLogout = () => {
   return useMutation({
     mutationFn: () => postLogout(),
     onSuccess: () => {
-      navigate('/');
       localStorage.clear();
+      navigate('/');
     },
 
     onError: (error) => {
