@@ -60,6 +60,8 @@ const useFilter = () => {
     const searchQuery = searchContent || content;
     const adjustedPrice = getAdjustedPrice();
 
+    const isLoggedIn = localStorage.getItem('Authorzation');
+
     try {
       const response = await fetchFilterLists({
         groupedFilters,
@@ -70,6 +72,16 @@ const useFilter = () => {
       });
 
       setContent(searchQuery);
+
+      // 로그인 안 한 사용자의 경우 검색어를 로컬스토리지에 저장
+      if (!isLoggedIn) {
+        const searchHistory = JSON.parse(localStorage.getItem('searchKeyword') || '[]');
+        const updatedHistory = [
+          searchQuery,
+          ...searchHistory.filter((item: string) => item !== searchQuery),
+        ];
+        localStorage.setItem('searchKeyword', JSON.stringify(updatedHistory.slice(0, 10))); // 최대 10개까지만 저장
+      }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
 

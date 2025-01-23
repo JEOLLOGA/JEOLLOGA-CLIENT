@@ -17,6 +17,9 @@ export const useGetKakaoLogin = () => {
         localStorage.setItem('Authorization', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
 
+        // 로그인과 동시에 로컬스토리지에 저장되어 있던 검색 기록 삭제
+        localStorage.removeItem('searchKeyword');
+
         navigate('/');
       }
     },
