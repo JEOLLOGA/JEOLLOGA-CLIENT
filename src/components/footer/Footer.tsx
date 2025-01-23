@@ -11,7 +11,7 @@ const Footer = () => {
       </div>
       <nav>
         <a
-          href="https://www.instagram.com/nami_amu_tabul?igsh=MTA3OHhkcmh1NDVkdQ%3D%3D&utm_source=qr"
+          href="https://www.instagram.com/jeol_lo_ga?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
           target="_blank"
           rel="noreferrer">
           <Icon.IcnInsta />
@@ -29,14 +29,14 @@ const Footer = () => {
       </nav>
       <nav className={styles.bottomContainer}>
         <a
-          href="https://www.instagram.com/nami_amu_tabul?igsh=MTA3OHhkcmh1NDVkdQ%3D%3D&utm_source=qr"
+          href="https://www.notion.so/17c7c7beb77880d99c12d8c2375d562d?pvs=4"
           target="_blank"
           rel="noreferrer">
           개인정보처리방침
         </a>
         <Icon.IcnDivider />
         <a
-          href="https://www.instagram.com/nami_amu_tabul?igsh=MTA3OHhkcmh1NDVkdQ%3D%3D&utm_source=qr"
+          href="https://www.notion.so/17c7c7beb7788007b1d3eb99e0c33e47?pvs=4"
           target="_blank"
           rel="noreferrer">
           이용약관
