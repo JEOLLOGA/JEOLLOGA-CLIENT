@@ -7,7 +7,7 @@ interface LookCardProps {
   name?: string;
 }
 
-const LookCard = ({ name = '일로가' }: LookCardProps) => {
+const LookCard = ({ name = '일로와' }: LookCardProps) => {
   const { handleSearch } = useFilter();
 
   return (
