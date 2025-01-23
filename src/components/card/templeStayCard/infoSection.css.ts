@@ -21,7 +21,7 @@ export const hashTag = style({
 
 export const title = style({
   width: '100%',
-  height: '4.9rem',
+  height: '4.8rem',
   alignContent: 'top',
 
   color: theme.COLORS.black,

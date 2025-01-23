@@ -5,6 +5,7 @@ const flexCenterColumn = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  touchAction: 'none',
 });
 
 export const homeWrapper = flexCenterColumn;

@@ -16,9 +16,9 @@ const RecentBtnBox = () => {
   useEffect(() => {
     if (!userId) {
       const localSearchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-      setSearchData(localSearchHistory);
+      setSearchData(Array.isArray(localSearchHistory) ? localSearchHistory : []);
     } else if (data) {
-      setSearchData(data.searchHistory);
+      setSearchData(Array.isArray(data.searchHistory) ? data.searchHistory : []);
     }
   }, [data, userId]);
 
@@ -31,7 +31,6 @@ const RecentBtnBox = () => {
         localStorage.getItem('searchHistory') || '[]',
       );
       const updatedHistory = localSearchHistory.filter((item) => item.searchId !== searchId);
-
       localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
       setSearchData(updatedHistory);
     }
@@ -66,7 +65,9 @@ const RecentBtnBox = () => {
         />
       </div>
       <div className={styles.recentBtnBox}>
-        {searchData.length > 0 ? (
+        {searchData.length === 0 ? (
+          <p className={styles.emptyResult}>최근 검색 내역이 없어요</p>
+        ) : (
           searchData.map((item) => (
             <BasicBtn
               key={item.searchId}
@@ -77,8 +78,6 @@ const RecentBtnBox = () => {
               onClick={() => handleDeleteSearch(item.searchId)}
             />
           ))
-        ) : (
-          <p className={styles.emptyResult}>최근 검색 내역이 없어요</p>
         )}
       </div>
     </section>
