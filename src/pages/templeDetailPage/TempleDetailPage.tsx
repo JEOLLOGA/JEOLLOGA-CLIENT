@@ -13,7 +13,6 @@ import TempleReview from '@components/templeDetail/templeReview/TempleReview';
 import TempleSchedule from '@components/templeDetail/templeSchedule/TempleSchedule';
 import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
-import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
