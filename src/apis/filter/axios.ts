@@ -11,7 +11,7 @@ export const fetchFilteredList = async (
   const axiosInstance = getAxiosInstance();
 
   try {
-    const response = await axiosInstance.post(`/search?page=${page}&useId=${userId}`, {
+    const response = await axiosInstance.post(`/search?page=${page}&userId=${userId}`, {
       ...filterData,
     });
 

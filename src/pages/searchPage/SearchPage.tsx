@@ -14,7 +14,7 @@ const SearchPage = () => {
   };
   return (
     <>
-      <SearchHeader />
+      <SearchHeader prevPath={'/'} />
       <div className={styles.paddingStyle}>
         <DetailTitle
           title="최근 검색"
