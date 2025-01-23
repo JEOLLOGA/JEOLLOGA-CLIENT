@@ -76,19 +76,19 @@ const router = createBrowserRouter([
         element: <WelcomePage />,
       },
       {
-        path: 'detail/:templestayid',
+        path: 'detail/:templestayId',
         element: <DetailPage />,
       },
       {
-        path: 'detail/:templestayid/photo',
+        path: 'detail/:templestayId/photo',
         element: <DetailPhoto />,
       },
       {
-        path: '/detail/:templestayid/blog',
+        path: '/detail/:templestayId/blog',
         element: <DetailBlog />,
       },
       {
-        path: '/detail/:templestayid/map',
+        path: '/detail/:templestayId/map',
         element: <LargeMap />,
       },
       {

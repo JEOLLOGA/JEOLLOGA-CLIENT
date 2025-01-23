@@ -1,5 +1,6 @@
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useDelAllSearchRecord } from '@apis/search';
-
+import { useParams } from 'react-router-dom';
 import { titleContainerStyle, titleStyle, buttonStyle } from './detailTitle.css';
 
 interface DetailTitleProps {
@@ -15,7 +16,7 @@ const DetailTitle = ({
   size = 'medium',
   rigntBtnLabel = '전체보기',
 }: DetailTitleProps) => {
-  const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
+  const navigateToLargeReview = useNavigateTo(`/detail/blog`);
 
   const handleDeleteAll = () => {
     const userId = localStorage.getItem('userId');

@@ -13,5 +13,6 @@ export interface ReviewsResponse {
   page: number;
   pageSize: number;
   totalPages: number;
+  reviewCount: number;
   reviews?: Review[];
 }

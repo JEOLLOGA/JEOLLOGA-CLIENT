@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import getTempleReviews from './axios';
 import { ReviewsResponse } from './type';
 
-const useGetTempleReviews = (templestayId: string | null, page: number | null) => {
+const useGetTempleReviews = (templestayId: string, page: number) => {
   const { data, isLoading, isError } = useQuery<ReviewsResponse>({
-    queryKey: ['reviews', templestayId],
+    queryKey: ['reviews', page],
     queryFn: () => getTempleReviews(templestayId, page),
   });
 

@@ -49,6 +49,26 @@ export const cardImage = recipe({
   },
 });
 
+export const emptyImage = recipe({
+  base: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: theme.COLORS.gray2,
+    width: '100%',
+  },
+  variants: {
+    size: {
+      small: {
+        height: '11.5rem',
+      },
+      large: {
+        height: '11.8rem',
+      },
+    },
+  },
+});
+
 export const cardContent = recipe({
   base: {
     display: 'flex',
