@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-import { getMyPage, registerUser } from './axios';
+import { fetchUserNickname, getMyPage, registerUser } from './axios';
 import { MyPageType, OnboardingUserRequest } from './type';
 
 export const useRegisterUser = () => {
@@ -13,6 +13,15 @@ export const useGetMyPage = (userId: string) => {
   const { data, isLoading, isError } = useQuery<MyPageType>({
     queryKey: ['myPage', userId],
     queryFn: () => getMyPage(userId),
+  });
+
+  return { data, isLoading, isError };
+};
+
+export const useGetNickname = (userId: number) => {
+  const { data, isLoading, isError } = useQuery({
+    queryKey: [userId],
+    queryFn: () => fetchUserNickname(userId),
   });
 
   return { data, isLoading, isError };
