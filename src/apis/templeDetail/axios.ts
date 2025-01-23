@@ -1,7 +1,8 @@
-import instance from '@apis/instance';
+import { getAxiosInstance } from '@apis/instance';
 
-const getTempleDetails = async (templestayId: string, userId: string) => {
-  const res = await instance.get('/templestay', {
+const getTempleDetails = async (templestayId: string, userId?: string) => {
+  const axiosInstance = getAxiosInstance();
+  const res = await axiosInstance.get('/templestay', {
     params: { templestayId, userId },
   });
 
