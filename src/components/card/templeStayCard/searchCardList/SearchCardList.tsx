@@ -17,9 +17,15 @@ interface SearchCardListProps {
   }[];
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
+  onRequireLogin?: () => void;
 }
 
-const SearchCardList = ({ data, layout = 'horizontal', onToggleWishlist }: SearchCardListProps) => {
+const SearchCardList = ({
+  data,
+  layout = 'horizontal',
+  onToggleWishlist,
+  onRequireLogin,
+}: SearchCardListProps) => {
   const navigate = useNavigate();
 
   const handleCardClick = (templestayId: number) => {
@@ -42,6 +48,7 @@ const SearchCardList = ({ data, layout = 'horizontal', onToggleWishlist }: Searc
           layout={layout}
           onToggleWishlist={onToggleWishlist}
           onClick={() => handleCardClick(temple.templestayId)}
+          onRequireLogin={onRequireLogin}
         />
       ))}
     </section>

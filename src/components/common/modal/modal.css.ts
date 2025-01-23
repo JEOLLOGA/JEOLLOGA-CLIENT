@@ -7,6 +7,9 @@ export const modalContainer = style({
   alignItems: 'center',
   gap: '2.8rem',
   position: 'fixed',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
 
   width: '33.1rem',
   height: '18.1rem',
@@ -21,10 +24,13 @@ export const modalBackdrop = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  position: 'absolute',
+  top: 0,
+  left: 0,
 
   zIndex: 3,
   width: '100%',
-  height: '100vh',
+  height: 'calc(100% + 1.2rem)',
   background: theme.COLORS.black60,
 
   marginTop: '-1.2rem',

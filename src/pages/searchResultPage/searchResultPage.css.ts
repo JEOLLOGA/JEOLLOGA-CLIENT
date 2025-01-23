@@ -4,6 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const container = style({
   minHeight: '100vh',
   backgroundColor: theme.COLORS.gray1,
+  position: 'relative',
 });
 
 export const headerContainer = style({

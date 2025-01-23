@@ -10,7 +10,7 @@ interface PageNameProps {
   isLiked?: boolean;
 }
 
-const PageName = ({ title, onRightClick, isLikeBtn = true, isLiked = false }: PageNameProps) => {
+const PageName = ({ title, onRightClick, isLikeBtn = true, isLiked = true }: PageNameProps) => {
   const handleToBack = useNavigateTo('/');
 
   return (

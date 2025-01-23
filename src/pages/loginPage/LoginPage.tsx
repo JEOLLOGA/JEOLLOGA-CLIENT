@@ -11,7 +11,7 @@ type LoginType = 'my' | 'wish';
 const LoginPage = () => {
   const location = useLocation();
 
-  const type: LoginType = location.state?.type || 'my';
+  const type: LoginType = location.state?.type || 'wish';
 
   const { title, text, lottie } = LOGIN_INFOS[type];
 
