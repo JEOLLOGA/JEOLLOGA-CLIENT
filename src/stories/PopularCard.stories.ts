@@ -30,6 +30,9 @@ const meta = {
     isLiked: {
       control: { type: 'boolean' },
     },
+    onLikeToggle: {
+      action: 'onLikeToggle',
+    },
   },
   args: {
     ranking: 1,
@@ -40,6 +43,7 @@ const meta = {
     tag: '방긋방긋',
     onClick: () => alert('click !'),
     isLiked: false,
+    onLikeToggle: () => alert('Liked'),
   },
 } satisfies Meta<typeof PopularCard>;
 
@@ -47,4 +51,6 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {},
+};

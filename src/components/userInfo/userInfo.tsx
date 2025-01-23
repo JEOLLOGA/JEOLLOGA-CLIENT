@@ -1,3 +1,4 @@
+import { usePostLogout } from '@apis/auth';
 import USER_INFO from '@constants/userInfo';
 
 import infoContainerStyle from './userInfo.css';
@@ -8,6 +9,8 @@ import MemberInfo from './userInfoContent/userDetailInfo.tsx/UserDetailInfo';
 import UserInfoSection from './userInfoContent/userInfoSection/userInfoSection';
 
 const UserInfo = () => {
+  const postLogout = usePostLogout();
+
   const handleNoticeClick = () => {
     alert('notice click');
   };
@@ -15,7 +18,7 @@ const UserInfo = () => {
     alert('question click');
   };
   const handleLogoutClick = () => {
-    alert('logout click');
+    postLogout.mutate();
   };
   const handleDeleteClick = () => {
     alert('delete click');

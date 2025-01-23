@@ -1,3 +1,4 @@
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import Pagination from '@components/common/pagination/Pagination';
@@ -13,7 +14,7 @@ const mockSearchData = {
   totalPages: 5,
   templestays: [
     {
-      id: 1,
+      templestayId: 1,
       templeName: '봉은사',
       templestayName: '명상 차담 템플스테이',
       tag: '연예인이 다녀간',
@@ -23,7 +24,7 @@ const mockSearchData = {
       liked: true,
     },
     {
-      id: 2,
+      templestayId: 2,
       templeName: '불국사',
       templestayName: '쉼. 멈춤. 비우기.',
       tag: '연예인이 다녀간',
@@ -33,7 +34,7 @@ const mockSearchData = {
       liked: false,
     },
     {
-      id: 3,
+      templestayId: 3,
       templeName: '봉은사',
       templestayName: '명상 차담 템플스테이',
       tag: '연예인이 다녀간',
@@ -43,7 +44,7 @@ const mockSearchData = {
       liked: true,
     },
     {
-      id: 4,
+      templestayId: 4,
       templeName: '불국사',
       templestayName: '쉼. 멈춤. 비우기.',
       tag: '연예인이 다녀간',
@@ -53,7 +54,7 @@ const mockSearchData = {
       liked: false,
     },
     {
-      id: 5,
+      templestayId: 5,
       templeName: '봉은사',
       templestayName: '명상 차담 템플스테이',
       tag: '연예인이 다녀간',
@@ -63,7 +64,7 @@ const mockSearchData = {
       liked: true,
     },
     {
-      id: 6,
+      templestayId: 6,
       templeName: '불국사',
       templestayName: '쉼. 멈춤. 비우기.',
       tag: '연예인이 다녀간',
@@ -73,7 +74,7 @@ const mockSearchData = {
       liked: false,
     },
     {
-      id: 7,
+      templestayId: 7,
       templeName: '봉은사',
       templestayName: '명상 차담 템플스테이',
       tag: '연예인이 다녀간',
@@ -83,7 +84,7 @@ const mockSearchData = {
       liked: true,
     },
     {
-      id: 8,
+      templestayId: 8,
       templeName: '불국사',
       templestayName: '쉼. 멈춤. 비우기.',
       tag: '연예인이 다녀간',
@@ -99,6 +100,10 @@ const SearchResultPage = () => {
   const [currentPage, setCurrentPage] = useState(mockSearchData.page);
   const [templestays, setTemplestays] = useState(mockSearchData.templestays);
   const [searchText, setSearchText] = useState('');
+  const userId = Number(localStorage.getItem('userId'));
+
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
 
   const handleSearch = (text: string) => {
     setSearchText(text);
@@ -108,6 +113,14 @@ const SearchResultPage = () => {
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+  };
+
+  const handleToggleWishlist = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
   };
 
   return (
@@ -120,7 +133,11 @@ const SearchResultPage = () => {
         <SearchEmpty text={searchText} />
       ) : (
         <div className={styles.bodyContainer}>
-          <SearchCardList data={templestays} layout="horizontal" />
+          <SearchCardList
+            data={templestays}
+            layout="horizontal"
+            onToggleWishlist={handleToggleWishlist}
+          />
           <Pagination
             currentPage={currentPage}
             totalPages={mockSearchData.totalPages}

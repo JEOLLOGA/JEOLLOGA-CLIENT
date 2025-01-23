@@ -1,4 +1,5 @@
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import RedirectionPage from '@pages/RedirectionPage/RedirectionPage';
 import { lazy, Suspense } from 'react';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import App from 'src/App';
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <LoginPage />,
+      },
+      {
+        path: 'auth',
+        element: <RedirectionPage />,
       },
       {
         path: 'onboarding',

@@ -6,17 +6,32 @@ export const cardContainer = style({
   height: '26.8rem',
   borderRadius: '8px',
   overflow: 'hidden',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
+  position: 'relative',
   display: 'flex',
   alignItems: 'flex-end',
   flexShrink: 0,
-
   padding: '1.6rem',
   color: theme.COLORS.white,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+
+  selectors: {
+    '&::after': {
+      content: '',
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      background: theme.COLORS.gradient,
+      zIndex: 1,
+    },
+  },
 });
 
 export const textbox = style({
+  position: 'relative',
+  zIndex: 2,
   display: 'flex',
   flexDirection: 'column',
   textAlign: 'start',
