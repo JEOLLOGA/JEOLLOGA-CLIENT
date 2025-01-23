@@ -36,3 +36,11 @@ export const expandedContent = style({
   WebkitLineClamp: 'unset',
   overflow: 'visible',
 });
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  marginTop: '35.6rem',
+  ...theme.FONTS.c2R14,
+  color: theme.COLORS.gray7,
+});
