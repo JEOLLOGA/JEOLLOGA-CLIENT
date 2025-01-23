@@ -1,4 +1,4 @@
-import useRegisterUser from '@apis/user';
+import { useRegisterUser } from '@apis/user';
 import { fetchUserNickname } from '@apis/user/axios';
 import { OnboardingUserRequest } from '@apis/user/type';
 import ProgressBar from '@components/common/progressBar/ProgressBar';
