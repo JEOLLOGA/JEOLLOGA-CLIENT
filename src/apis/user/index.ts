@@ -9,7 +9,7 @@ export const useRegisterUser = () => {
   });
 };
 
-const useGetMyPage = (userId: string) => {
+export const useGetMyPage = (userId: string) => {
   const { data, isLoading, isError } = useQuery<MyPageType>({
     queryKey: ['myPage', userId],
     queryFn: () => getMyPage(userId),
@@ -17,5 +17,3 @@ const useGetMyPage = (userId: string) => {
 
   return { data, isLoading, isError };
 };
-
-export default useGetMyPage;
