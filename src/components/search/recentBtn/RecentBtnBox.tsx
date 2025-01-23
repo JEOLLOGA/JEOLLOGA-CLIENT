@@ -62,6 +62,7 @@ const RecentBtnBox = () => {
           size="small"
           rigntBtnLabel="전체 삭제"
           onClick={handleDeleteAll}
+          rightBtnDisabled={searchData.length === 0}
         />
       </div>
       <div className={styles.recentBtnBox}>
