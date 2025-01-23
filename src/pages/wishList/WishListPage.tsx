@@ -3,8 +3,12 @@ import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardL
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
+<<<<<<< HEAD
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { useEffect, useState } from 'react';
+=======
+import React, { useState } from 'react';
+>>>>>>> 05e3283 (fix: 깃허브 액션 문제 해결)
 
 import container from './wishListPage.css';
 
