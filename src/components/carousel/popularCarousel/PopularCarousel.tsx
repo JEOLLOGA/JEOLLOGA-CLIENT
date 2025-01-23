@@ -3,6 +3,7 @@ import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import CarouselIndex from '@components/carousel/popularCarousel/CarouselIndex';
 import useCarousel from '@hooks/useCarousel';
+import { useQueryClient } from '@tanstack/react-query';
 import registDragEvent from '@utils/registDragEvent';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +12,7 @@ import * as styles from './popularCarousel.css';
 
 const PopularCarousel = () => {
   const userId = Number(localStorage.getItem('userId'));
+  const queryClient = useQueryClient();
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
@@ -34,11 +36,17 @@ const PopularCarousel = () => {
   }
 
   const handleLikeToggle = (templestayId: number, liked: boolean) => {
-    if (liked) {
-      removeWishlistMutation.mutate({ userId, templestayId });
-    } else {
-      addWishlistMutation.mutate({ userId, templestayId });
-    }
+    const mutation = liked ? removeWishlistMutation : addWishlistMutation;
+
+    mutation.mutate(
+      { userId, templestayId },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+          queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+        },
+      },
+    );
   };
 
   return (

@@ -7,7 +7,7 @@ const infoContainerStyle = style({
   gap: '3rem',
   height: '56.8rem',
   paddingTop: '1rem',
-  width: '33.5rem',
+  width: '37.5rem',
 });
 
 export default infoContainerStyle;

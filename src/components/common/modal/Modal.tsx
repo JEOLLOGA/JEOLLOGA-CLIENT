@@ -63,6 +63,7 @@ interface ModalBtnBoxProps {
   handleSubmit: () => void;
   leftBtnLabel: string;
   rightBtnLabel: string;
+  reverse?: boolean;
 }
 
 const ModalBtnBox = ({
@@ -70,11 +71,21 @@ const ModalBtnBox = ({
   handleSubmit,
   leftBtnLabel,
   rightBtnLabel,
+  reverse = false,
 }: ModalBtnBoxProps) => {
   return (
     <div className={styles.btnBox}>
-      <PopupBtn label={leftBtnLabel} color="gray" onClick={handleClose} />
-      <PopupBtn label={rightBtnLabel} color="green" onClick={handleSubmit} />
+      {reverse ? (
+        <>
+          <PopupBtn label={rightBtnLabel} color="gray" onClick={handleSubmit} />
+          <PopupBtn label={leftBtnLabel} color="green" onClick={handleClose} />
+        </>
+      ) : (
+        <>
+          <PopupBtn label={leftBtnLabel} color="green" onClick={handleClose} />
+          <PopupBtn label={rightBtnLabel} color="gray" onClick={handleSubmit} />
+        </>
+      )}
     </div>
   );
 };

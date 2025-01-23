@@ -1,4 +1,5 @@
 import { useGetKakaoLogin } from '@apis/auth';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import React, { useEffect } from 'react';
 
 const RedirectionPage = () => {
@@ -12,7 +13,7 @@ const RedirectionPage = () => {
     if (code) mutate(code);
   }, [code, mutate]);
 
-  return <div>로띠돌리기~</div>;
+  return <ExceptLayout type="loading" />;
 };
 
 export default RedirectionPage;

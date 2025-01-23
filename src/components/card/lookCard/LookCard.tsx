@@ -4,10 +4,10 @@ import useFilter from '@hooks/useFilter';
 import * as styles from './lookCard.css';
 
 interface LookCardProps {
-  name: string;
+  name?: string;
 }
 
-const LookCard = ({ name }: LookCardProps) => {
+const LookCard = ({ name = '일로가' }: LookCardProps) => {
   const { handleSearch } = useFilter();
 
   return (
@@ -15,7 +15,7 @@ const LookCard = ({ name }: LookCardProps) => {
       <dotlottie-player
         key="look"
         className={styles.lottieStyle}
-        src="src/assets/lotties/home.lottie"
+        src="/lotties/home.lottie"
         autoplay
         loop
       />

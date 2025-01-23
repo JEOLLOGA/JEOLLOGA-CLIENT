@@ -4,6 +4,7 @@ import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
 import container from './wishListPage.css';
@@ -11,6 +12,7 @@ import container from './wishListPage.css';
 const WishListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const userId = Number(localStorage.getItem('userId'));
+  const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);
   const addWishlistMutation = useAddWishlist();
@@ -38,9 +40,25 @@ const WishListPage = () => {
 
   const handleToggleWishlist = (templestayId: number, liked: boolean) => {
     if (liked) {
-      removeWishlistMutation.mutate({ userId, templestayId });
+      removeWishlistMutation.mutate(
+        { userId, templestayId },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+          },
+        },
+      );
     } else {
-      addWishlistMutation.mutate({ userId, templestayId });
+      addWishlistMutation.mutate(
+        { userId, templestayId },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['ranking', userId] });
+            queryClient.refetchQueries({ queryKey: ['ranking', userId] });
+          },
+        },
+      );
     }
   };
 
