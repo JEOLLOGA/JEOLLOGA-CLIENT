@@ -1,6 +1,6 @@
 import { privateInstance } from '@apis/instance';
 
-const getMyPage = async (userId: string | null) => {
+const getMyPage = async (userId: string) => {
   const res = await privateInstance.get('/user/mypage', {
     params: { userId },
   });

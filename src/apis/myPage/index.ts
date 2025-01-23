@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import getMyPage from './axios';
 import { MyPage } from './type';
 
-const useGetMyPage = (userId: string | null) => {
+const useGetMyPage = (userId: string) => {
   const { data, isLoading, isError } = useQuery<MyPage>({
     queryKey: ['myPage', userId],
     queryFn: () => getMyPage(userId),
