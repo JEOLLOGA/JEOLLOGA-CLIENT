@@ -51,7 +51,7 @@ privateInstance.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 401) {
+    if (status === 500) {
       try {
         const response = await postRefreshToken();
 

@@ -5,6 +5,7 @@ import CarouselIndex from '@components/carousel/popularCarousel/CarouselIndex';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import * as styles from './popularCarousel.css';
 
@@ -21,6 +22,8 @@ const PopularCarousel = () => {
       itemCount: data?.rankings?.length || 0,
       moveDistance: 355,
     });
+
+  const navigate = useNavigate();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -58,9 +61,7 @@ const PopularCarousel = () => {
                 templeImg={rankings.imgUrl}
                 isLiked={rankings.liked}
                 tag={rankings.tag}
-                onClick={() => {
-                  alert(`${rankings.templeName} 클릭됨!`);
-                }}
+                onClick={() => navigate(`/detail/${rankings.templestayId}`)}
                 onLikeToggle={(liked: boolean) => handleLikeToggle(rankings.templestayId, liked)}
               />
             ))}
