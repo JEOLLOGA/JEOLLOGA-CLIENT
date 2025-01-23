@@ -8,7 +8,8 @@ const FilterEmpty = () => {
       <div>
         <p className={styles.textStyle}>{'해당되는 템플스테이를\n찾지 못했어요'}</p>
         <dotlottie-player
-          src="src/assets/lotties/moktak_hit.lottie"
+          key="filter"
+          src="src/assets/lotties/moktak_sad.lottie"
           autoplay
           loop
           style={{ width: '15rem', height: '10.3rem' }}
