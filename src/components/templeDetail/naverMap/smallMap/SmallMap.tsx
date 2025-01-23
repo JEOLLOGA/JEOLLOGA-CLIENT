@@ -15,6 +15,7 @@ interface MapDataProps {
 const SmallMap = ({ detailAddress, latitude, longitude }: MapDataProps) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(detailAddress);
+    alert('주소가 복사되었습니다.');
   };
 
   const { templestayId } = useParams();
