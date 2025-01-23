@@ -2,6 +2,7 @@ import useGetTempleDetails from '@apis/templeDetail';
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import DetailCarousel from '@components/carousel/detailCarousel/DetailCarousel';
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
+import ModalContainer from '@components/common/modal/ModalContainer';
 import TapBar from '@components/common/tapBar/TapBar';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import SmallMap from '@components/templeDetail/naverMap/smallMap/SmallMap';
@@ -36,6 +37,7 @@ const TempleDetailPage = () => {
   const removeWishlistMutation = useRemoveWishlist();
 
   const [liked, setLiked] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   useEffect(() => {
     if (data) {
       setLiked(data.liked);
@@ -43,6 +45,11 @@ const TempleDetailPage = () => {
   }, [data]);
 
   const handleToggleWishlist = () => {
+    if (!userId) {
+      setIsModalOpen(true);
+      return;
+    }
+
     const mutation = liked ? removeWishlistMutation : addWishlistMutation;
 
     mutation.mutate(
@@ -56,6 +63,8 @@ const TempleDetailPage = () => {
       },
     );
   };
+
+  const closeModal = () => setIsModalOpen(false);
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -75,6 +84,18 @@ const TempleDetailPage = () => {
 
   return (
     <div className={styles.templeDetailWrapper}>
+      {isModalOpen && (
+        <ModalContainer
+          modalTitle="로그인 하시겠어요?"
+          modalBody="찜하려면 로그인이 필요해요."
+          isOpen={isModalOpen}
+          handleClose={closeModal}
+          handleSubmit={() => (window.location.href = '/login')}
+          leftBtnLabel="취소"
+          rightBtnLabel="로그인하기"
+        />
+      )}
+
       <div className={styles.headerBox}>
         <TempleTopbar templeName={data.templeName} templestayName={data.templestayName} />
       </div>
