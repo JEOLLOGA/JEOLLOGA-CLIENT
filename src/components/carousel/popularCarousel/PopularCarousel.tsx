@@ -1,4 +1,5 @@
 import useGetRanking from '@apis/ranking';
+import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import PopularCard from '@components/card/popularCard/PopularCard';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
@@ -7,9 +8,12 @@ import React from 'react';
 import * as styles from './popularCarousel.css';
 
 const PopularCarousel = () => {
-  const userId = localStorage.getItem('userId');
+  const userId = Number(localStorage.getItem('userId'));
 
-  const { data, isLoading, isError } = useGetRanking(Number(userId));
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
+
+  const { data, isLoading, isError } = useGetRanking(userId);
 
   const { carouselRef, transformStyle, handleDragChange, handleDragEnd } = useCarousel({
     itemCount: 3,
@@ -23,6 +27,14 @@ const PopularCarousel = () => {
   if (isError) {
     return <p>Error</p>;
   }
+
+  const handleLikeToggle = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
+  };
 
   return (
     <section ref={carouselRef} className={styles.carouselWrapper}>
@@ -46,6 +58,7 @@ const PopularCarousel = () => {
               onClick={() => {
                 alert(`${rankings.templeName} 클릭됨!`);
               }}
+              onLikeToggle={(liked: boolean) => handleLikeToggle(rankings.templestayId, liked)}
             />
           ))}
       </div>

@@ -5,7 +5,7 @@ import container from './searchCardList.css';
 
 interface SearchCardListProps {
   data: {
-    id: number;
+    templestayId: number;
     templeName: string;
     templestayName: string;
     tag: string;
@@ -15,15 +15,16 @@ interface SearchCardListProps {
     liked: boolean;
   }[];
   layout: 'vertical' | 'horizontal';
+  onToggleWishlist: (templestayId: number, liked: boolean) => void;
 }
 
-const SearchCardList = ({ data, layout = 'horizontal' }: SearchCardListProps) => {
+const SearchCardList = ({ data, layout = 'horizontal', onToggleWishlist }: SearchCardListProps) => {
   return (
     <section className={container}>
       {data.map((temple) => (
         <TempleStayCard
-          key={temple.id}
-          id={temple.id}
+          key={temple.templestayId}
+          templestayId={temple.templestayId}
           templeName={temple.templeName}
           templestayName={temple.templestayName}
           tag={temple.tag}
@@ -32,6 +33,7 @@ const SearchCardList = ({ data, layout = 'horizontal' }: SearchCardListProps) =>
           imgUrl={temple.imgUrl}
           liked={temple.liked}
           layout={layout}
+          onToggleWishlist={onToggleWishlist}
         />
       ))}
     </section>

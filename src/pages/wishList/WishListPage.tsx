@@ -1,131 +1,73 @@
+import { useWishlistQuery, useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardList';
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
-import useNavigateTo from '@constants/hooks/useNavigateTo';
-import React, { useState } from 'react';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import { useEffect, useState } from 'react';
 
 import container from './wishListPage.css';
 
-const mockData = {
-  page: 3,
-  pageSize: 10,
-  totalPages: 13,
-  wishlist: [
-    {
-      id: 1,
-      templeName: '대원사(보성)',
-      templestayName: '차 한 잔의 행복',
-      tag: '탱투가 다녀간',
-      region: '전남',
-      type: '휴식형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 2,
-      templeName: '수원사',
-      templestayName: '지금 행복하기',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 3,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 4,
-      templeName: '대원사(보성)',
-      templestayName: '차 한 잔의 행복',
-      tag: '탱투가 다녀간',
-      region: '전남',
-      type: '휴식형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 5,
-      templeName: '수원사',
-      templestayName: '지금 행복하기',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 6,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 7,
-      templeName: '대원사(보성)',
-      templestayName: '차 한 잔의 행복',
-      tag: '탱투가 다녀간',
-      region: '전남',
-      type: '휴식형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 8,
-      templeName: '수원사',
-      templestayName: '지금 행복하기',
-      tag: '연예인이 다녀간',
-      region: '경기',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-    {
-      id: 9,
-      templeName: '봉은사',
-      templestayName: '명상 차담 템플스테이',
-      tag: '연예인이 다녀간',
-      region: '서울',
-      type: '체험형',
-      imgUrl: 'https://github.com/user-attachments/assets/e018d4af-d61e-42a1-90d9-96351d653124',
-      liked: true,
-    },
-  ],
-};
-
 const WishListPage = () => {
-  const [currentPage, setCurrentPage] = useState(mockData.page);
-  const [wishlist] = useState(mockData.wishlist);
+  const [currentPage, setCurrentPage] = useState(1);
+  const userId = Number(localStorage.getItem('userId'));
+
+  const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);
+  const addWishlistMutation = useAddWishlist();
+  const removeWishlistMutation = useRemoveWishlist();
+
+  const wishlist = data?.wishlist || [];
+  const totalPages = data?.totalPages || 1;
+
+  useEffect(() => {
+    if (!isLoading && data) {
+      if (totalPages > 0 && currentPage > totalPages) {
+        setCurrentPage(totalPages);
+      }
+    }
+  }, [isLoading, data, currentPage, totalPages]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
+
+  const handleToggleWishlist = (templestayId: number, liked: boolean) => {
+    if (liked) {
+      removeWishlistMutation.mutate({ userId, templestayId });
+    } else {
+      addWishlistMutation.mutate({ userId, templestayId });
+    }
+  };
+
+  if (isLoading) {
+    return <ExceptLayout type="loading" />;
+  }
+  if (isError) {
+    return <ExceptLayout type="networkError" />;
+  }
 
   return (
     <div className={container}>
       <PageName title="위시리스트" isLikeBtn={false} />
-      {wishlist.length === 0 ? (
+      {totalPages === 1 && wishlist.length === 0 ? (
         <WishEmpty />
       ) : (
         <>
           <div>
-            <WishCardList data={mockData.wishlist} layout="vertical" />
+            <WishCardList
+              data={wishlist}
+              layout="vertical"
+              onToggleWishlist={handleToggleWishlist}
+            />
           </div>
           <Pagination
-            currentPage={currentPage}
-            totalPages={mockData.totalPages}
+            currentPage={data?.page || 1}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
             color="gray"
           />
