@@ -1,5 +1,5 @@
 import { usePostLogout } from '@apis/auth';
-import USER_INFO from '@constants/userInfo';
+import useGetMyPage from '@apis/myPage';
 
 import infoContainerStyle from './userInfo.css';
 import AccountActions from './userInfoContent/accountAction/AccountAction';
