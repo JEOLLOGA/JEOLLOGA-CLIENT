@@ -1,31 +1,28 @@
-# 🪷절로가🪷 (Jeolloga)
+<div style="display: flex; align-items: center;">
+  <div style="overflow: hidden; width: 100px; height: 100px;">
+    <img src="https://media.discordapp.net/attachments/1320783380698107924/1331919525918150718/img_og.png?ex=679406f8&is=6792b578&hm=80bd93c0916d38c5e144e8665adc4cc3f32314742ad5e1f8f19f0710d209891c&=&format=webp&quality=lossless&width=2128&height=1118" alt="Jeolloga Logo" style="width: 100%; height: 100%; object-fit: cover;" />
+  </div>
+  <div style="display: flex; flex-direction: column; margin-left: 10px;">
+    <h1>절로가 (Jeolloga)</h1>
+    <span>내 마음에 딱 맞는 템플스테이를 찾아주는 힐링 추천 서비스</span>
+  </div>
+</div>
 
-### “내 마음에 딱 맞는 템플스테이를 찾아주는 힐링 추천 서비스”
+### ❕템플스테이 간편 탐색 서비스❕
 
-**절** (사찰)로 떠나고 싶다는 마음이 **절로** 들게 만드는 서비스, **절로가**입니다.
-
-<br />
-
-## 📌 프로젝트 소개
-
-템플스테이를 (처음) 가보려 하면…
-
-- 위치가 어디인지
-- 어떤 프로그램들이 있는지
-- 후기는 어떠한지
-- 예약은 어떻게 해야 하는지
-
-등등 필요한 정보가 한데 모여 있지 않아, 여기저기 플랫폼을 옮겨다니며 수많은 과정을 거쳐야만 했습니다.
+#### 템플스테이를 만나는 가장 쉬운 방법, 절로가
 
 <br />
 
-절로가는 **나만의 템플스테이를 쉽고 빠르게 찾을** 수 있도록 돕는 추천 서비스로
+## 🪷 프로젝트 소개
 
-- **원하는 조건에 맞게 사찰·프로그램을 탐색**하고
-- **한눈에 후기**와 참여 정보를 확인하며
-- 지도 기반으로 위치 정보를 얻어
+당신의 평범한 하루에 특별한 힐링을 더해보세요.
 
-한 번의 접속만으로도 나에게 딱 맞는 템플스테이를 찾을 수 있습니다!
+‘**절로가**’는 템플스테이를 시작하고 싶지만,
+복잡한 탐색에 어려움을 느끼는 분들을 위한 서비스입니다.
+
+개인의 취향과 목적에 맞는 템플스테이를
+쉽고 빠르게 발견할 수 있도록 안내합니다.
 
 <br />
 
@@ -57,7 +54,127 @@
 
 <br />
 
-## [📚 컨벤션](https://erratic-strand-e9d.notion.site/0e36e4c6aca44e3faad3064d4a1de240?v=c5a37d521c05418b924d15e3849f10ce&pvs=74)
+## 서비스 핵심 기능
+
+### 로그인/온보딩
+
+<details>
+  <summary>로그인/온보딩 뷰</summary>
+  <img width="639" alt="image" src="https://github.com/user-attachments/assets/7f3e3ada-1d67-4ab0-b4ae-cf2f4afb5aa1" />
+
+  <br />
+
+• 카카오 소셜로그인 후 온보딩 과정 진행<br />
+• 총 4가지 단계<br />
+• 나이, 성별 단계는 필수 클릭<br />
+• 종교, 이용경험 단계는 패스 가능<br />
+• 새로고침 시 현재 단계의 정보 새로고침<br />
+• 이전, 이후 단계의 선택값 기억<br />
+
+</details>
+
+### 홈페이지
+
+<details>
+  <summary>홈페이지 뷰</summary>
+    <div style="display: flex; gap: 10px;">
+    <img width="250" alt="home" src="https://github.com/user-attachments/assets/5f85b76e-113c-47c8-90cc-90510ceb543a" />
+    <img width="250" alt="home" src="https://github.com/user-attachments/assets/fdd26bed-b7bb-4a0b-baa9-2ca31dc1e457" />
+    </div>
+    <br />
+  • 검색 아이콘 클릭 시 검색 페이지로 이동<br />
+  • 마이 아이콘 클릭 시 마이페이지로 이동<br />
+  • 위시 아이콘 클릭 시 위시리스트 페이지로 이동<br />
+  • 둘러보기 : 전체검색 필터 검색페이지로 이동<br />
+  • 지역 선택 시 지역 필터링 페이지로 이동<br />
+  • 템플스테이 소개 큐레이션<br />
+  • 인기 템플스테이 캐러셀<br />
+  • 로그인하지 않은 회원이 캐러셀 내 찜하기 버튼 클릭 시 로그인 안내 모달창 생성<br />
+  • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
+</details>
+
+### 검색
+
+<details>
+  <summary>검색 뷰</summary>
+  <div sytle="display: flex; gap: 10px;">
+    <img width="633" alt="search" src="https://github.com/user-attachments/assets/f0fc5d36-3236-43b1-880d-15ca0efb1da3" />
+    <img width="200" alt="search" src="https://github.com/user-attachments/assets/798168ae-b150-46d6-96b8-434fb842e2ef" />
+  </div>
+    <br />
+  • 검색 창에 검색어 입력 시 검색 결과 리스트<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 해당되는 검색 결과 없으면 empty뷰<br />
+  • 필터링 슬라이드 클릭 시 필터링 페이지로 연결<br />
+  • 검색 아이콘 누르면 검색 페이지로 이동<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 최근 검색어 나열(10개)<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 전체 삭제 가능<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 이전과 동일한 검색어 입력 시 최근 검색어로 동기화<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 최근 검색어 버튼 누르면 해당 검색어 검새 결과 리스트로 연결<br />
+  • 로그인하지 않은 회원이 결과 리스트 내 찜하기 버튼 클릭 시 로그인 안내 모달창 생성<br />
+  • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
+</details>
+
+### 필터링
+
+<details>
+  <summary>필터링 뷰</summary>
+    <div style="display: flex; gap: 10px;">
+    <img width="250" alt="filter" src="https://github.com/user-attachments/assets/7580e6cc-ff14-42fe-bc87-e5790b174a87" />
+    <img width="250" alt="filter" src="https://github.com/user-attachments/assets/871ce726-5003-44a4-a908-bbdd4d190514" />
+    </div>
+    <br />
+  • 상단의 필터타입 클릭 시 해당 타입으로 화면 이동<br />
+  • 가격 범위 선정 바 구현<br />
+  • 버튼 클릭 시 해당 필터 적용된 검색 결과 페이지로 이동<br />
+</details>
+
+### 상세 페이지
+
+<details>
+  <summary>상세페이지 뷰</summary>
+  <div style="display: flex; flex-direction: column;">
+    <img width="744" alt="image" src="https://github.com/user-attachments/assets/e08073eb-f23b-4dfb-b8c3-33e13d463aec" />
+    <img width="744" alt="image" src="https://github.com/user-attachments/assets/fc460206-5edb-40c8-a1bc-18c96f25d289" />
+  </div>
+    <br />
+  • 템플스테이 카드 클릭 시 상세 정보 페이지로 이동<br />
+  • 목록 탭바 사라지면 상단에 고정되도록 구현<br />
+  • 목록 누르면 해당 카테고리로 이동<br />
+  • 목록 결과값 없을 경우 정보 없음 띄우기<br />
+  • 썸네일 이미지 없을 경우 empty 이미지<br />
+  • 리뷰 스크롤<br />
+  • 템플스테이 정보 더보기, 접어두기 구현<br />
+  • 네이버 지도 연결<br />
+  • 로그인하지 않은 회원이 해당 템플스테이 찜하기 버튼 클릭 시 로그인 안내 모달창 생성<br />
+  • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
+</details>
+
+### 위시리스트
+<details>
+  <summary>위시리스트 뷰</summary>
+    <img width="584" alt="image" src="https://github.com/user-attachments/assets/54ca1ce0-0a13-467c-acef-1cba50676b32" />
+  
+  <br />
+  • 홈페이지 헤더 위시 아이콘 클릭 시 위시리스트로 이동<br />
+  • 로그인하지 않은 회원이 위시 아이콘 클릭 시 로그인 안내 페이지로 이동<br />
+  • 위시리스트가 없는 경우 empty 뷰 띄우기<br />
+  • 위시 취소 시 바로 반영되지 않고 다른 페이지나 새로고침 시 반영<br />
+  &nbsp;&nbsp;&nbsp;&nbsp;◦ 위시리스트 페이지 내에서 위시 취소, 재선택 가능<br />
+</details>
+
+### 마이페이지
+<details>
+  <summary>마이페이지 뷰</summary>
+    <img width="672" alt="image" src="https://github.com/user-attachments/assets/999ea799-c900-434b-8b8e-376df4b23acb" />
+  
+  <br />
+  • 홈페이지 헤더 마이 아이콘 클릭 시 마이페이지로 이동<br />
+  • 로그인하지 않은 회원이 마이 아이콘 클릭 시 로그인 안내 페이지로 이동<br />
+  • 로그아웃 클릭 시 모달창 생성<br />
+  • 탈퇴 클릭 시 모달창 생성<br />
+</details>
+
+## [🪷 컨벤션](https://erratic-strand-e9d.notion.site/0e36e4c6aca44e3faad3064d4a1de240?v=c5a37d521c05418b924d15e3849f10ce&pvs=74)
 
 <details>
 <summary>  1️⃣ Commit 컨벤션  </summary>
