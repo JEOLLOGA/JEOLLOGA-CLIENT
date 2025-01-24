@@ -10,6 +10,16 @@ export const container = style({
 export const headerContainer = style({
   boxShadow: theme.COLORS.filerDropshadow,
   backgroundColor: theme.COLORS.white,
+  position: 'fixed',
+  top: 0,
+  width: '37.5rem',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  paddingTop: '1rem',
+  marginBottom: '1rem',
+  zIndex: 5,
 });
 
 export const bodyContainer = style({
@@ -17,7 +27,7 @@ export const bodyContainer = style({
   gridTemplateRows: '1fr auto',
   justifyItems: 'center',
   minHeight: 'calc(100vh - 12.2rem)',
-  paddingTop: '2rem',
+  paddingTop: '12.2rem',
   paddingBottom: '4.4rem',
   gap: '3.2rem',
 });

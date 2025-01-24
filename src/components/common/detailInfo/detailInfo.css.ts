@@ -22,4 +22,5 @@ export const content = style({
   whiteSpace: 'nowrap',
   wordBreak: 'break-all',
   overflow: 'hidden',
+  width: '27.4rem',
 });

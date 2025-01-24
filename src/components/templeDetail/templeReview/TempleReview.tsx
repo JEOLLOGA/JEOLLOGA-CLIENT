@@ -31,7 +31,7 @@ const TempleReview = () => {
   }
 
   return (
-    <div className={styles.templeReviewWrapper} id="detail-section-0">
+    <div className={styles.templeReviewWrapper} id="detail-section-1">
       <DetailTitle
         title="리뷰"
         isTotal={true}

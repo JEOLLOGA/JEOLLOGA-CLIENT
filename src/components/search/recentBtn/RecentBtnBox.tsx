@@ -2,13 +2,14 @@ import { useGetSearchHistory, useDelAllSearchRecord } from '@apis/search';
 import { Content } from '@apis/search/type';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
 import useFilter from '@hooks/useFilter';
 import { useState, useEffect } from 'react';
 
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
-  const { data, isLoading, isError } = useGetSearchHistory(userId ? Number(userId) : null);
+  const { data, isLoading, isError, refetch } = useGetSearchHistory(userId ? Number(userId) : null);
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { handleSearch } = useFilter();
 
@@ -22,6 +23,18 @@ const RecentBtnBox = () => {
       setSearchData(Array.isArray(data.searchHistory) ? data.searchHistory : []);
     }
   }, [data, userId]);
+
+  // 뒤로 가기 이벤트 처리
+  useEffect(() => {
+    const handlePopState = () => {
+      refetch(); // 뒤로 가기 시 데이터 갱신
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [refetch]);
 
   const handleDeleteAll = () => {
     if (userId) {
@@ -37,13 +50,12 @@ const RecentBtnBox = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <ExceptLayout type="loading" />;
   }
 
   if (isError) {
-    return <p>Error</p>;
+    return <ExceptLayout type="networkError" />;
   }
-
   return (
     <section>
       <div className={styles.paddingStyle}>

@@ -17,7 +17,7 @@ const TempleTitle = ({ tag, templeName, templestayName }: TempleTitleProps) => {
         ))}
       </div>
       <div className={styles.templeNameBox}>
-        <h1 className={styles.templeNameContext}>
+        <h1>
           {templeName} {templestayName}
         </h1>
       </div>
