@@ -57,7 +57,7 @@ const useFilter = () => {
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {
     const groupedFilters = getGroupedFilters();
-    const searchQuery = searchContent || content;
+    const searchQuery = searchContent ? searchContent.replace(/\s+/g, '') : content;
     const adjustedPrice = getAdjustedPrice();
 
     const isLoggedIn = localStorage.getItem('Authorzation');

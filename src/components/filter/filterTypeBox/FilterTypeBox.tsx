@@ -18,7 +18,7 @@ const FilterTypeBox = ({ activeFilters }: FilterTypeBoxProps) => {
 
   return (
     <div className={styles.container}>
-      <button>
+      <button onClick={() => handleClickFilter('region')}>
         <Icon.IcnFilter />
       </button>
       <div className={styles.scrollContainer}>

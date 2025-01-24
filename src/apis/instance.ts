@@ -19,22 +19,18 @@ export const privateInstance = axios.create({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
   },
+  withCredentials: true,
 });
 
 export const postRefreshToken = async () => {
   try {
-    const response = await axios.post(
-      `${API_URL}/auth/refresh`,
-      {
-        id: localStorage.getItem('userId'),
+    const response = await axios.get(`${API_URL}/auth/refresh`, {
+      headers: {
+        'Content-Type': 'application/json',
+        refreshToken: localStorage.getItem('refreshToken'),
       },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('Authorization'),
-        },
-      },
-    );
+      withCredentials: true,
+    });
     return response;
   } catch (error) {
     if (isAxiosError(error)) throw error;
@@ -51,24 +47,24 @@ privateInstance.interceptors.response.use(
       response: { status },
     } = error;
 
-    if (status === 500) {
+    if (status === 401) {
       try {
         const response = await postRefreshToken();
 
         if (response.status === 200) {
           const originRequest = config;
-          const newAuthorization = response.headers.Authorization;
-          localStorage.setItem('Authorization', newAuthorization);
+          const newAuthorization = response.headers.authorization;
+          const parsedToken = newAuthorization.split(' ')[1];
+          localStorage.setItem('Authorization', parsedToken);
 
-          axios.defaults.headers.common.Authorization = `Bearer ${newAuthorization}`;
+          axios.defaults.headers.common.Authorization = `Bearer ${parsedToken}`;
           // 진행중이던 요청 이어서 하기
-          originRequest.headers.Authorization = `Bearer ${newAuthorization}`;
+          originRequest.headers.Authorization = `Bearer ${parsedToken}`;
 
-          return axios(originRequest);
+          return await axios(originRequest);
         }
       } catch (error) {
         localStorage.clear();
-
         console.error(error);
         alert(MESSAGES.EXPIRED);
         window.location.replace('/');
