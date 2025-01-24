@@ -21,7 +21,7 @@ const useFilter = () => {
 
   const getGroupedFilters = () => filterListInstance.getGroupedStates();
 
-  const { data: totalCount = 0 } = useQuery({
+  const { data: totalCount } = useQuery({
     queryKey: ['filteredCount', price, content],
     queryFn: async () => {
       const groupedFilters = getGroupedFilters();
