@@ -6,6 +6,7 @@ import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
 import useFilter from '@hooks/useFilter';
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -39,6 +40,7 @@ const SearchResultPage = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  const handleNavigate = useNavigateTo('/login');
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -76,7 +78,7 @@ const SearchResultPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={() => (window.location.href = '/login')}
+          handleSubmit={handleNavigate}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />
