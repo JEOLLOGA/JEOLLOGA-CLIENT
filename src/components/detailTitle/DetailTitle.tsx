@@ -6,6 +6,7 @@ interface DetailTitleProps {
   size?: 'small' | 'medium';
   rigntBtnLabel?: string;
   onClick?: () => void;
+  rightBtnDisabled?: boolean;
 }
 
 const DetailTitle = ({
@@ -14,12 +15,13 @@ const DetailTitle = ({
   size = 'medium',
   rigntBtnLabel,
   onClick,
+  rightBtnDisabled = false,
 }: DetailTitleProps) => {
   return (
     <div className={titleContainerStyle}>
       <p className={titleStyle({ size })}>{title}</p>
       {isTotal && (
-        <button className={buttonStyle} onClick={onClick}>
+        <button className={buttonStyle} onClick={onClick} disabled={rightBtnDisabled}>
           {rigntBtnLabel}
         </button>
       )}
