@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 const container = style({
-  height: '100vh',
+  height: 'calc(var(--vh, 1vh) * 100)',
   display: 'grid',
   gridTemplateRows: 'auto 1fr',
 });
