@@ -5,7 +5,8 @@ export const titleWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   width: '33.5rem',
-  height: '5rem',
+  minHeight: '5rem',
+  maxHeight: '10.6rem',
   gap: '0.4rem',
 });
 
@@ -18,10 +19,4 @@ export const tagBox = style({
 
 export const templeNameBox = style({
   ...theme.FONTS.h2Sb20,
-});
-
-export const templeNameContext = style({
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
 });
