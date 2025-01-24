@@ -51,6 +51,7 @@ globalStyle('button', {
   background: 'none',
   cursor: 'pointer',
   border: 'none',
+  color: 'inherit',
 });
 
 globalStyle('input, textarea', {
