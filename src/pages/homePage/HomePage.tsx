@@ -9,6 +9,7 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import useFilter from '@hooks/useFilter';
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { contentAtom } from 'src/store/store';
@@ -20,10 +21,7 @@ const HomePage = () => {
   const setContent = useSetAtom(contentAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleLoginRedirect = () => {
-    window.location.href = '/login';
-  };
-
+  const navigateToLogin = useNavigateTo('/loginStart');
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -54,7 +52,7 @@ const HomePage = () => {
             modalBody="찜하려면 로그인이 필요해요."
             isOpen={isModalOpen}
             handleClose={closeModal}
-            handleSubmit={handleLoginRedirect}
+            handleSubmit={navigateToLogin}
             leftBtnLabel="취소"
             rightBtnLabel="로그인하기"
           />

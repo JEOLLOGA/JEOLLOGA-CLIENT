@@ -1,6 +1,3 @@
-import { useGetMyPage } from '@apis/user';
-import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
-
 import infoContainerStyle from './userInfo.css';
 import AccountActions from './userInfoContent/accountAction/AccountAction';
 import HelpSection from './userInfoContent/helpContent/HelpContent';
@@ -9,11 +6,18 @@ import MemberInfo from './userInfoContent/userDetailInfo.tsx/UserDetailInfo';
 import UserInfoSection from './userInfoContent/userInfoSection/userInfoSection';
 
 interface UserInfoProps {
+  data?: {
+    nickname: string;
+    email: string;
+    ageRange?: string;
+    gender?: string;
+    religion?: string;
+  };
   onLogoutClick: () => void;
   onDeleteClick: () => void;
 }
 
-const UserInfo = ({ onLogoutClick, onDeleteClick }: UserInfoProps) => {
+const UserInfo = ({ data, onLogoutClick, onDeleteClick }: UserInfoProps) => {
   const handleNoticeClick = () => {
     window.open('https://www.notion.so/1817c7beb7788076bdddfd4ba4b43008?pvs=4', '_blank');
   };
@@ -21,18 +25,6 @@ const UserInfo = ({ onLogoutClick, onDeleteClick }: UserInfoProps) => {
   const handleQuestionClick = () => {
     window.open('https://www.notion.so/1807c7beb7788005a73bc799ce8719bf?pvs=4', '_blank');
   };
-
-  const userId = localStorage.getItem('userId') || '';
-
-  const { data, isLoading, isError } = useGetMyPage(userId);
-
-  if (isLoading) {
-    return <ExceptLayout type="loading" />;
-  }
-
-  if (isError) {
-    return <ExceptLayout type="networkError" />;
-  }
 
   if (!data) {
     return <p>No user information available</p>;

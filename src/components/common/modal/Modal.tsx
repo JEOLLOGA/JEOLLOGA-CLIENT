@@ -82,8 +82,8 @@ const ModalBtnBox = ({
         </>
       ) : (
         <>
-          <PopupBtn label={leftBtnLabel} color="green" onClick={handleClose} />
-          <PopupBtn label={rightBtnLabel} color="gray" onClick={handleSubmit} />
+          <PopupBtn label={leftBtnLabel} color="gray" onClick={handleClose} />
+          <PopupBtn label={rightBtnLabel} color="green" onClick={handleSubmit} />
         </>
       )}
     </div>

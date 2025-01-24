@@ -17,10 +17,11 @@ const useCarousel = ({ itemCount, moveDistance }: UseCarouselProps) => {
   const handleDragEnd = (deltaX: number) => {
     const maxIndex = itemCount - 1;
 
-    if (deltaX < -100) {
+    if (deltaX < -85) {
       // 왼쪽으로 드래그
       setCurrentIndex(currentIndex + 1 > maxIndex ? maxIndex : currentIndex + 1);
-    } else if (deltaX > 100) {
+    } else if (deltaX > 85) {
+
       // 오른쪽으로 드래그
       setCurrentIndex(currentIndex - 1 < 0 ? 0 : currentIndex - 1);
     }

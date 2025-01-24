@@ -1,7 +1,6 @@
 import KakaoBtn from '@components/common/button/kakaoBtn/KakaoBtn';
 import PageName from '@components/common/pageName/PageName';
 import LOGIN_INFOS from '@constants/loginInfos';
-import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import * as styles from './loginPage.css';
@@ -12,12 +11,13 @@ const LoginPage = () => {
   const location = useLocation();
 
   const type: LoginType = location.state?.type || 'wish';
+  const isPrivate = location.state?.isPrivate || false;
 
   const { title, text, lottie } = LOGIN_INFOS[type];
 
   return (
     <section className={styles.loginWrapper}>
-      <PageName title={title} isLikeBtn={false} />
+      <PageName title={title} isLikeBtn={false} isPrivate={isPrivate} />
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 

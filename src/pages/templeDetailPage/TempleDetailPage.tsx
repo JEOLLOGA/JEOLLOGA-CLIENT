@@ -14,6 +14,7 @@ import TempleReview from '@components/templeDetail/templeReview/TempleReview';
 import TempleSchedule from '@components/templeDetail/templeSchedule/TempleSchedule';
 import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
+import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -21,10 +22,6 @@ import { useParams } from 'react-router-dom';
 import * as styles from './templeDetailPage.css';
 
 const TempleDetailPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const userId = localStorage.getItem('userId');
   const { templestayId } = useParams();
   const { data, isLoading, isError } = useGetTempleDetails(
@@ -38,6 +35,7 @@ const TempleDetailPage = () => {
 
   const [liked, setLiked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigateToLogin = useNavigateTo('/loginStart');
   useEffect(() => {
     if (data) {
       setLiked(data.liked);
@@ -90,7 +88,7 @@ const TempleDetailPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={() => (window.location.href = '/login')}
+          handleSubmit={navigateToLogin}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />

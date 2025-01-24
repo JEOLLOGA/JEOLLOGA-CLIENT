@@ -12,7 +12,14 @@ export const titleContainerStyle = style({
 
 export const buttonStyle = style({
   ...theme.FONTS.c6R13,
-  color: theme.COLORS.gray8,
+  color: theme.COLORS.gray9,
+
+  selectors: {
+    '&:disabled': {
+      color: theme.COLORS.gray5,
+      cursor: 'not-allowed',
+    },
+  },
 });
 
 export const titleStyle = recipe({

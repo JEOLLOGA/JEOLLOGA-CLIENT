@@ -6,7 +6,6 @@ const flexCenterColumn = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  touchAction: 'none',
   position: 'relative',
 });
 
@@ -17,6 +16,7 @@ export const curationCarouselStyle = style([
   {
     gap: '0.8rem',
     marginTop: '5.4rem',
+    touchAction: 'none',
   },
 ]);
 
@@ -25,6 +25,7 @@ export const popularCarouselStyle = style([
   {
     gap: '0.8rem',
     margin: '5.4rem 0 28rem 0',
+    touchAction: 'none',
   },
 ]);
 
