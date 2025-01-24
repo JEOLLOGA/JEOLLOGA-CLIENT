@@ -8,7 +8,7 @@ globalStyle('html, body', {
   width: '100%',
   fontSize: '62.5%',
   scrollBehavior: 'smooth',
-  background: '#D3ECD8',
+  background: 'white',
   WebkitOverflowScrolling: 'touch',
 });
 
