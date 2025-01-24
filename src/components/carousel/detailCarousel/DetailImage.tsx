@@ -1,4 +1,3 @@
-import LargeEmptyImage from '@assets/images/img_gray_light_leaf_large.png';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useParams } from 'react-router-dom';
 
@@ -16,7 +15,7 @@ const ImageItem = ({ id, imgUrl, currentNum, totalNum }: ImageItemProps) => {
   const { templestayId } = useParams();
 
   const navigateToPhoto = useNavigateTo(`/detail/${templestayId}/photo`);
-  return totalNum ? (
+  return (
     <div
       role="button"
       tabIndex={0}
@@ -32,10 +31,6 @@ const ImageItem = ({ id, imgUrl, currentNum, totalNum }: ImageItemProps) => {
       <div className={styles.numberStyle}>
         <NumberTag currentNum={currentNum} totalNum={totalNum} />
       </div>
-    </div>
-  ) : (
-    <div className={styles.emptyImageContainer}>
-      <img src={LargeEmptyImage} alt="빈 이미지"></img>
     </div>
   );
 };
