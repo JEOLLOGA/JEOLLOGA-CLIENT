@@ -16,7 +16,7 @@ import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as styles from './templeDetailPage.css';
 
@@ -35,6 +35,7 @@ const TempleDetailPage = () => {
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
+  const navigate = useNavigate();
 
   const [liked, setLiked] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -90,7 +91,7 @@ const TempleDetailPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={() => (window.location.href = '/login')}
+          handleSubmit={() => navigate('/login')}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />

@@ -1,5 +1,5 @@
 import Icon from '@assets/svgs';
-import useNavigateTo from '@hooks/useNavigateTo';
+import { useNavigate } from 'react-router-dom';
 
 import * as PageNameStyle from './pageName.css';
 
@@ -8,10 +8,25 @@ interface PageNameProps {
   onRightClick?: () => void;
   isLikeBtn?: boolean;
   isLiked?: boolean;
+  isPrivate?: boolean;
 }
 
-const PageName = ({ title, onRightClick, isLikeBtn = true, isLiked = true }: PageNameProps) => {
-  const handleToBack = useNavigateTo('/');
+const PageName = ({
+  title,
+  onRightClick,
+  isLikeBtn = true,
+  isLiked = true,
+  isPrivate,
+}: PageNameProps) => {
+  const navigate = useNavigate();
+
+  const handleToBack = () => {
+    if (isPrivate) {
+      navigate('/');
+    } else {
+      navigate(-1);
+    }
+  };
 
   return (
     <nav className={PageNameStyle.container}>
