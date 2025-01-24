@@ -7,7 +7,7 @@ interface TemplePriceProps {
 
 const TemplePrice = ({ templestayPrice }: TemplePriceProps) => {
   return (
-    <div className={styles.templePriceWrapper} id="detail-section-3">
+    <div className={styles.templePriceWrapper} id="detail-section-2">
       <DetailTitle title="가격" />
       {templestayPrice ? (
         <div className={styles.templePriceBox}>
