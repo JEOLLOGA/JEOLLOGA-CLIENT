@@ -76,13 +76,22 @@ const useFilter = () => {
       // 로그인 안 한 사용자의 경우 검색어를 로컬스토리지에 저장
       if (!isLoggedIn) {
         if (searchQuery.trim() !== '') {
-          // content가 빈 값이 아닌 경우에만 저장
           const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-          const updatedHistory = [
-            { searchId: new Date().getTime(), content: searchQuery },
-            ...searchHistory,
-          ];
-          localStorage.setItem('searchHistory', JSON.stringify(updatedHistory.slice(0, 10))); // 최대 10개까지만 저장
+
+          // Set을 사용하여 중복된 검색어를 제거
+          const searchHistorySet = new Set([
+            searchQuery,
+            ...searchHistory.map((item: { content: string }) => item.content),
+          ]);
+
+          const updatedHistory = Array.from(searchHistorySet)
+            .slice(0, 10)
+            .map((content) => ({
+              searchId: new Date().getTime(),
+              content,
+            }));
+
+          localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
         }
       }
 
