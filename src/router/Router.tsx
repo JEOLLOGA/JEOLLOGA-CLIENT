@@ -30,7 +30,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <HomePage />
+          </Suspense>
+        ),
       },
       {
         path: 'search',
@@ -38,7 +42,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'searchResult',
-        element: <SearchResultPage />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <SearchResultPage />
+          </Suspense>
+        ),
       },
       {
         path: 'filter',
@@ -56,7 +64,9 @@ const router = createBrowserRouter([
         path: 'wishList',
         element: (
           <PrivateRoute redirectPath="/login" state={{ type: 'wish' }}>
-            <WishListPage />
+            <Suspense fallback={<ExceptLayout type="loading" />}>
+              <WishListPage />
+            </Suspense>
           </PrivateRoute>
         ),
       },
@@ -70,7 +80,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'onboarding',
-        element: <OnboardingPage />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <OnboardingPage />
+          </Suspense>
+        ),
       },
       {
         path: 'welcome',
@@ -78,23 +92,43 @@ const router = createBrowserRouter([
       },
       {
         path: 'detail/:templestayId',
-        element: <DetailPage />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <DetailPage />
+          </Suspense>
+        ),
       },
       {
         path: 'detail/:templestayId/photo',
-        element: <DetailPhoto />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <DetailPhoto />
+          </Suspense>
+        ),
       },
       {
         path: '/detail/:templestayId/blog',
-        element: <DetailBlog />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <DetailBlog />
+          </Suspense>
+        ),
       },
       {
         path: '/detail/:templestayId/map',
-        element: <LargeMap />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <LargeMap />
+          </Suspense>
+        ),
       },
       {
         path: 'curation/:index',
-        element: <CurationPage />,
+        element: (
+          <Suspense fallback={<ExceptLayout type="loading" />}>
+            <CurationPage />
+          </Suspense>
+        ),
       },
       {
         path: 'loginStart',
@@ -108,10 +142,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-const Router = () => (
-  <Suspense fallback={<ExceptLayout type="loading" />}>
-    <RouterProvider router={router} />
-  </Suspense>
-);
+const Router = () => <RouterProvider router={router} />;
 
 export default Router;

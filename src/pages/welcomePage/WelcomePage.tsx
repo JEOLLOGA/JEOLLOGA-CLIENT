@@ -1,28 +1,27 @@
-import { fetchUserNickname } from '@apis/user/axios';
+import { useGetNickname } from '@apis/user';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { WELCOME_TEXT } from '@constants/onboarding/onboardingSteps';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import * as styles from './welcomePage.css';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
-  const [userName, setUserName] = useState<string>('');
+  const userId = Number(localStorage.getItem('userId'));
+  const { data, isLoading } = useGetNickname(userId);
 
-  useEffect(() => {
-    const userId = Number(localStorage.getItem('userId') || '');
-    if (userId) {
-      fetchUserNickname(userId).then((data) => setUserName(data.nickname));
-    }
-  }, []);
+  if (isLoading) {
+    return <ExceptLayout type="loading" />;
+  }
 
   const handleStart = () => {
     navigate('/');
   };
   return (
     <div className={styles.container}>
-      <h1 className={styles.titleStyle}>{`${userName}${WELCOME_TEXT}`}</h1>
+      <h1 className={styles.titleStyle}>{`${data?.nickname}${WELCOME_TEXT}`}</h1>
       <div className={styles.lottieStyle}>
         <dotlottie-player key="onboarding" src="/lotties/onboarding.lottie" autoplay loop />
       </div>
