@@ -12,7 +12,6 @@ export const templeDetailWrapper = style({
 export const headerBox = style({
   position: 'fixed',
   top: 0,
-  paddingTop: '1.2rem',
   width: '37.5rem',
   display: 'flex',
   justifyContent: 'center',
