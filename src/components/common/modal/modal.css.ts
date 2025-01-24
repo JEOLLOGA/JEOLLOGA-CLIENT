@@ -17,7 +17,7 @@ export const modalContainer = style({
 
   borderRadius: '8px',
   backgroundColor: theme.COLORS.white,
-  zIndex: 4,
+  zIndex: 100,
 });
 
 export const modalBackdrop = style({
@@ -28,7 +28,7 @@ export const modalBackdrop = style({
   top: 0,
   left: 0,
 
-  zIndex: 3,
+  zIndex: 100,
   width: '100%',
   height: 'calc(100% + 1.2rem)',
   background: theme.COLORS.black60,
