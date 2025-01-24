@@ -44,7 +44,7 @@ export const CURATION_INFO = [
 
 export const CURATION_IMAGES = {
   popular: [Popular1, Popular2, Popular3, Popular4],
-  beginner: [Beginner1, Beginner2, Beginner3, Beginner4],
   bonginsa: [Bonginsa1, Bonginsa2, Bonginsa3, Bonginsa4],
+  beginner: [Beginner1, Beginner2, Beginner3, Beginner4],
   doglover: [Doglover1, Doglover2, Doglover3, Doglover4],
 };
