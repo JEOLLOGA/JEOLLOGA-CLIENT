@@ -49,8 +49,8 @@ export const verticalImage = style({
 });
 
 export const horizontalImage = style({
-  width: '100%',
-  height: '100%',
+  width: '12rem',
+  height: '13.5rem',
   objectFit: 'cover',
   borderRadius: '4px 0 0 4px',
 
@@ -81,10 +81,10 @@ export const verticalEmptyImgSection = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100%',
-  height: '100%',
+  width: '12rem',
+  height: '13.5rem',
   objectFit: 'cover',
-  borderRadius: '4px',
+  borderRadius: '4px 0 0 4px',
   backgroundColor: theme.COLORS.gray2,
 
   transition: '0.15s ease-out',
@@ -100,10 +100,10 @@ export const horizontalEmptyImgSection = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '100%',
-  height: '100%',
+  width: '16.3rem',
+  height: '17.2rem',
   objectFit: 'cover',
-  borderRadius: '4px 0 0 4px',
+  borderRadius: 4,
   backgroundColor: theme.COLORS.gray2,
 
   transition: '0.15s ease-out',
