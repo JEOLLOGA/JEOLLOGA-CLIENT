@@ -7,9 +7,9 @@ interface StickyTapBarProps {
 }
 
 const StickyTapBar = ({ children }: StickyTapBarProps) => {
-  const tapBarRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [initialOffsetTop, setInitialOffsetTop] = useState<number | null>(null);
+  const tapBarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {

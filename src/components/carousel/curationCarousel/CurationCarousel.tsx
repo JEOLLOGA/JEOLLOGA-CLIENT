@@ -17,6 +17,7 @@ const CurationCarousel = () => {
 
   const handleClick = (index: number) => {
     navigate(`/curation/${index + 1}`);
+    window.scrollTo(0, 0);
   };
 
   return (
