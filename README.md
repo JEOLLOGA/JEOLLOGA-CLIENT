@@ -54,9 +54,9 @@
 
 <br />
 
-## 서비스 핵심 기능
+## 🪷 서비스 핵심 기능
 
-### 로그인/온보딩
+### 1️⃣ 로그인/온보딩
 
 <details>
   <summary>로그인/온보딩 뷰</summary>
@@ -73,7 +73,7 @@
 
 </details>
 
-### 홈페이지
+### 2️⃣ 홈페이지
 
 <details>
   <summary>홈페이지 뷰</summary>
@@ -93,7 +93,7 @@
   • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
 </details>
 
-### 검색
+### 3️⃣ 검색
 
 <details>
   <summary>검색 뷰</summary>
@@ -114,7 +114,7 @@
   • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
 </details>
 
-### 필터링
+### 4️⃣ 필터링
 
 <details>
   <summary>필터링 뷰</summary>
@@ -128,7 +128,7 @@
   • 버튼 클릭 시 해당 필터 적용된 검색 결과 페이지로 이동<br />
 </details>
 
-### 상세 페이지
+### 5️⃣ 상세 페이지
 
 <details>
   <summary>상세페이지 뷰</summary>
@@ -149,7 +149,7 @@
   • 로그인 회원이 찜하기 버튼 클릭 시 위시에 추가<br />
 </details>
 
-### 위시리스트
+### 6️⃣ 위시리스트
 <details>
   <summary>위시리스트 뷰</summary>
     <img width="584" alt="image" src="https://github.com/user-attachments/assets/54ca1ce0-0a13-467c-acef-1cba50676b32" />
@@ -162,7 +162,7 @@
   &nbsp;&nbsp;&nbsp;&nbsp;◦ 위시리스트 페이지 내에서 위시 취소, 재선택 가능<br />
 </details>
 
-### 마이페이지
+### 7️⃣ 마이페이지
 <details>
   <summary>마이페이지 뷰</summary>
     <img width="672" alt="image" src="https://github.com/user-attachments/assets/999ea799-c900-434b-8b8e-376df4b23acb" />
