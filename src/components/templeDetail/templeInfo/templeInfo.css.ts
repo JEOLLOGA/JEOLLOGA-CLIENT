@@ -40,7 +40,7 @@ export const expandedContent = style({
 export const emptyContainer = style({
   display: 'flex',
   justifyContent: 'center',
-  marginTop: '35.6rem',
+  marginTop: '3rem',
   ...theme.FONTS.c2R14,
   color: theme.COLORS.gray7,
 });

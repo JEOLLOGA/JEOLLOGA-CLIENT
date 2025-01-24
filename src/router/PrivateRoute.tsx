@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface PrivateRouteProps {
   children: ReactNode;
@@ -9,9 +9,16 @@ interface PrivateRouteProps {
 
 const PrivateRoute = ({ children, redirectPath, state }: PrivateRouteProps) => {
   const isAuthenticated = localStorage.getItem('Authorization');
+  const location = useLocation();
 
   if (!isAuthenticated) {
-    return <Navigate to={redirectPath} state={state} />;
+    const queryString = location.search;
+    return (
+      <Navigate
+        to={`${redirectPath}${queryString}`}
+        state={{ ...state, from: location.pathname, isPrivate: true }}
+      />
+    );
   }
 
   return <>{children}</>;

@@ -11,7 +11,7 @@ export const templeScheduleContainer = style({
 export const emptyContainer = style({
   display: 'flex',
   justifyContent: 'center',
-  marginTop: '35.2rem',
+  marginTop: '3rem',
   ...theme.FONTS.c2R14,
   color: theme.COLORS.gray7,
 });

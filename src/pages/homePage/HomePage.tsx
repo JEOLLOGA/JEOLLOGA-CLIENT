@@ -20,8 +20,8 @@ const HomePage = () => {
   const { handleResetFilter } = useFilter();
   const setContent = useSetAtom(contentAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigateToLogin = useNavigateTo('/loginStart');
 
+  const navigateToLogin = useNavigateTo('/loginStart');
   const openModal = () => {
     setIsModalOpen(true);
   };
