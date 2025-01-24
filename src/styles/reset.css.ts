@@ -9,6 +9,7 @@ globalStyle(
     fontSize: '100%',
     verticalAlign: 'baseline',
     border: 0,
+    color: 'inherit',
   },
 );
 
@@ -51,6 +52,7 @@ globalStyle('button', {
   background: 'none',
   cursor: 'pointer',
   border: 'none',
+  color: 'inherit',
 });
 
 globalStyle('input, textarea', {

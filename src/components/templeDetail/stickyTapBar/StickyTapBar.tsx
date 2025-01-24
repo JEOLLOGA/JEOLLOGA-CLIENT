@@ -12,9 +12,13 @@ const StickyTapBar = ({ children }: StickyTapBarProps) => {
   const [initialOffsetTop, setInitialOffsetTop] = useState<number | null>(null);
 
   useEffect(() => {
-    if (tapBarRef.current) {
-      setInitialOffsetTop(tapBarRef.current.getBoundingClientRect().top);
-    }
+    const timeoutId = setTimeout(() => {
+      if (tapBarRef.current) {
+        setInitialOffsetTop(tapBarRef.current.getBoundingClientRect().top);
+      }
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
   }, []);
 
   useEffect(() => {
