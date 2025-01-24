@@ -27,6 +27,7 @@ export const photoGrid = style({
   gap: '1rem 1.1rem',
   justifyContent: 'flex-start',
   paddingBottom: '1rem',
+  paddingTop: '5.2rem',
 });
 
 export const photoItem = style({
