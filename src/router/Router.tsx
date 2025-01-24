@@ -19,7 +19,7 @@ const DetailPage = lazy(() => import('@pages/templeDetailPage/TempleDetailPage')
 const LargeMap = lazy(() => import('@components/templeDetail/naverMap/largeMap/LargeMap'));
 const DetailPhoto = lazy(() => import('@pages/templeDetailPage/templePhoto/TemplePhotoPage'));
 const DetailBlog = lazy(() => import('@pages/templeDetailPage/blogReview/BlogReviewPage'));
-const CurationPage = lazy(() => import('@pages/CurationPage'));
+const CurationPage = lazy(() => import('@pages/CurationPage/CurationPage'));
 const ModalLoginPage = lazy(() => import('@pages/loginPage/ModalLoginPage'));
 
 const router = createBrowserRouter([
