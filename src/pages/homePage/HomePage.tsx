@@ -21,7 +21,7 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLoginRedirect = () => {
-    window.location.href = '/login';
+    window.location.href = '/loginStart';
   };
 
   const openModal = () => {

@@ -90,7 +90,7 @@ const TempleDetailPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={() => (window.location.href = '/login')}
+          handleSubmit={() => (window.location.href = '/loginStart')}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />
