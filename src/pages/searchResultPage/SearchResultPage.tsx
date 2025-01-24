@@ -89,7 +89,9 @@ const SearchResultPage = () => {
         <FilterTypeBox activeFilters={activeFilters} />
       </div>
       {templestays.length === 0 ? (
-        <SearchEmpty text={searchText} />
+        <div className={styles.emptyContainer}>
+          <SearchEmpty text={searchText} />
+        </div>
       ) : (
         <div className={styles.bodyContainer}>
           <SearchCardList

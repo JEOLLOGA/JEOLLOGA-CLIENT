@@ -19,7 +19,7 @@ export const headerContainer = style({
   alignItems: 'center',
   paddingTop: '1rem',
   marginBottom: '1rem',
-  zIndex: 5,
+  zIndex: 3,
 });
 
 export const bodyContainer = style({
@@ -30,4 +30,8 @@ export const bodyContainer = style({
   paddingTop: '12.2rem',
   paddingBottom: '4.4rem',
   gap: '3.2rem',
+});
+
+export const emptyContainer = style({
+  paddingTop: '12.2rem',
 });
