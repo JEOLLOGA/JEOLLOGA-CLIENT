@@ -69,7 +69,7 @@ const TempleStayCard = ({
       ) : (
         <div
           className={
-            isHorizontal ? styles.verticalEmptyImgSection : styles.horizontalEmptyImgSection
+            isHorizontal ? styles.horizontalEmptyImgSection : styles.verticalEmptyImgSection
           }>
           <img src={errorImage} alt="빈이미지"></img>
         </div>

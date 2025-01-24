@@ -77,7 +77,7 @@ export const wishBtn = style({
   zIndex: '2',
 });
 
-export const verticalEmptyImgSection = style({
+export const horizontalEmptyImgSection = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -96,7 +96,7 @@ export const verticalEmptyImgSection = style({
   },
 });
 
-export const horizontalEmptyImgSection = style({
+export const verticalEmptyImgSection = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
