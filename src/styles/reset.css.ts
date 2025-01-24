@@ -9,6 +9,7 @@ globalStyle(
     fontSize: '100%',
     verticalAlign: 'baseline',
     border: 0,
+    color: 'inherit',
   },
 );
 
