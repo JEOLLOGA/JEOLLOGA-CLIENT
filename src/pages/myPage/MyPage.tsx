@@ -1,6 +1,8 @@
 import { usePostLogout } from '@apis/auth';
+import { useGetMyPage } from '@apis/user';
 import ModalContainer from '@components/common/modal/ModalContainer';
 import PageName from '@components/common/pageName/PageName';
+import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Footer from '@components/footer/Footer';
 import UserInfo from '@components/userInfo/userInfo';
 import { useState } from 'react';
@@ -11,6 +13,9 @@ const MyPage = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const postLogout = usePostLogout();
+
+  const userId = localStorage.getItem('userId') || '';
+  const { data, isLoading, isError } = useGetMyPage(userId);
 
   const handleLogoutClick = () => {
     setIsLogoutModalOpen(true);
@@ -30,11 +35,19 @@ const MyPage = () => {
     setIsDeleteModalOpen(false);
   };
 
+  if (isLoading) {
+    return <ExceptLayout type="loading" />;
+  }
+
+  if (isError) {
+    return <ExceptLayout type="networkError" />;
+  }
+
   return (
     <div className={styles.myPageWrapper}>
       <div className={styles.userInfoContainer}>
         <PageName title="마이페이지" isLikeBtn={false} />
-        <UserInfo onLogoutClick={handleLogoutClick} onDeleteClick={handleDeleteClick} />
+        <UserInfo data={data} onLogoutClick={handleLogoutClick} onDeleteClick={handleDeleteClick} />
       </div>
       <Footer />
 
