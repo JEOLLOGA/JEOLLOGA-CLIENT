@@ -16,8 +16,14 @@ interface WishCardListProps {
   }[];
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
+  onClick?: (templestayId: number) => void;
 }
-const WishCardList = ({ data, layout = 'vertical', onToggleWishlist }: WishCardListProps) => {
+const WishCardList = ({
+  data,
+  layout = 'vertical',
+  onToggleWishlist,
+  onClick,
+}: WishCardListProps) => {
   return (
     <section className={container}>
       {data.map((temple) => (
@@ -33,6 +39,7 @@ const WishCardList = ({ data, layout = 'vertical', onToggleWishlist }: WishCardL
           liked={temple.liked}
           layout={layout}
           onToggleWishlist={onToggleWishlist}
+          onClick={onClick}
         />
       ))}
     </section>
