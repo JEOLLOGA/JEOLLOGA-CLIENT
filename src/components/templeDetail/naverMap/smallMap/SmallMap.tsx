@@ -25,7 +25,7 @@ const SmallMap = ({ detailAddress, latitude, longitude }: MapDataProps) => {
   );
 
   return (
-    <div className={styles.mapContainerWrapper} id="detail-section-4">
+    <div className={styles.mapContainerWrapper}>
       <DetailTitle title="지도" />
       <div className={styles.mapContainerStyle}>
         <div className={styles.addressDetailStyle}>

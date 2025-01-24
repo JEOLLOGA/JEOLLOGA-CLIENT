@@ -21,7 +21,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
       : TAPS.detail.map((_, index) => `detail-section-${index}`);
 
   const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
-  const scrollToElement = useMoveScroll(headerHeight);
+  const scrollToElement = useMoveScroll(type, headerHeight);
 
   const handleTabClick = (index: number) => {
     handleClick(index);
@@ -39,7 +39,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
   }, []);
 
   return (
-    <div className={tapBarContainer}>
+    <div className={tapBarContainer} id="detail-section-0">
       {taplist.map((label, index) => (
         <UnderlinedBtn
           key={index}

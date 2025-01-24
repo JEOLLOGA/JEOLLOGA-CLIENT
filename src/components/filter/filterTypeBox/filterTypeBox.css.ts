@@ -6,6 +6,7 @@ export const container = style({
   padding: '1.1rem 2rem',
   height: '5.8rem',
   marginTop: '0.8rem',
+  width: '100%',
 });
 
 export const scrollContainer = style({

@@ -20,7 +20,7 @@ const TempleSchedule = ({ schedule }: TempleScheduleProps) => {
   }
 
   return (
-    <div className={styles.templeScheduleContainer} id="detail-section-1">
+    <div className={styles.templeScheduleContainer} id="detail-section-2">
       <DetailTitle title="프로그램 일정" isTotal={false} />
       {parsedSchedule ? (
         Object.entries(parsedSchedule).map(([day, programs]) => (

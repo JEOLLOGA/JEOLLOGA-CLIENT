@@ -48,7 +48,9 @@ const BlogReviewPage = () => {
 
   return (
     <div className={styles.reviewWrapper}>
-      <PageName title={`블로그 리뷰 (${reviewCount}개)`} isLikeBtn={false} />
+      <div className={styles.headerBox}>
+        <PageName title={`블로그 리뷰 (${reviewCount}개)`} isLikeBtn={false} />
+      </div>
       <div className={styles.reviewComponent}>
         {data.reviews && data.reviews.length > 0 ? (
           data.reviews.map((review) => (
