@@ -40,7 +40,4 @@ export const description = style({
   ...theme.FONTS.b8M15,
   color: theme.COLORS.black,
   width: '20.5rem',
-  overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  whiteSpace: 'nowrap',
 });

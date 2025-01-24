@@ -16,6 +16,10 @@ const BlogReviewPage = () => {
   const totalPages = data?.totalPages || 1;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (!isLoading && data) {
       if (totalPages > 0 && currentPage > totalPages) {
         setCurrentPage(totalPages);

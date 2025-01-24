@@ -6,13 +6,15 @@ import Pagination from '@components/common/pagination/Pagination';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import container from './wishListPage.css';
+import * as styles from './wishListPage.css';
 
 const WishListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const userId = Number(localStorage.getItem('userId'));
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);
   const addWishlistMutation = useAddWishlist();
@@ -62,6 +64,10 @@ const WishListPage = () => {
     }
   };
 
+  const handleNavigate = (templestayId: number) => {
+    navigate(`/detail/${templestayId}`);
+  };
+
   if (isLoading) {
     return <ExceptLayout type="loading" />;
   }
@@ -70,17 +76,22 @@ const WishListPage = () => {
   }
 
   return (
-    <div className={container}>
-      <PageName title="위시리스트" isLikeBtn={false} />
+    <div className={styles.container}>
+      <div className={styles.headerBox}>
+        <PageName title="위시리스트" isLikeBtn={false} />
+      </div>
       {totalPages === 1 && wishlist.length === 0 ? (
-        <WishEmpty />
+        <div className={styles.emptyBox}>
+          <WishEmpty />
+        </div>
       ) : (
         <>
-          <div>
+          <div className={styles.contentBox}>
             <WishCardList
               data={wishlist}
               layout="vertical"
               onToggleWishlist={handleToggleWishlist}
+              onClick={(templestayId: number) => handleNavigate(templestayId)}
             />
           </div>
           <Pagination
