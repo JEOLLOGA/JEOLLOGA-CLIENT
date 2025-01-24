@@ -1,9 +1,11 @@
+import theme from '@styles/theme.css';
 import { style } from '@vanilla-extract/css';
 
 export const myPageWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  position: 'relative',
 });
 
 export const userInfoContainer = style({
@@ -12,12 +14,13 @@ export const userInfoContainer = style({
 });
 
 export const modalOverlay = style({
-  position: 'fixed',
+  position: 'absolute',
   top: 0,
   left: 0,
   width: '100%',
-  height: '100%',
-  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  height: 'calc(100% + 1.2rem)',
+  backgroundColor: theme.COLORS.black60,
   justifyContent: 'center',
   alignItems: 'center',
+  marginTop: '-1.2rem',
 });

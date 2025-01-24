@@ -16,6 +16,7 @@ import { filterListAtom } from 'src/store/store';
 import * as styles from './searchResultPage.css';
 
 const SearchResultPage = () => {
+  const navigateToLogin = useNavigateTo('/loginStart');
   const location = useLocation();
   const { results, content, price } = location.state || {};
   const userId = Number(localStorage.getItem('userId'));
@@ -40,7 +41,6 @@ const SearchResultPage = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  const handleNavigate = useNavigateTo('/login');
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -78,7 +78,7 @@ const SearchResultPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={handleNavigate}
+          handleSubmit={navigateToLogin}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />

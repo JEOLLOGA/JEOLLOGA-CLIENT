@@ -21,8 +21,7 @@ const HomePage = () => {
   const setContent = useSetAtom(contentAtom);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleToBack = useNavigateTo('/login');
-
+  const navigateToLogin = useNavigateTo('/loginStart');
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -53,7 +52,7 @@ const HomePage = () => {
             modalBody="찜하려면 로그인이 필요해요."
             isOpen={isModalOpen}
             handleClose={closeModal}
-            handleSubmit={handleToBack}
+            handleSubmit={navigateToLogin}
             leftBtnLabel="취소"
             rightBtnLabel="로그인하기"
           />
