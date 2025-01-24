@@ -40,4 +40,7 @@ export const inputStyle = style({
 
 export const pointer = style({
   cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
