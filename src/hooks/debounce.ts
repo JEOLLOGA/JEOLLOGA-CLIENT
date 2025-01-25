@@ -1,14 +1,13 @@
-const debounce = <T extends (...args: unknown[]) => void>(
+const debounce = <T extends (...args: Parameters<T>) => void>(
   callback: T,
   delay: number,
 ): ((...args: Parameters<T>) => void) => {
-  let timer: ReturnType<typeof setTimeout> | null = null; // 명확한 타입 지정
-  const callbackRef = callback; // 최신 콜백을 참조하는 변수
+  let timer: ReturnType<typeof setTimeout> | null = null;
 
   return (...args: Parameters<T>) => {
-    if (timer) clearTimeout(timer);
+    if (timer) clearTimeout(timer); // 기존 타이머 제거
     timer = setTimeout(() => {
-      callbackRef(...args); // 최신 callback 호출
+      callback(...args); // 최신 callback 호출
     }, delay);
   };
 };
