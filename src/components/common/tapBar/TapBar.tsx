@@ -39,7 +39,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
   }, []);
 
   return (
-    <div className={tapBarContainer} id="detail-section-0">
+    <div className={tapBarContainer}>
       {taplist.map((label, index) => (
         <UnderlinedBtn
           key={index}

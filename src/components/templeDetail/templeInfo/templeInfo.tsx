@@ -22,7 +22,7 @@ const TempleInfo = ({ introduction }: TempleInfoProps) => {
   }
 
   return (
-    <div className={styles.templeInfoContainer} id="detail-section-4">
+    <div className={styles.templeInfoContainer} id="detail-section-3">
       <DetailTitle title="템플스테이 정보" />
       {parsedIntroduction ? (
         <div className={styles.templeInfoBoxStyle}>
