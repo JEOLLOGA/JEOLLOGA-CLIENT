@@ -1,5 +1,6 @@
+import debounce from '@hooks/debounce';
 import { useAtom } from 'jotai';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { priceAtom } from 'src/store/store';
 
 import * as styles from './priceSlider.css';
@@ -8,21 +9,35 @@ const PriceSlider = () => {
   const MIN_PRICE = 0;
   const MAX_PRICE = 30;
   const [price, setPrice] = useAtom(priceAtom);
+  const [localPrice, setLocalPrice] = useState(price);
+
+  // 디바운스 처리한 price 업데이트 핸들러
+  const handleDebounceSetPrice = useCallback(
+    debounce((updatedPrice: { minPrice: number; maxPrice: number }) => {
+      setPrice(updatedPrice);
+    }, 300),
+    [],
+  );
 
   const handleMinChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.min(Number(event.target.value), price.maxPrice - 1);
-    const updatedPrice = { ...price, minPrice: value };
-    setPrice(updatedPrice);
+    const value = Math.min(Number(event.target.value), localPrice.maxPrice - 1);
+    const updatedLocalPrice = { ...localPrice, minPrice: value };
+
+    setLocalPrice(updatedLocalPrice); // 로컬 상태 업데이트
+    handleDebounceSetPrice(updatedLocalPrice); // 디바운스된 업데이트
   };
 
   const handleMaxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = Math.max(Number(event.target.value), price.minPrice + 1);
-    const updatedPrice = { ...price, maxPrice: value };
-    setPrice(updatedPrice);
+    const value = Math.max(Number(event.target.value), localPrice.minPrice + 1);
+    const updatedLocalPrice = { ...localPrice, maxPrice: value };
+
+    setLocalPrice(updatedLocalPrice); // 로컬 상태 업데이트
+    handleDebounceSetPrice(updatedLocalPrice); // 디바운스된 업데이트
   };
+
   const getTrackStyle = () => ({
-    left: `${((price.minPrice - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
-    width: `${((price.maxPrice - price.minPrice) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+    left: `${((localPrice.minPrice - MIN_PRICE) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
+    width: `${((localPrice.maxPrice - localPrice.minPrice) / (MAX_PRICE - MIN_PRICE)) * 100}%`,
   });
 
   return (
@@ -41,7 +56,7 @@ const PriceSlider = () => {
             type="range"
             min={MIN_PRICE}
             max={MAX_PRICE}
-            value={price.minPrice}
+            value={localPrice.minPrice}
             onChange={handleMinChange}
             className={styles.thumb}
           />
@@ -49,7 +64,7 @@ const PriceSlider = () => {
             type="range"
             min={MIN_PRICE}
             max={MAX_PRICE}
-            value={price.maxPrice}
+            value={localPrice.maxPrice}
             onChange={handleMaxChange}
             className={styles.thumb}
           />
