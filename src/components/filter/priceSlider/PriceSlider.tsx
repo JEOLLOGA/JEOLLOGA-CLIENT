@@ -15,7 +15,7 @@ const PriceSlider = () => {
   const handleDebounceSetPrice = useCallback(
     debounce((updatedPrice: { minPrice: number; maxPrice: number }) => {
       setPrice(updatedPrice);
-    }, 400),
+    }, 300),
     [],
   );
 

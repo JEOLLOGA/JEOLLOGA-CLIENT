@@ -1,6 +1,6 @@
 import useFetchFilteredList from '@apis/filter';
 import { fetchFilteredCount } from '@apis/filter/axios';
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 import queryClient from 'src/queryClient';
@@ -36,6 +36,7 @@ const useFilter = () => {
       return response.count;
     },
     staleTime: 0,
+    placeholderData: keepPreviousData,
   });
 
   // 필터 상태 토글
