@@ -78,7 +78,7 @@ const WishListPage = () => {
   return (
     <div className={styles.container}>
       <div className={styles.headerBox}>
-        <PageName title="위시리스트" isLikeBtn={false} />
+        <PageName title="위시리스트" />
       </div>
       {totalPages === 1 && wishlist.length === 0 ? (
         <div className={styles.emptyBox}>
