@@ -8,21 +8,11 @@ interface StickyTapBarProps {
 
 const StickyTapBar = ({ children }: StickyTapBarProps) => {
   const [isSticky, setIsSticky] = useState(false);
-  const [initialOffsetTop, setInitialOffsetTop] = useState(462);
   const tapBarRef = useRef<HTMLDivElement>(null);
-
-  console.log(initialOffsetTop);
-  useEffect(() => {
-    if (tapBarRef.current) {
-      setInitialOffsetTop(tapBarRef.current.getBoundingClientRect().top);
-    }
-  }, []);
-  console.log(initialOffsetTop);
+  const initialOffsetTop = 463;
 
   useEffect(() => {
     const handleScroll = () => {
-      if (initialOffsetTop === null) return;
-
       const scrollTop = window.scrollY;
       setIsSticky(scrollTop >= initialOffsetTop - 62);
     };
