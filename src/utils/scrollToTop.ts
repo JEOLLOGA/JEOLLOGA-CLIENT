@@ -1,13 +1,13 @@
-import { useLayoutEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation, useNavigationType } from 'react-router-dom';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  const navigationType = useNavigationType();
+  const navigationType = useNavigationType(); // PUSH, REPLACE, POP 중 하나
 
-  useLayoutEffect(() => {
-    if (navigationType === 'PUSH') {
-      window.scrollTo(0, 0);
+  useEffect(() => {
+    if (navigationType !== 'POP') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
     }
   }, [pathname, navigationType]);
 
