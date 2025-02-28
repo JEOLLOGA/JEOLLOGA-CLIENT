@@ -3,7 +3,7 @@ import { useLocation, useNavigationType } from 'react-router-dom';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
-  const navigationType = useNavigationType(); // PUSH, REPLACE, POP 중 하나
+  const navigationType = useNavigationType();
 
   useEffect(() => {
     if (navigationType !== 'POP') {
