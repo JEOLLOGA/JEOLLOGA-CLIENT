@@ -55,6 +55,7 @@ const meta = {
     layout: 'horizontal',
     onToggleWishlist: (templestayId: number, liked: boolean) =>
       alert(`Wishlist ${templestayId}: ${liked}`),
+    link: 'https://www.gototemplestay.com/',
   },
 } satisfies Meta<typeof TempleStayCard>;
 

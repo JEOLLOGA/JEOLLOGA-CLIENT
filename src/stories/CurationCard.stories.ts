@@ -18,15 +18,12 @@ const meta = {
     subtitle: {
       control: { type: 'text' },
     },
-    onClick: {
-      action: 'clicked',
-    },
   },
   args: {
     bgImage: 'https://img.danawa.com/images/descFiles/6/110/5109431_agiLaciMHn_1659098198501.jpeg',
     title: '고양이 있는 절 봤어?',
     subtitle: '용문사에 있는 고양이 좀 봐. 귀엽지?',
-    onClick: () => alert('click !'),
+    link: 'https://www.gototemplestay.com/',
   },
 } satisfies Meta<typeof CurationCard>;
 
