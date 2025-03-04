@@ -1,5 +1,4 @@
 {
   "name": "web-jeolloga",
-  "projectId": "prj_abcdefgh12345678",
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
