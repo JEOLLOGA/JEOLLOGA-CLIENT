@@ -41,7 +41,7 @@ jobs:
 
       - name: Add remote URL
         run: |
-          git remote add forked_repo https://seong-hui:${{ secrets.AUTO_SYNC }}@github.com/seong-hui/35-APPJAM-WEB-JEOLLOGA
+          git remote add forked_repo https://seong-hui:${{ secrets.AUTO_SYNC }}@github.com/seong-hui/JEOLLOGA-CLIENT
           git config user.name seong-hui
           git config user.email msh9980@naver.com
 
@@ -75,3 +75,13 @@ jobs:
 
       - name: Build project
         run: yarn run build
+
+      - name: Add remote URL
+        run: |
+          git remote add forked_repo https://seong-hui:${{ secrets.AUTO_SYNC }}@github.com/seong-hui/JEOLLOGA-CLIENT
+          git config user.name seong-hui
+          git config user.email msh9980@naver.com
+
+      - name: Push Changes to forked_repo
+        run: |
+          git push -f forked_repo HEAD:refs/heads/develop
