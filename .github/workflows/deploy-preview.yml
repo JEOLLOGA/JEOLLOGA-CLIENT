@@ -19,7 +19,7 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel (Preview)
-        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --prod=false --yes
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --target=preview --yes
 
       - name: Assign Custom Preview Domain
         run: vercel alias set dev-gototemplestay.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
