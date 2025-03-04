@@ -19,4 +19,4 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel (Preview)
-        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --prod=false --yes --project web-jeolloga
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --prod=false --yes
