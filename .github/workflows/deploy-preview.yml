@@ -1,0 +1,22 @@
+name: Deploy Preview to Vercel
+
+on:
+  push:
+    branches:
+      - develop
+  workflow_dispatch: # 수동 실행도 가능하도록 추가
+
+jobs:
+  deploy_preview:
+    name: Deploy to Vercel (Preview)
+    runs-on: ubuntu-latest
+    if: github.repository == 'seong-hui/JEOLLOGA-CLIENT' && github.event_name == 'push' && github.ref == 'refs/heads/develop'
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel (Preview)
+        run: vercel --token=${{ secrets.VERCEL_TOKEN }} --prod=false --yes
