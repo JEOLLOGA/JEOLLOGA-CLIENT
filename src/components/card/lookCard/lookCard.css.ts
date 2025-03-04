@@ -37,3 +37,7 @@ export const textBox = style({
 export const name = style({
   ...theme.FONTS.h0Sb22,
 });
+
+export const titleStyle = style({
+  whiteSpace: 'pre-line',
+});

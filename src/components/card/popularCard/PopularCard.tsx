@@ -57,7 +57,7 @@ const PopularCard = ({
         </div>
         <div className={styles.bottomWrapper}>
           <div className={styles.bottomContainer}>
-            <span className={styles.templeName}>{templeName}</span>
+            <h3 className={styles.templeName}>{templeName}</h3>
             <div className={styles.bottomBox}>
               <span>{templeLoc}</span>
               <Icon.IcnDivider />

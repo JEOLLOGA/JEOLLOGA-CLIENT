@@ -19,7 +19,7 @@ const DetailTitle = ({
 }: DetailTitleProps) => {
   return (
     <div className={titleContainerStyle}>
-      <p className={titleStyle({ size })}>{title}</p>
+      <h2 className={titleStyle({ size })}>{title}</h2>
       {isTotal && (
         <button className={buttonStyle} onClick={onClick} disabled={rightBtnDisabled}>
           {rigntBtnLabel}

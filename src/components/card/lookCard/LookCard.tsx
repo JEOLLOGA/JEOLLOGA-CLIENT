@@ -21,13 +21,10 @@ const LookCard = ({ name = '일로와' }: LookCardProps) => {
       />
       <div className={styles.textWrapper}>
         <div className={styles.textBox}>
-          <span>
-            <span className={styles.name}>{name}</span> 님을 위한
-            <br />
-            템플스테이,
-            <br />
-            찾으러 가볼까요?
-          </span>
+          <h1 className={styles.titleStyle}>
+            <span className={styles.name}>{name}</span>
+            {`님을 위한\n템플스테이,\n찾으러 가볼까요?`}
+          </h1>
           <div>
             <BasicBtn
               onClick={() => handleSearch()}
