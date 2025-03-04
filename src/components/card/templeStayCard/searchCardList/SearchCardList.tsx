@@ -1,6 +1,3 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
 import TempleStayCard from '../TempleStayCard';
 import container from './searchCardList.css';
 
@@ -26,12 +23,6 @@ const SearchCardList = ({
   onToggleWishlist,
   onRequireLogin,
 }: SearchCardListProps) => {
-  const navigate = useNavigate();
-
-  const handleCardClick = (templestayId: number) => {
-    navigate(`/detail/${templestayId}`);
-  };
-
   return (
     <section className={container}>
       {data.map((temple) => (
@@ -47,8 +38,8 @@ const SearchCardList = ({
           liked={temple.liked}
           layout={layout}
           onToggleWishlist={onToggleWishlist}
-          onClick={() => handleCardClick(temple.templestayId)}
           onRequireLogin={onRequireLogin}
+          link={`/detail/${temple.templestayId}`}
         />
       ))}
     </section>
