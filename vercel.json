@@ -1,3 +1,4 @@
 {
+  "name": "web-jeolloga",
   "rewrites": [{ "source": "/(.*)", "destination": "/" }]
 }
