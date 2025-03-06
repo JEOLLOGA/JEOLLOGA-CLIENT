@@ -1,4 +1,4 @@
-import ScrollToTop from '@utils/scrollToTop';
+import ScrollToTop from '@hooks/useScrollToTop';
 import { Outlet } from 'react-router-dom';
 
 const App = () => {
