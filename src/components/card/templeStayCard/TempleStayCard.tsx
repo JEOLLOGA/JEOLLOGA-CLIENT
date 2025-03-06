@@ -16,8 +16,8 @@ interface TempleStayCardProps {
   liked: boolean;
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
-  onClick?: (templestayId: number) => void;
   onRequireLogin?: () => void;
+  link: string;
 }
 
 const TempleStayCard = ({
@@ -31,7 +31,7 @@ const TempleStayCard = ({
   liked,
   layout,
   onToggleWishlist,
-  onClick,
+  link,
   onRequireLogin,
 }: TempleStayCardProps) => {
   const [isWished, setIsWished] = useState(liked);
@@ -51,10 +51,7 @@ const TempleStayCard = ({
   };
 
   return (
-    <article
-      className={isHorizontal ? styles.horizontalContainer : styles.verticalContainer}
-      onClick={() => onClick?.(templestayId)}
-      role="presentation">
+    <a href={link} className={isHorizontal ? styles.horizontalContainer : styles.verticalContainer}>
       {imgUrl ? (
         <section className={isHorizontal ? styles.horizontalImgSection : styles.verticalImgSection}>
           <img
@@ -82,7 +79,7 @@ const TempleStayCard = ({
         region={region}
         type={type}
       />
-    </article>
+    </a>
   );
 };
 

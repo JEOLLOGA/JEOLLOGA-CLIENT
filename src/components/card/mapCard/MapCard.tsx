@@ -8,7 +8,7 @@ const MapCard = () => {
   return (
     <section className={styles.mapWrapper}>
       <div className={styles.titleBox}>
-        <h2 className={styles.title}>원하는 지역을 골라보세요!</h2>
+        <p className={styles.title}>원하는 지역을 골라보세요!</p>
         <Icon.IcnDoubleArrowDown />
       </div>
       <Map />

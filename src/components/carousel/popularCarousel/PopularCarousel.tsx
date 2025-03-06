@@ -6,8 +6,6 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import { useQueryClient } from '@tanstack/react-query';
 import registDragEvent from '@utils/registDragEvent';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import * as styles from './popularCarousel.css';
 
@@ -29,8 +27,6 @@ const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
       itemCount: data?.rankings?.length || 0,
       moveDistance: 355,
     });
-
-  const navigate = useNavigate();
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -78,8 +74,8 @@ const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
                 templeImg={rankings.imgUrl}
                 isLiked={rankings.liked}
                 tag={rankings.tag}
-                onClick={() => navigate(`/detail/${rankings.templestayId}`)}
                 onLikeToggle={(liked: boolean) => handleLikeToggle(rankings.templestayId, liked)}
+                link={`/detail/${rankings.templestayId}`}
               />
             ))}
         </div>

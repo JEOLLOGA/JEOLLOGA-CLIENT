@@ -1,0 +1,9 @@
+User-agent: *
+
+Disallow: /login/
+Disallow: /loginStart/
+Disallow: /auth/
+Disallow: /onboarding/
+Disallow: /onboarding?
+
+Sitemap: https://www.gototemplestay.com/sitemap.xml
