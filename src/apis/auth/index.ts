@@ -1,12 +1,13 @@
-import { getKakaoLogin, postLogout } from '@apis/auth/axios';
+import { postKakaoLogin, postLogout } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-export const useGetKakaoLogin = () => {
+export const usePostKakaoLogin = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (authCode: string) => getKakaoLogin(authCode),
+    mutationFn: ({ code, redirectUri }: { code: string; redirectUri: string }) =>
+      postKakaoLogin(code, redirectUri),
     onSuccess: (response) => {
       const userId = response.data.userId;
       const accessToken = response.headers['authorization'].replace('Bearer ', '');

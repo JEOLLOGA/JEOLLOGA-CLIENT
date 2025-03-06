@@ -1,5 +1,4 @@
 import TempleStayCard from '@components/card/templeStayCard/TempleStayCard';
-import React from 'react';
 
 import container from './wishCardList.css';
 
@@ -16,14 +15,8 @@ interface WishCardListProps {
   }[];
   layout: 'vertical' | 'horizontal';
   onToggleWishlist: (templestayId: number, liked: boolean) => void;
-  onClick?: (templestayId: number) => void;
 }
-const WishCardList = ({
-  data,
-  layout = 'vertical',
-  onToggleWishlist,
-  onClick,
-}: WishCardListProps) => {
+const WishCardList = ({ data, layout = 'vertical', onToggleWishlist }: WishCardListProps) => {
   return (
     <section className={container}>
       {data.map((temple) => (
@@ -39,7 +32,7 @@ const WishCardList = ({
           liked={temple.liked}
           layout={layout}
           onToggleWishlist={onToggleWishlist}
-          onClick={onClick}
+          link={`/detail/${temple.templestayId}`}
         />
       ))}
     </section>

@@ -24,9 +24,7 @@ const meta = {
     tag: {
       control: { type: 'text' },
     },
-    onClick: {
-      action: 'clicked',
-    },
+
     isLiked: {
       control: { type: 'boolean' },
     },
@@ -41,7 +39,7 @@ const meta = {
     templeImg:
       'https://img.danawa.com/images/descFiles/6/110/5109431_agiLaciMHn_1659098198501.jpeg',
     tag: '방긋방긋',
-    onClick: () => alert('click !'),
+    link: 'https://www.gototemplestay.com/',
     isLiked: false,
     onLikeToggle: () => alert('Liked'),
   },

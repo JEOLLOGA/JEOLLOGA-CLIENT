@@ -10,9 +10,9 @@ interface PopularCardProps {
   templeLoc: string;
   templeImg: string;
   tag: string;
-  onClick: () => void;
   isLiked?: boolean;
   onLikeToggle: (liked: boolean) => void;
+  link: string;
 }
 
 const PopularCard = ({
@@ -21,9 +21,9 @@ const PopularCard = ({
   templeLoc,
   templeImg,
   tag,
-  onClick,
   isLiked = false,
   onLikeToggle,
+  link,
 }: PopularCardProps) => {
   const [liked, setLiked] = useState(isLiked);
 
@@ -41,23 +41,14 @@ const PopularCard = ({
   };
 
   return (
-    <div
-      className={styles.cardWrapper}
-      onClick={onClick}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          onClick();
-        }
-      }}>
+    <a href={link} className={styles.cardWrapper}>
       <div>
         <div className={styles.imgBox} style={{ backgroundImage: `url(${templeImg})` }}>
           <RankBtn ranking={ranking} />
         </div>
         <div className={styles.bottomWrapper}>
           <div className={styles.bottomContainer}>
-            <span className={styles.templeName}>{templeName}</span>
+            <h3 className={styles.templeName}>{templeName}</h3>
             <div className={styles.bottomBox}>
               <span>{templeLoc}</span>
               <Icon.IcnDivider />
@@ -69,7 +60,7 @@ const PopularCard = ({
           </button>
         </div>
       </div>
-    </div>
+    </a>
   );
 };
 

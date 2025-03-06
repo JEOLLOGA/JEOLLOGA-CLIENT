@@ -24,7 +24,7 @@ export const privateInstance = axios.create({
 
 export const postRefreshToken = async () => {
   try {
-    const response = await axios.get(`${API_URL}/auth/refresh`, {
+    const response = await axios.get(`${API_URL}/login/refresh`, {
       headers: {
         'Content-Type': 'application/json',
         refreshToken: localStorage.getItem('refreshToken'),
