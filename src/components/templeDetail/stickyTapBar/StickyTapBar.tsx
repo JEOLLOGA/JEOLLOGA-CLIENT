@@ -1,3 +1,4 @@
+import { DETAIL_TAPBAR_HEIGHT } from '@constants/constants';
 import { useEffect, useRef, useState, ReactNode } from 'react';
 
 import stickyTapBar from './stickyTapBar.css';
@@ -9,7 +10,7 @@ interface StickyTapBarProps {
 const StickyTapBar = ({ children }: StickyTapBarProps) => {
   const [isSticky, setIsSticky] = useState(false);
   const tapBarRef = useRef<HTMLDivElement>(null);
-  const initialOffsetTop = 463;
+  const initialOffsetTop = DETAIL_TAPBAR_HEIGHT;
 
   useEffect(() => {
     const handleScroll = () => {
