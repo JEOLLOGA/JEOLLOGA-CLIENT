@@ -7,7 +7,10 @@ const useMoveScroll = (type: string, headerHeight: number = 0) => {
 
       if (targetElement) {
         const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = window.scrollY + elementPosition - headerHeight; // 동일한 위치 계산
+        const offsetPosition =
+          type === 'detail' && elementPosition < 0
+            ? window.scrollY + elementPosition - headerHeight + 50
+            : window.scrollY + elementPosition - headerHeight;
 
         window.scrollTo({
           top: offsetPosition,
