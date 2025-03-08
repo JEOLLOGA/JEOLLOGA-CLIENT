@@ -21,7 +21,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
       : TAPS.detail.map((_, index) => `detail-section-${index}`);
 
   const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
-  const scrollToElement = useMoveScroll(type, headerHeight);
+  const scrollToElement = useMoveScroll(headerHeight);
 
   const handleTabClick = (index: number) => {
     handleClick(index);
