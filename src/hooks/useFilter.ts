@@ -1,5 +1,6 @@
 import useFetchFilteredList from '@apis/filter';
 import { fetchFilteredCount } from '@apis/filter/axios';
+import useLocalStorage from '@hooks/useLocalStorage';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
@@ -55,6 +56,8 @@ const useFilter = () => {
 
   const getUserId = () => localStorage.getItem('userId') || '';
 
+  const { setSearchHistory } = useLocalStorage();
+
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {
     const groupedFilters = getGroupedFilters();
@@ -75,20 +78,8 @@ const useFilter = () => {
       setContent(searchQuery);
 
       // 로그인 안 한 사용자의 경우 검색어를 로컬스토리지에 저장
-      if (!isLoggedIn) {
-        if (searchQuery.trim() !== '') {
-          const searchHistory: { searchId: number; content: string }[] = JSON.parse(
-            localStorage.getItem('searchHistory') || '[]',
-          );
-
-          // 중복된 검색어는 저장 안 하도록, 최대 10개까지만
-          const updatedHistory = [
-            { searchId: new Date().getTime(), content: searchQuery },
-            ...searchHistory.filter((item) => item.content !== searchQuery),
-          ].slice(0, 10);
-
-          localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
-        }
+      if (!isLoggedIn && searchQuery.trim() !== '') {
+        setSearchHistory(searchQuery);
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -5,6 +5,7 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
 import useFilter from '@hooks/useFilter';
+import useLocalStorage from '@hooks/useLocalStorage';
 import { useState, useEffect } from 'react';
 
 const RecentBtnBox = () => {
@@ -13,13 +14,14 @@ const RecentBtnBox = () => {
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
+  const { getStorageValue, delSearchHistory } = useLocalStorage();
 
   const [searchData, setSearchData] = useState<Content[]>([]);
 
   useEffect(() => {
     if (!userId) {
-      const localSearchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-      setSearchData(Array.isArray(localSearchHistory) ? localSearchHistory : []);
+      const searchHistory = getStorageValue('searchHistory');
+      setSearchData(Array.isArray(searchHistory) ? searchHistory : []);
     } else if (data) {
       setSearchData(Array.isArray(data.searchHistory) ? data.searchHistory : []);
     }
@@ -42,14 +44,7 @@ const RecentBtnBox = () => {
     if (userId) {
       deleteSearchRecord({ userId: Number(userId), searchId });
     } else {
-      const searchHistory: { searchId: number; content: string }[] = JSON.parse(
-        localStorage.getItem('searchHistory') || '[]',
-      );
-
-      localStorage.setItem(
-        'searchHistory',
-        JSON.stringify(searchHistory.filter((item) => item.searchId !== searchId)),
-      );
+      delSearchHistory(searchId);
     }
   };
 
