@@ -1,4 +1,4 @@
-import { useGetSearchHistory, useDelAllSearchRecord } from '@apis/search';
+import { useGetSearchHistory, useDelAllSearchRecord, useDelSearchRecord } from '@apis/search';
 import { Content } from '@apis/search/type';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
@@ -11,6 +11,7 @@ const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
   const { data, isLoading, isError, refetch } = useGetSearchHistory(userId ? Number(userId) : null);
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
+  const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
 
   const [searchData, setSearchData] = useState<Content[]>([]);
@@ -49,6 +50,10 @@ const RecentBtnBox = () => {
     handleSearch(searchContent);
   };
 
+  const handleDeleteSearch = (searchId: number) => {
+    deleteSearchRecord({ userId: Number(userId), searchId });
+  };
+
   if (isLoading) {
     return <ExceptLayout type="loading" />;
   }
@@ -78,7 +83,9 @@ const RecentBtnBox = () => {
               label={item.content}
               variant="lightGrayOutlined"
               size="small"
+              rightIcon="IcnCloseSmallGray"
               onClick={() => handleRecentSearchClick(item.content)} // 검색어 클릭 이벤트
+              onRightIconClick={() => handleDeleteSearch(item.searchId)}
             />
           ))
         )}
