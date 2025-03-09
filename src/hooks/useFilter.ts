@@ -64,7 +64,7 @@ const useFilter = () => {
     const searchQuery = searchContent ? searchContent.replace(/\s+/g, '') : content;
     const adjustedPrice = getAdjustedPrice();
 
-    const isLoggedIn = localStorage.getItem('Authorzation');
+    const isLoggedIn = localStorage.getItem('Authorization');
 
     try {
       const response = await fetchFilterLists({
