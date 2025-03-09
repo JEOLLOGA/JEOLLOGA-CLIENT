@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
-  const { data, isLoading, isError, refetch } = useGetSearchHistory(userId ? Number(userId) : null);
+  const { data, isLoading, isError } = useGetSearchHistory(userId ? Number(userId) : null);
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
@@ -25,18 +25,6 @@ const RecentBtnBox = () => {
     }
   }, [data, userId]);
 
-  // 뒤로 가기 이벤트 처리
-  useEffect(() => {
-    const handlePopState = () => {
-      refetch(); // 뒤로 가기 시 데이터 갱신
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [refetch]);
-
   const handleDeleteAll = () => {
     if (userId) {
       deleteAllSearchRecords({ userId: Number(userId) });
@@ -51,7 +39,18 @@ const RecentBtnBox = () => {
   };
 
   const handleDeleteSearch = (searchId: number) => {
-    deleteSearchRecord({ userId: Number(userId), searchId });
+    if (userId) {
+      deleteSearchRecord({ userId: Number(userId), searchId });
+    } else {
+      const searchHistory: { searchId: number; content: string }[] = JSON.parse(
+        localStorage.getItem('searchHistory') || '[]',
+      );
+
+      localStorage.setItem(
+        'searchHistory',
+        JSON.stringify(searchHistory.filter((item) => item.searchId !== searchId)),
+      );
+    }
   };
 
   if (isLoading) {
