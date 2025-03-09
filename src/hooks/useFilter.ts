@@ -77,21 +77,17 @@ const useFilter = () => {
       // 로그인 안 한 사용자의 경우 검색어를 로컬스토리지에 저장
       if (!isLoggedIn) {
         if (searchQuery.trim() !== '') {
-          const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+          const searchHistory: { searchId: number; content: string }[] = JSON.parse(
+            localStorage.getItem('searchHistory') || '[]',
+          );
 
-          const newRecord = {
-            searchId: new Date().getTime(),
-            content: searchQuery,
-          };
+          // 중복된 검색어는 저장 안 하도록, 최대 10개까지만
+          const updatedHistory = [
+            { searchId: new Date().getTime(), content: searchQuery },
+            ...searchHistory.filter((item) => item.content !== searchQuery),
+          ].slice(0, 10);
 
-          searchHistory.unshift(newRecord); // 배열 맨 앞에 추가
-
-          // 최대 10개까지 저장
-          if (searchHistory.length > 10) {
-            searchHistory.pop();
-          }
-
-          localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+          localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
         }
       }
 
