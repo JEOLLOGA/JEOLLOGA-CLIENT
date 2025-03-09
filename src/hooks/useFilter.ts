@@ -56,7 +56,7 @@ const useFilter = () => {
 
   const getUserId = () => localStorage.getItem('userId') || '';
 
-  const { setSearchHistory } = useLocalStorage();
+  const { addSearchHistory } = useLocalStorage();
 
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {
@@ -79,7 +79,7 @@ const useFilter = () => {
 
       // 로그인 안 한 사용자의 경우 검색어를 로컬스토리지에 저장
       if (!isLoggedIn && searchQuery.trim() !== '') {
-        setSearchHistory(searchQuery);
+        addSearchHistory(searchQuery);
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

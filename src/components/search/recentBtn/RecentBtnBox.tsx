@@ -6,7 +6,6 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
 import useFilter from '@hooks/useFilter';
 import useLocalStorage from '@hooks/useLocalStorage';
-import { useState, useEffect } from 'react';
 
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
@@ -14,25 +13,16 @@ const RecentBtnBox = () => {
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
-  const { getStorageValue, delSearchHistory } = useLocalStorage();
+  const { searchHistory, delSearchHistory, setSearchHistory } = useLocalStorage();
 
-  const [searchData, setSearchData] = useState<Content[]>([]);
-
-  useEffect(() => {
-    if (!userId) {
-      const searchHistory = getStorageValue('searchHistory');
-      setSearchData(Array.isArray(searchHistory) ? searchHistory : []);
-    } else if (data) {
-      setSearchData(Array.isArray(data.searchHistory) ? data.searchHistory : []);
-    }
-  }, [data, userId]);
+  const searchData: Content[] = userId ? data?.searchHistory || [] : searchHistory;
 
   const handleDeleteAll = () => {
     if (userId) {
       deleteAllSearchRecords({ userId: Number(userId) });
     } else {
       localStorage.removeItem('searchHistory');
-      setSearchData([]);
+      setSearchHistory([]);
     }
   };
 
@@ -55,6 +45,7 @@ const RecentBtnBox = () => {
   if (isError) {
     return <ExceptLayout type="networkError" />;
   }
+
   return (
     <section>
       <div className={styles.paddingStyle}>
