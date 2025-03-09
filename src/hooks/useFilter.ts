@@ -79,20 +79,19 @@ const useFilter = () => {
         if (searchQuery.trim() !== '') {
           const searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
-          // Set을 사용하여 중복된 검색어를 제거
-          const searchHistorySet = new Set([
-            searchQuery,
-            ...searchHistory.map((item: { content: string }) => item.content),
-          ]);
+          const newRecord = {
+            searchId: new Date().getTime(),
+            content: searchQuery,
+          };
 
-          const updatedHistory = Array.from(searchHistorySet)
-            .slice(0, 10)
-            .map((content) => ({
-              searchId: new Date().getTime(),
-              content,
-            }));
+          searchHistory.unshift(newRecord); // 배열 맨 앞에 추가
 
-          localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
+          // 최대 10개까지 저장
+          if (searchHistory.length > 10) {
+            searchHistory.pop();
+          }
+
+          localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
         }
       }
 
