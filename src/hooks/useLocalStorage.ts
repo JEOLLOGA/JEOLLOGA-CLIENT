@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 interface SearchHistoryItem {
   searchId: number;
@@ -15,12 +15,18 @@ const useLocalStorage = () => {
     return getStorageValue('searchHistory');
   });
 
+  useEffect(() => {
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  }, [searchHistory]);
+
   // 검색어 저장
   const addSearchHistory = (searchQuery: string) => {
     // 중복된 검색어는 저장 안 하도록, 최대 10개까지만
     const updatedHistory = [
       { searchId: new Date().getTime(), content: searchQuery },
-      ...searchHistory.filter((item) => item.content !== searchQuery),
+      ...getStorageValue('searchHistory').filter(
+        (item: SearchHistoryItem) => item.content !== searchQuery,
+      ),
     ].slice(0, 10);
 
     setSearchHistory(updatedHistory);
