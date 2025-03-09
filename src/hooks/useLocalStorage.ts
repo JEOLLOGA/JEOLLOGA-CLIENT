@@ -20,7 +20,7 @@ const useLocalStorage = () => {
   }, [searchHistory]);
 
   // 검색어 저장
-  const addSearchHistory = (searchQuery: string) => {
+  const addStorageValue = (searchQuery: string) => {
     // 중복된 검색어는 저장 안 하도록, 최대 10개까지만
     const updatedHistory = [
       { searchId: new Date().getTime(), content: searchQuery },
@@ -34,7 +34,7 @@ const useLocalStorage = () => {
   };
 
   // 검색어 삭제
-  const delSearchHistory = (searchId: number) => {
+  const delStorageValue = (searchId: number) => {
     const searchHistory: { searchId: number; content: string }[] = getStorageValue('searchHistory');
     const updatedHistory = searchHistory.filter((item) => item.searchId !== searchId);
 
@@ -46,8 +46,8 @@ const useLocalStorage = () => {
     searchHistory,
     setSearchHistory,
     getStorageValue,
-    addSearchHistory,
-    delSearchHistory,
+    addStorageValue,
+    delStorageValue,
   };
 };
 

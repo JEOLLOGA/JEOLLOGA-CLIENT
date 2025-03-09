@@ -13,7 +13,7 @@ const RecentBtnBox = () => {
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
-  const { searchHistory, delSearchHistory, setSearchHistory } = useLocalStorage();
+  const { searchHistory, delStorageValue, setSearchHistory } = useLocalStorage();
 
   const searchData: Content[] = userId ? data?.searchHistory || [] : searchHistory;
 
@@ -34,7 +34,7 @@ const RecentBtnBox = () => {
     if (userId) {
       deleteSearchRecord({ userId: Number(userId), searchId });
     } else {
-      delSearchHistory(searchId);
+      delStorageValue(searchId);
     }
   };
 
