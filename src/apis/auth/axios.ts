@@ -14,3 +14,11 @@ export const postLogout = async () => {
 
   return res;
 };
+
+export const postWithdraw = async (userId: number | null) => {
+  const res = await instance.post('/login/unlink', {
+    userId: userId,
+  });
+
+  return res;
+};
