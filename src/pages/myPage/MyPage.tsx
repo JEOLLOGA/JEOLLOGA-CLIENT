@@ -46,7 +46,7 @@ const MyPage = () => {
   return (
     <div className={styles.myPageWrapper}>
       <div className={styles.userInfoContainer}>
-        <PageName title="마이페이지" isLikeBtn={false} />
+        <PageName title="마이페이지" />
         <UserInfo data={data} onLogoutClick={handleLogoutClick} onDeleteClick={handleDeleteClick} />
       </div>
       <Footer />

@@ -13,7 +13,7 @@ const CurationPage = () => {
   return (
     <section>
       <div className={headerBox}>
-        <PageName title="큐레이션" isLikeBtn={false} />
+        <PageName title="큐레이션" />
       </div>
       <div className={contentBox}>
         {images.map((image, idx) => (

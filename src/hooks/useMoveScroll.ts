@@ -1,13 +1,13 @@
 import { useCallback } from 'react';
 
-const useMoveScroll = (type: string, headerHeight: number = 0) => {
+const useMoveScroll = (headerHeight: number = 0) => {
   const scrollToElement = useCallback(
     async (sectionIds: string[], activeIndex: number): Promise<void> => {
       const targetElement = document.getElementById(sectionIds[activeIndex]);
 
       if (targetElement) {
         const elementPosition = targetElement.getBoundingClientRect().top;
-        const offsetPosition = window.scrollY + elementPosition - headerHeight; // 동일한 위치 계산
+        const offsetPosition = window.scrollY + elementPosition - headerHeight;
 
         window.scrollTo({
           top: offsetPosition,
@@ -19,7 +19,7 @@ const useMoveScroll = (type: string, headerHeight: number = 0) => {
         });
       }
     },
-    [type, headerHeight],
+    [headerHeight],
   );
 
   return scrollToElement;

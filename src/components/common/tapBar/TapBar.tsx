@@ -1,6 +1,6 @@
 import UnderlinedBtn from '@components/common/button/underlinedBtn/UnderlinedBtn';
 import tapBarContainer from '@components/common/tapBar/tapBar.css';
-import { HEADER_HEIGHT } from '@constants/constants';
+import { DETAIL_HEADER_HEIGHT, HEADER_HEIGHT } from '@constants/constants';
 import FILTERS from '@constants/filters';
 import { TapType, TAPS } from '@constants/taps';
 import useMoveScroll from '@hooks/useMoveScroll';
@@ -13,7 +13,7 @@ interface TapBarProps {
 }
 
 const TapBar = ({ type, selectedTap }: TapBarProps) => {
-  const headerHeight = HEADER_HEIGHT;
+  const headerHeight = type === 'filter' ? HEADER_HEIGHT : DETAIL_HEADER_HEIGHT;
   const taplist = TAPS[type];
   const sectionIds =
     type === 'filter'
@@ -21,7 +21,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
       : TAPS.detail.map((_, index) => `detail-section-${index}`);
 
   const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
-  const scrollToElement = useMoveScroll(type, headerHeight);
+  const scrollToElement = useMoveScroll(headerHeight);
 
   const handleTabClick = (index: number) => {
     handleClick(index);

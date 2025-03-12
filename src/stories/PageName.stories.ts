@@ -12,15 +12,9 @@ const meta = {
     title: {
       control: { type: 'text' },
     },
-    onRightClick: { action: 'right button clicked' },
-    isLikeBtn: {
-      control: { type: 'boolean' },
-    },
   },
   args: {
     title: 'GoToJeol',
-    isLikeBtn: true,
-    onRightClick: () => alert('click !'),
   },
 } satisfies Meta<typeof PageName>;
 
@@ -37,6 +31,5 @@ export const Default: Story = {
 export const NoHeart: Story = {
   args: {
     title: 'Left Only',
-    isLikeBtn: false,
   },
 };

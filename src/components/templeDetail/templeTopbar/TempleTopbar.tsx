@@ -1,5 +1,4 @@
 import PageName from '@components/common/pageName/PageName';
-import useNavigateTo from '@hooks/useNavigateTo';
 
 interface TempleTopbarProps {
   templeName: string;
@@ -7,15 +6,9 @@ interface TempleTopbarProps {
 }
 
 const TempleTopbar = ({ templeName, templestayName }: TempleTopbarProps) => {
-  const navigateToWishlist = useNavigateTo('/wishList');
-
   return (
     <div>
-      <PageName
-        title={`${templeName} ${templestayName}`}
-        onRightClick={navigateToWishlist}
-        isLikeBtn={false}
-      />
+      <PageName title={`${templeName} ${templestayName}`} />
     </div>
   );
 };
