@@ -70,7 +70,9 @@ privateInstance.interceptors.response.use(
         window.location.replace('/');
       }
     }
-    return Promise.reject(error);
+    if (!localStorage.getItem('Authorization')) {
+      return Promise.reject(error);
+    }
   },
 );
 

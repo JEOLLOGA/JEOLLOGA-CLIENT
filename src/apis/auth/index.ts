@@ -58,7 +58,6 @@ export const usePostWithdraw = ({ userId }: { userId: number | null }) => {
     onSuccess: () => {
       localStorage.clear();
       navigate('/');
-      window.location.reload();
     },
     onError: (error) => {
       console.error(error);
