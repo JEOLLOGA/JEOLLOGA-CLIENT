@@ -42,6 +42,10 @@ privateInstance.interceptors.response.use(
   (response) => response,
 
   async (error) => {
+    if (!localStorage.getItem('Authorization')) {
+      return Promise.reject(error);
+    }
+
     const {
       config,
       response: { status },
@@ -58,7 +62,6 @@ privateInstance.interceptors.response.use(
           localStorage.setItem('Authorization', parsedToken);
 
           axios.defaults.headers.common.Authorization = `Bearer ${parsedToken}`;
-          // 진행중이던 요청 이어서 하기
           originRequest.headers.Authorization = `Bearer ${parsedToken}`;
 
           return await axios(originRequest);
@@ -70,9 +73,7 @@ privateInstance.interceptors.response.use(
         window.location.replace('/');
       }
     }
-    if (!localStorage.getItem('Authorization')) {
-      return Promise.reject(error);
-    }
+    return Promise.reject(error);
   },
 );
 
