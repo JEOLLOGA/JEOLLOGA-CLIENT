@@ -39,6 +39,7 @@ const TempleStayCard = ({
 
   const onClickWishBtn = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
 
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) {
