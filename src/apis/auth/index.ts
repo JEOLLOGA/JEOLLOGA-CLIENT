@@ -1,4 +1,4 @@
-import { postKakaoLogin, postLogout } from '@apis/auth/axios';
+import { postKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,6 +41,25 @@ export const usePostLogout = () => {
       navigate('/');
     },
 
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+};
+
+export const usePostWithdraw = ({ userId }: { userId: number | null }) => {
+  const navigate = useNavigate();
+
+  return useMutation({
+    mutationFn: async () => {
+      if (!userId) throw new Error('Invalid userId');
+      return await postWithdraw(userId);
+    },
+    onSuccess: () => {
+      localStorage.clear();
+      navigate('/');
+      window.location.reload();
+    },
     onError: (error) => {
       console.error(error);
     },

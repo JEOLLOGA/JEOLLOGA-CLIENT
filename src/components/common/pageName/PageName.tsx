@@ -5,19 +5,10 @@ import * as PageNameStyle from './pageName.css';
 
 interface PageNameProps {
   title: string;
-  onRightClick?: () => void;
-  isLikeBtn?: boolean;
-  isLiked?: boolean;
   isPrivate?: boolean;
 }
 
-const PageName = ({
-  title,
-  onRightClick,
-  isLikeBtn = true,
-  isLiked = true,
-  isPrivate,
-}: PageNameProps) => {
+const PageName = ({ title, isPrivate }: PageNameProps) => {
   const navigate = useNavigate();
 
   const handleToBack = () => {
@@ -34,11 +25,6 @@ const PageName = ({
         <Icon.IcnArrowBlackLeft />
       </button>
       <span className={PageNameStyle.titleStyle}>{title}</span>
-      {isLikeBtn && (
-        <button className={PageNameStyle.buttonLayout} onClick={onRightClick}>
-          {isLiked ? <Icon.IcnFlowerPink /> : <Icon.IcnFlowerGray />}
-        </button>
-      )}
     </nav>
   );
 };

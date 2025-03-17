@@ -17,7 +17,7 @@ const LoginPage = () => {
 
   return (
     <section className={styles.loginWrapper}>
-      <PageName title={title} isLikeBtn={false} isPrivate={isPrivate} />
+      <PageName title={title} isPrivate={isPrivate} />
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 

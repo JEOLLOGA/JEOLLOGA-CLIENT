@@ -24,7 +24,7 @@ const TemplePhotoPage = () => {
   return (
     <div className={styles.photoContainer}>
       <div className={styles.headerBox}>
-        <PageName title="사진" isLikeBtn={false} />
+        <PageName title="사진" />
       </div>
       <div className={styles.photoGrid}>
         {data.templestayImgs.map((photo) => (

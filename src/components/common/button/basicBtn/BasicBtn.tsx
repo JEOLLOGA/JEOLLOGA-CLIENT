@@ -8,6 +8,7 @@ interface ButtonProps {
   leftIcon?: keyof typeof Icon;
   rightIcon?: keyof typeof Icon;
   onClick?: () => void;
+  onRightIconClick?: () => void;
   isActive?: boolean;
 }
 
@@ -18,6 +19,7 @@ const BasicBtn = ({
   leftIcon,
   rightIcon,
   onClick,
+  onRightIconClick,
   isActive = false,
 }: ButtonProps) => {
   const SelectedLeftIcon = leftIcon ? Icon[leftIcon] : null;
@@ -29,7 +31,18 @@ const BasicBtn = ({
       onClick={onClick}>
       {SelectedLeftIcon && <SelectedLeftIcon />}
       <p>{label}</p>
-      {SelectedRightIcon && <SelectedRightIcon />}
+      {SelectedRightIcon && (
+        <button
+          onClick={
+            onRightIconClick &&
+            ((e) => {
+              e.stopPropagation();
+              onRightIconClick();
+            })
+          }>
+          <SelectedRightIcon />
+        </button>
+      )}
     </button>
   );
 };

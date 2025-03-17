@@ -29,6 +29,7 @@ const PopularCard = ({
 
   const handleLikeClick = (e: React.MouseEvent) => {
     e.stopPropagation();
+    e.preventDefault();
 
     const userId = Number(localStorage.getItem('userId'));
     if (!userId) {

@@ -1,4 +1,4 @@
-import { usePostLogout } from '@apis/auth';
+import { usePostLogout, usePostWithdraw } from '@apis/auth';
 import { useGetMyPage } from '@apis/user';
 import ModalContainer from '@components/common/modal/ModalContainer';
 import PageName from '@components/common/pageName/PageName';
@@ -12,9 +12,13 @@ import * as styles from './myPage.css';
 const MyPage = () => {
   const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-  const postLogout = usePostLogout();
 
   const userId = localStorage.getItem('userId') || '';
+  const parseUserId = userId ? parseInt(userId, 10) : null;
+
+  const postLogout = usePostLogout();
+  const postWithdraw = usePostWithdraw({ userId: parseUserId });
+
   const { data, isLoading, isError } = useGetMyPage(userId);
 
   const handleLogoutClick = () => {
@@ -31,8 +35,8 @@ const MyPage = () => {
   };
 
   const confirmDelete = () => {
-    window.open('https://www.notion.so/1847c7beb778804b975fedee8883552d?pvs=4');
-    setIsDeleteModalOpen(false);
+    postWithdraw.mutate();
+    setIsLogoutModalOpen(false);
   };
 
   if (isLoading) {
@@ -46,7 +50,7 @@ const MyPage = () => {
   return (
     <div className={styles.myPageWrapper}>
       <div className={styles.userInfoContainer}>
-        <PageName title="마이페이지" isLikeBtn={false} />
+        <PageName title="마이페이지" />
         <UserInfo data={data} onLogoutClick={handleLogoutClick} onDeleteClick={handleDeleteClick} />
       </div>
       <Footer />

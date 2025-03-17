@@ -24,7 +24,7 @@ const FilterPage = () => {
   return (
     <div>
       <header className={styles.header}>
-        <PageName title="필터" isLikeBtn={false} />
+        <PageName title="필터" />
         <TapBar type="filter" selectedTap={selectedTap} />
       </header>
       <main className={styles.main}>
