@@ -42,12 +42,19 @@ const useLocalStorage = () => {
     localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
   };
 
+  // 검색 기록 전체 삭제
+  const clearStorageValue = () => {
+    localStorage.removeItem('searchHistory');
+    setSearchHistory([]);
+  };
+
   return {
     searchHistory,
     setSearchHistory,
     getStorageValue,
     addStorageValue,
     delStorageValue,
+    clearStorageValue,
   };
 };
 
