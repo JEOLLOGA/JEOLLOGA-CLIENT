@@ -9,17 +9,19 @@ import useLocalStorage from '@hooks/useLocalStorage';
 
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
-  const { data, isLoading, isError } = useGetSearchHistory(userId ? Number(userId) : null);
+  const numericUserId = userId ? Number(userId) : null;
+
+  const { data, isLoading, isError } = useGetSearchHistory(numericUserId);
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
   const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
   const { searchHistory, delStorageValue, setSearchHistory } = useLocalStorage();
 
-  const searchData: Content[] = userId ? data?.searchHistory || [] : searchHistory;
+  const searchData: Content[] = numericUserId ? data?.searchHistory || [] : searchHistory;
 
   const handleDeleteAll = () => {
-    if (userId) {
-      deleteAllSearchRecords({ userId: Number(userId) });
+    if (numericUserId) {
+      deleteAllSearchRecords({ userId: numericUserId });
     } else {
       localStorage.removeItem('searchHistory');
       setSearchHistory([]);
@@ -31,8 +33,8 @@ const RecentBtnBox = () => {
   };
 
   const handleDeleteSearch = (searchId: number) => {
-    if (userId) {
-      deleteSearchRecord({ userId: Number(userId), searchId });
+    if (numericUserId) {
+      deleteSearchRecord({ userId: numericUserId, searchId });
     } else {
       delStorageValue(searchId);
     }
