@@ -1,52 +1,42 @@
-import { useGetSearchHistory, useDelAllSearchRecord } from '@apis/search';
+import { useGetSearchHistory, useDelAllSearchRecord, useDelSearchRecord } from '@apis/search';
 import { Content } from '@apis/search/type';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
 import useFilter from '@hooks/useFilter';
-import { useState, useEffect } from 'react';
+import useLocalStorage from '@hooks/useLocalStorage';
 
 const RecentBtnBox = () => {
   const userId = localStorage.getItem('userId');
-  const { data, isLoading, isError, refetch } = useGetSearchHistory(userId ? Number(userId) : null);
+  const numericUserId = userId ? Number(userId) : null;
+
+  const { data, isLoading, isError } = useGetSearchHistory(numericUserId);
   const { mutate: deleteAllSearchRecords } = useDelAllSearchRecord();
+  const { mutate: deleteSearchRecord } = useDelSearchRecord();
   const { handleSearch } = useFilter();
+  const { searchHistory, delStorageValue, clearStorageValue } = useLocalStorage();
 
-  const [searchData, setSearchData] = useState<Content[]>([]);
-
-  useEffect(() => {
-    if (!userId) {
-      const localSearchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-      setSearchData(Array.isArray(localSearchHistory) ? localSearchHistory : []);
-    } else if (data) {
-      setSearchData(Array.isArray(data.searchHistory) ? data.searchHistory : []);
-    }
-  }, [data, userId]);
-
-  // 뒤로 가기 이벤트 처리
-  useEffect(() => {
-    const handlePopState = () => {
-      refetch(); // 뒤로 가기 시 데이터 갱신
-    };
-
-    window.addEventListener('popstate', handlePopState);
-    return () => {
-      window.removeEventListener('popstate', handlePopState);
-    };
-  }, [refetch]);
+  const searchData: Content[] = numericUserId ? data?.searchHistory || [] : searchHistory;
 
   const handleDeleteAll = () => {
-    if (userId) {
-      deleteAllSearchRecords({ userId: Number(userId) });
+    if (numericUserId) {
+      deleteAllSearchRecords({ userId: numericUserId });
     } else {
-      localStorage.removeItem('searchHistory');
-      setSearchData([]);
+      clearStorageValue();
     }
   };
 
   const handleRecentSearchClick = (searchContent: string) => {
     handleSearch(searchContent);
+  };
+
+  const handleDeleteSearch = (searchId: number) => {
+    if (numericUserId) {
+      deleteSearchRecord({ userId: numericUserId, searchId });
+    } else {
+      delStorageValue(searchId);
+    }
   };
 
   if (isLoading) {
@@ -56,6 +46,7 @@ const RecentBtnBox = () => {
   if (isError) {
     return <ExceptLayout type="networkError" />;
   }
+
   return (
     <section>
       <div className={styles.paddingStyle}>
@@ -78,7 +69,9 @@ const RecentBtnBox = () => {
               label={item.content}
               variant="lightGrayOutlined"
               size="small"
+              rightIcon="IcnCloseSmallGray"
               onClick={() => handleRecentSearchClick(item.content)} // 검색어 클릭 이벤트
+              onRightIconClick={() => handleDeleteSearch(item.searchId)}
             />
           ))
         )}
