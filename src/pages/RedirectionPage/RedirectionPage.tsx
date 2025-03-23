@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 
 const RedirectionPage = () => {
   const code: string = new URL(window.location.href).searchParams.get('code') || '';
-  const redirectUri = `${import.meta.env.VITE_REDIRECT_URI}`;
+  const redirectUri = `${process.env.NEXT_PUBLIC_REDIRECT_URI}`;
 
   window.history.forward();
 

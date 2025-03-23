@@ -4,8 +4,8 @@ import loginBtn from '@components/common/button/kakaoBtn/kakaoBtn.css';
 const KakaoBtn = () => {
   const handleLogin = () => {
     window.location.href = `https://kauth.kakao.com/oauth/authorize?client_id=${
-      import.meta.env.VITE_REST_API_KEY
-    }&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&response_type=code`;
+      process.env.NEXT_PUBLIC_REST_API_KEY
+    }&redirect_uri=${process.env.NEXT_PUBLIC_REDIRECT_URI}&response_type=code`;
   };
 
   return (
