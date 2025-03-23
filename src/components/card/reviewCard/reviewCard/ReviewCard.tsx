@@ -34,7 +34,7 @@ const ReviewCard = ({
         <img className={styles.cardImage({ size })} src={blogImage} alt="thumbnail" />
       ) : (
         <div className={styles.emptyImage({ size })}>
-          <img src={emptyImage} alt="빈 이미지"></img>
+          <img src={emptyImage.src} alt="빈 이미지"></img>
         </div>
       )}
       <div className={styles.cardContent({ size })}>

@@ -24,7 +24,7 @@ const CurationCarousel = () => {
         {CURATION_INFO.map((data, index) => (
           <CurationCard
             key={index}
-            bgImage={data.bgImage}
+            bgImage={data.bgImage.src}
             title={data.title}
             subtitle={data.subtitle}
             link={`/curation/${index + 1}`}

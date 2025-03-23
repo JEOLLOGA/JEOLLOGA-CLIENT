@@ -28,7 +28,7 @@ const DetailCarousel = () => {
   if (!data) {
     return (
       <div className={styles.emptyImageContainer}>
-        <img src={LargeEmptyImage} alt="빈 이미지"></img>
+        <img src={LargeEmptyImage.src} alt="빈 이미지"></img>
       </div>
     );
   }

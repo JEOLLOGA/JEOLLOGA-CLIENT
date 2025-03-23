@@ -17,7 +17,7 @@ const CurationPage = () => {
       </div>
       <div className={contentBox}>
         {images.map((image, idx) => (
-          <img key={idx} src={image} alt="큐레이션 이미지" />
+          <img key={idx} src={image.src} alt="큐레이션 이미지" />
         ))}
       </div>
     </section>
