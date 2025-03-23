@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import React from 'react';
-import './globals.css';
 
 export const metadata: Metadata = {
   title: '절로가 | 템플스테이를 만나는 가장 쉬운 방법',
