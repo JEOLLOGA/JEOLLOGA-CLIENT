@@ -18,6 +18,7 @@ import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './templeDetailPage.css';
 
@@ -42,6 +43,8 @@ const TempleDetailPage = () => {
     }
   }, [data]);
 
+  const { logClickEvent } = useEventLogger('bottom_tab');
+
   const handleToggleWishlist = () => {
     if (!userId) {
       setIsModalOpen(true);
@@ -60,9 +63,20 @@ const TempleDetailPage = () => {
         },
       },
     );
+
+    logClickEvent(`click_wish_${liked ? 'remove' : 'add'}`, {});
   };
 
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+
+    logClickEvent('click_cancel', { screen: 'modal_login_wish' });
+  };
+
+  const handleLogin = () => {
+    navigateToLogin();
+    logClickEvent('click_login', { screen: 'modal_login_wish' });
+  };
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -78,6 +92,8 @@ const TempleDetailPage = () => {
 
   const handleBottomButtonClick = () => {
     window.open(data.url, '_blank');
+
+    logClickEvent('click_reserve', { label: data.templeName });
   };
 
   return (
@@ -88,7 +104,7 @@ const TempleDetailPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={navigateToLogin}
+          handleSubmit={handleLogin}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />
