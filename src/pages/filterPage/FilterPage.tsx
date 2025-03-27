@@ -7,6 +7,7 @@ import FILTERS from '@constants/filters';
 import useFilter from '@hooks/useFilter';
 import { useAtomValue } from 'jotai';
 import { useLocation } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import { filterListAtom } from 'src/store/store';
 import titleMap from 'src/type/titleMap';
 
@@ -20,6 +21,14 @@ const FilterPage = () => {
   const filterInstance = useAtomValue(filterListAtom);
 
   const filtersState = filterInstance.getAllStates();
+  const { logClickEvent } = useEventLogger('filter_tag');
+
+  const searchFilter = async () => {
+    await handleSearch();
+    logClickEvent('click_list', {
+      label: '',
+    });
+  };
 
   return (
     <div>
@@ -45,7 +54,7 @@ const FilterPage = () => {
         type="reset"
         label={`${totalCount || 0}개의 템플스테이 보기`}
         largeBtnClick={() => {
-          handleSearch();
+          searchFilter();
         }}
         handleResetFilter={handleResetFilter}
       />
