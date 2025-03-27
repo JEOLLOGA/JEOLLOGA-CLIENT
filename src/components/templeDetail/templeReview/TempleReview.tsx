@@ -4,6 +4,7 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useParams } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './templeReview.css';
 
@@ -12,6 +13,13 @@ const TempleReview = () => {
   const navigateToLargeReview = useNavigateTo(`/detail/${templestayId}/blog`);
 
   const { data, isLoading, isError } = useGetTempleReviews(String(templestayId), Number(1));
+
+  const { logClickEvent } = useEventLogger('blog_review');
+
+  const handleClickAllReview = () => {
+    navigateToLargeReview();
+    logClickEvent('click_all');
+  };
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -36,7 +44,7 @@ const TempleReview = () => {
         title="리뷰"
         isTotal={true}
         rigntBtnLabel="전체보기"
-        onClick={navigateToLargeReview}
+        onClick={handleClickAllReview}
       />
       <div className={styles.templeReviewContainer}>
         {data.reviews.slice(0, 5).map((review) => (

@@ -1,8 +1,11 @@
 import Icon from '@assets/svgs';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './footer.css';
 
 const Footer = () => {
+  const { logClickEvent } = useEventLogger('my');
+
   return (
     <footer className={styles.footerContainer}>
       <div className={styles.topBox}>
@@ -31,14 +34,16 @@ const Footer = () => {
         <a
           href="https://www.notion.so/17c7c7beb77880d99c12d8c2375d562d?pvs=4"
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+          onClick={() => logClickEvent('click_privacy_policy')}>
           개인정보처리방침
         </a>
         <Icon.IcnDivider />
         <a
           href="https://www.notion.so/17c7c7beb7788007b1d3eb99e0c33e47?pvs=4"
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+          onClick={() => logClickEvent('click_terms_of_service')}>
           이용약관
         </a>
       </nav>

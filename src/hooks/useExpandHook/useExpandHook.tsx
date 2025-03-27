@@ -1,8 +1,10 @@
 import { useState, useEffect, RefObject } from 'react';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 const useExpandHook = (contentRef: RefObject<HTMLElement>) => {
   const [isAppeared, setIsAppeared] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const { logClickEvent } = useEventLogger('info');
 
   useEffect(() => {
     const contentElement = contentRef.current;
@@ -13,6 +15,7 @@ const useExpandHook = (contentRef: RefObject<HTMLElement>) => {
 
   const handleToggleExpand = () => {
     setIsExpanded((prev) => !prev);
+    logClickEvent(`click_${isExpanded ? 'fold' : 'more'}`);
   };
 
   return {

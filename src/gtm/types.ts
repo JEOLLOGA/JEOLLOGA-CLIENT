@@ -6,6 +6,7 @@ export interface ClickEvent extends BaseDataLayerEvent {
   event: string;
   screen: string;
   label?: string;
+  url?: string;
   [key: string]: unknown;
 }
 

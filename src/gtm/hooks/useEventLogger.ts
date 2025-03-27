@@ -1,15 +1,18 @@
 import { ClickEvent } from '../types';
 
 const useEventLogger = (screen: string) => {
+  const defaultUrl = typeof window !== 'undefined' ? window.location.pathname : '';
+
   const logClickEvent = (
     event: ClickEvent['event'],
-    additionalFields?: Omit<ClickEvent, 'event' | 'screen'>,
+    additionalFields?: Omit<ClickEvent, 'event' | 'screen_name'>,
   ) => {
     if (!window.dataLayer) return;
 
     const eventObj: ClickEvent = {
       event,
       screen,
+      url: defaultUrl,
       ...additionalFields,
     };
 
