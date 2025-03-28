@@ -6,6 +6,7 @@ import { TapType, TAPS } from '@constants/taps';
 import useMoveScroll from '@hooks/useMoveScroll';
 import useScrollTracker from '@hooks/useScrollTrack';
 import { useEffect } from 'react';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 interface TapBarProps {
   type: TapType;
@@ -22,10 +23,22 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
 
   const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
   const scrollToElement = useMoveScroll(headerHeight);
+  const { logClickEvent } = useEventLogger('filter_tag');
 
   const handleTabClick = (index: number) => {
     handleClick(index);
     scrollToElement(sectionIds, index);
+
+    if (type === 'filter') {
+      logClickEvent('click_tag', {
+        label: TAPS.filter[index],
+      });
+    } else {
+      logClickEvent('click_tab', {
+        screen: 'top_tab',
+        label: TAPS.detail[index],
+      });
+    }
   };
 
   useEffect(() => {

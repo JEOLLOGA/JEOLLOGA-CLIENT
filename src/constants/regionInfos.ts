@@ -1,4 +1,4 @@
-const REGION_INFOS = {
+export const REGION_INFOS = {
   서울: { top: 40, left: 90 },
   인천: { top: 50, left: 20 },
   경기: { top: 88, left: 98 },
@@ -15,4 +15,19 @@ const REGION_INFOS = {
   제주: { top: 357, left: 10 },
 };
 
-export default REGION_INFOS;
+export const REGION_LABEL_MAP: Record<string, string> = {
+  서울: 'seoul',
+  인천: 'incheon',
+  경기: 'gyeonggi',
+  강원: 'gangwon',
+  충남: 'chungnam',
+  충북: 'chungbuk',
+  전북: 'jeonbuk',
+  광주: 'gwangju',
+  전남: 'jeonnam',
+  경북: 'gyeongbuk',
+  대구: 'daegu',
+  부산: 'busan',
+  경남: 'gyeongnam',
+  제주: 'jeju',
+};

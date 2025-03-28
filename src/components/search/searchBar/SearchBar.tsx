@@ -2,6 +2,7 @@ import Icon from '@assets/svgs';
 import useFilter from '@hooks/useFilter';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './searchBar.css';
 
@@ -14,6 +15,7 @@ const SearchBar = ({ searchText }: SearchBarProps) => {
 
   const { handleSearch, handleResetFilter } = useFilter();
   const location = useLocation();
+  const { logClickEvent } = useEventLogger('search_bar');
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -24,12 +26,15 @@ const SearchBar = ({ searchText }: SearchBarProps) => {
 
   const handleClearInput = () => {
     setInputValue('');
+
+    logClickEvent('click_delete', { label: inputValue });
   };
 
   const handleClickSearch = () => {
     if (inputValue.trim() === '') return;
 
     handleSearch(inputValue);
+    logClickEvent('click_enter', { label: inputValue });
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

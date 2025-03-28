@@ -12,6 +12,7 @@ import useFilter from '@hooks/useFilter';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import { contentAtom } from 'src/store/store';
 
 import * as styles from './homePage.css';
@@ -22,12 +23,21 @@ const HomePage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const navigateToLogin = useNavigateTo('/loginStart');
+  const { logClickEvent } = useEventLogger('modal_login_wish');
+
+  const handleLogin = () => {
+    navigateToLogin();
+    logClickEvent('click_login');
+  };
+
   const openModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    logClickEvent('click_cancel');
   };
 
   useEffect(() => {
@@ -52,7 +62,7 @@ const HomePage = () => {
             modalBody="찜하려면 로그인이 필요해요."
             isOpen={isModalOpen}
             handleClose={closeModal}
-            handleSubmit={navigateToLogin}
+            handleSubmit={handleLogin}
             leftBtnLabel="취소"
             rightBtnLabel="로그인하기"
           />

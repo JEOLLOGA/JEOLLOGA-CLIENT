@@ -3,6 +3,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Provider } from 'jotai';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import GTMProvider from 'src/gtm/GTMProvider.tsx';
 import Router from 'src/router/Router.tsx';
 
 import '@styles/reset.css.ts';
@@ -18,9 +19,11 @@ createRoot(document.getElementById('root')!).render(
       <div style={{ fontSize: '16px' }}>
         <ReactQueryDevtools initialIsOpen={false} />
       </div>
-      <Provider>
-        <Router />
-      </Provider>
+      <GTMProvider>
+        <Provider>
+          <Router />
+        </Provider>
+      </GTMProvider>
     </QueryClientProvider>
   </StrictMode>,
 );
