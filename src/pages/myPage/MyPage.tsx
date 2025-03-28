@@ -6,6 +6,7 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Footer from '@components/footer/Footer';
 import UserInfo from '@components/userInfo/userInfo';
 import { useState } from 'react';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './myPage.css';
 
@@ -21,22 +22,44 @@ const MyPage = () => {
 
   const { data, isLoading, isError } = useGetMyPage(userId);
 
+  const { logClickEvent } = useEventLogger('my');
+
   const handleLogoutClick = () => {
     setIsLogoutModalOpen(true);
+
+    logClickEvent('click_logout');
   };
 
   const confirmLogout = () => {
     postLogout.mutate();
     setIsLogoutModalOpen(false);
+
+    logClickEvent('click_logout', { screen: 'logout_modal' });
   };
 
   const handleDeleteClick = () => {
     setIsDeleteModalOpen(true);
+
+    logClickEvent('click_unsubscribe');
   };
 
   const confirmDelete = () => {
     postWithdraw.mutate();
     setIsLogoutModalOpen(false);
+
+    logClickEvent('click_unsubscribe', { screen: 'unsubscribe_modal' });
+  };
+
+  const handleCloseLogoutModal = () => {
+    setIsLogoutModalOpen(false);
+
+    logClickEvent('click_cancel', { screen: 'logout_modal' });
+  };
+
+  const handleCloseDeleteModal = () => {
+    setIsDeleteModalOpen(false);
+
+    logClickEvent('click_cancel', { screen: 'unsubscribe_modal' });
   };
 
   if (isLoading) {
@@ -61,7 +84,7 @@ const MyPage = () => {
             modalTitle="정말 로그아웃하시겠어요?"
             modalBody="로그아웃 시 일부 기능 이용이 제한됩니다"
             isOpen={isLogoutModalOpen}
-            handleClose={() => setIsLogoutModalOpen(false)}
+            handleClose={handleCloseLogoutModal}
             handleSubmit={confirmLogout}
             leftBtnLabel="취소"
             rightBtnLabel="로그아웃하기"
@@ -76,7 +99,7 @@ const MyPage = () => {
             modalTitle="정말 탈퇴하시겠어요?"
             modalBody="탈퇴 시 계정 정보는 복구할 수 없습니다"
             isOpen={isDeleteModalOpen}
-            handleClose={() => setIsDeleteModalOpen(false)}
+            handleClose={handleCloseDeleteModal}
             handleSubmit={confirmDelete}
             leftBtnLabel="취소"
             rightBtnLabel="탈퇴하기"

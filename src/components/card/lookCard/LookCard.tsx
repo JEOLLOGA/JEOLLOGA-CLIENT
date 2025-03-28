@@ -1,5 +1,6 @@
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
 import useFilter from '@hooks/useFilter';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './lookCard.css';
 
@@ -8,7 +9,13 @@ interface LookCardProps {
 }
 
 const LookCard = ({ name = '일로와' }: LookCardProps) => {
+  const { logClickEvent } = useEventLogger('home_banner');
   const { handleSearch } = useFilter();
+
+  const handleClickBtn = () => {
+    handleSearch();
+    logClickEvent('click_templestay_detail');
+  };
 
   return (
     <section className={styles.cardWrapper}>
@@ -27,7 +34,7 @@ const LookCard = ({ name = '일로와' }: LookCardProps) => {
           </h1>
           <div>
             <BasicBtn
-              onClick={() => handleSearch()}
+              onClick={handleClickBtn}
               variant="green"
               label="둘러보기"
               size="large"

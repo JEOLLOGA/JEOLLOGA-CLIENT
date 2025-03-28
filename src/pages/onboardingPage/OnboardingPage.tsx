@@ -6,6 +6,7 @@ import OnboardingSection from '@components/onboarding/OnboardingSection';
 import { ONBOARDING_STEPS, COMMON_DESCRIPTION } from '@constants/onboarding/onboardingSteps';
 import useFunnel from '@hooks/useFunnel';
 import React, { useState, useEffect } from 'react';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import container from './onboardingPage.css';
 
@@ -14,6 +15,8 @@ const OnboardingPage = () => {
     ONBOARDING_STEPS.map((step) => step.id),
     '/welcome',
   );
+
+  const { logClickEvent } = useEventLogger('onboarding');
 
   const [selections, setSelections] = useState<Record<string, string | null>>(() => {
     const savedSelections = localStorage.getItem('onboardingSelections');
@@ -101,7 +104,17 @@ const OnboardingPage = () => {
                 isNextDisabledInitially={isNextDisabledInitially || false}
                 selectedOption={selections[id]}
                 onSelectionChange={(selected) => handleSelectionChange(id, selected)}
-                onNextClick={isFinalStep ? handleFinalSubmit : nextStep}
+                onNextClick={() => {
+                  logClickEvent('click_next', {
+                    screen: `onboarding_${id}`,
+                  });
+
+                  if (isFinalStep) {
+                    handleFinalSubmit();
+                  } else {
+                    nextStep();
+                  }
+                }}
               />
             </Step>
           );

@@ -2,6 +2,8 @@ import errorImage from '@assets/images/img_gray_light_leaf_medium.png';
 import InfoSection from '@components/card/templeStayCard/InfoSection';
 import FlowerIcon from '@components/common/icon/flowerIcon/FlowerIcon';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './templeStayCard.css';
 
@@ -36,6 +38,11 @@ const TempleStayCard = ({
 }: TempleStayCardProps) => {
   const [isWished, setIsWished] = useState(liked);
   const isHorizontal = layout === 'horizontal';
+  const { logClickEvent } = useEventLogger('templestay_card');
+  const location = useLocation();
+
+  const isWishPage = location.pathname === '/wishList';
+  console.log(location.pathname);
 
   const onClickWishBtn = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -49,10 +56,17 @@ const TempleStayCard = ({
 
     setIsWished((prev) => !prev);
     onToggleWishlist(templestayId, isWished);
+    logClickEvent(`click_wish_${isWished ? 'remove' : 'add'}`, {
+      label: templeName,
+      screen: `${isWishPage ? 'wish' : 'templestay_card'}`,
+    });
   };
 
   return (
-    <a href={link} className={isHorizontal ? styles.horizontalContainer : styles.verticalContainer}>
+    <a
+      href={link}
+      className={isHorizontal ? styles.horizontalContainer : styles.verticalContainer}
+      onClick={() => logClickEvent('click_card_detail')}>
       {imgUrl ? (
         <section className={isHorizontal ? styles.horizontalImgSection : styles.verticalImgSection}>
           <img

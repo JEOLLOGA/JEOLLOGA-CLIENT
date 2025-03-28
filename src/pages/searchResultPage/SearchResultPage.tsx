@@ -11,6 +11,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import { filterListAtom } from 'src/store/store';
 
 import * as styles from './searchResultPage.css';
@@ -24,6 +25,8 @@ const SearchResultPage = () => {
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
+
+  const { logClickEvent } = useEventLogger('modal_login_wish');
 
   useEffect(() => {
     if (results) {
@@ -40,7 +43,15 @@ const SearchResultPage = () => {
   const { handleSearch } = useFilter();
 
   const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
+    logClickEvent('click_cancel');
+  };
+
+  const handleLogin = () => {
+    navigateToLogin();
+    logClickEvent('click_login');
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -78,7 +89,7 @@ const SearchResultPage = () => {
           modalBody="찜하려면 로그인이 필요해요."
           isOpen={isModalOpen}
           handleClose={closeModal}
-          handleSubmit={navigateToLogin}
+          handleSubmit={handleLogin}
           leftBtnLabel="취소"
           rightBtnLabel="로그인하기"
         />

@@ -2,6 +2,7 @@ import TextBtn from '@components/common/button/textBtn/TextBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useParams } from 'react-router-dom';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './smallMap.css';
 import MapContainer from '../MapContainer';
@@ -16,6 +17,8 @@ const SmallMap = ({ detailAddress, latitude, longitude }: MapDataProps) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(detailAddress);
     alert('주소가 복사되었습니다.');
+
+    logClickEvent('click_copy', { label: detailAddress });
   };
 
   const { templestayId } = useParams();
@@ -23,6 +26,7 @@ const SmallMap = ({ detailAddress, latitude, longitude }: MapDataProps) => {
   const navigateToHome = useNavigateTo(
     `/detail/${templestayId}/map?latitude=${latitude}&longitude=${longitude}`,
   );
+  const { logClickEvent } = useEventLogger('map');
 
   return (
     <div className={styles.mapContainerWrapper} id="detail-section-4">
