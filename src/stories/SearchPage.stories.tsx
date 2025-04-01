@@ -1,5 +1,5 @@
-import SearchPage from '@pages/searchPage/SearchPage';
 import type { Meta, StoryObj } from '@storybook/react';
+import SearchPage from 'src/app/search/page';
 
 const meta = {
   title: 'Page/SearchPage',

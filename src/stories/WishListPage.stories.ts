@@ -1,5 +1,5 @@
-import WishListPage from '@pages/wishList/WishListPage';
 import type { Meta, StoryObj } from '@storybook/react';
+import WishListPage from 'src/app/wishList/page';
 
 const meta = {
   title: 'Page/WishListPage',

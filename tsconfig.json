@@ -1,43 +1,21 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": [
-      "ES2023",
-      "DOM",
-      "DOM.Iterable"
-    ],
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@assets/*": [
-        "public/assets/*"
-      ],
-      "@pages/*": [
-        "src/pages/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ],
-      "@styles/*": [
-        "src/styles/*"
-      ],
-      "@constants/*": [
-        "src/constants/*"
-      ],
-      "@hooks/*": [
-        "src/hooks/*"
-      ],
-      "@apis/*": [
-        "src/apis/*"
-      ],
-      "@utils/*": [
-        "src/utils/*"
-      ]
+      "@assets/*": ["public/assets/*"],
+      "@app/*": ["src/app/*"],
+      "@components/*": ["src/components/*"],
+      "@styles/*": ["src/styles/*"],
+      "@constants/*": ["src/constants/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@apis/*": ["src/apis/*"],
+      "@utils/*": ["src/utils/*"]
     },
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     /* Bundler mode */
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -70,7 +48,5 @@
     "vite.config.ts",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

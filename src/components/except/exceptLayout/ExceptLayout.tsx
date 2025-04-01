@@ -1,3 +1,5 @@
+'use client';
+
 import EXCEPT_INFOS from '@constants/exceptInfos';
 import React from 'react';
 

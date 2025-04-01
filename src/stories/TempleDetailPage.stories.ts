@@ -1,5 +1,5 @@
-import TempleDetailPage from '@pages/templeDetailPage/TempleDetailPage';
 import type { Meta, StoryObj } from '@storybook/react';
+import TempleDetailPage from 'src/app/detail/[templestayId]/page';
 
 const meta = {
   title: 'Page/TempleDetailPage',
