@@ -1,5 +1,4 @@
 import { Metadata } from 'next';
-import Script from 'next/script';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
@@ -40,21 +39,6 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="ko">
-      <head>
-        <link rel="icon" type="image/svg+xml" href="public/favicon.ico" />
-
-        {/* -- Google Tag Manager -- */}
-        <Script id="gtm-init" strategy="afterInteractive">
-          {`
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-PW9GZMJG');
-          `}
-        </Script>
-        {/* End Google Tag Manager */}
-      </head>
       <body>
         {/* Google Tag Manager (noscript) */}
         <noscript>
@@ -66,12 +50,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             style={{ display: 'none', visibility: 'hidden' }}></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-
-        <div id="root">{children}</div>
-
-        <script
-          type="text/javascript"
-          src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=%VITE_NAVER_API_KEY%"></script>
+        {children}
       </body>
     </html>
   );
