@@ -1,21 +1,25 @@
-import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
-import react from '@vitejs/plugin-react';
+import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
 import type { NextConfig } from 'next';
-import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
+
+const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig: NextConfig = {
-  plugins: [
-    react(),
-    vanillaExtractPlugin(),
-    svgr({
-      svgrOptions: {
-        memo: true,
-      },
-      include: '**/*.svg',
-    }),
-    tsconfigPaths(),
-  ],
+  reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      issuer: /\.[jt]sx?$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            memo: true,
+          },
+        },
+      ],
+    });
+    return config;
+  },
 };
 
-export default nextConfig;
+export default withVanillaExtract(nextConfig);
