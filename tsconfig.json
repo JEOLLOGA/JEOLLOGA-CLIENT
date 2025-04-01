@@ -7,7 +7,7 @@
 
     "baseUrl": "./",
     "paths": {
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["public/assets/*"],
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
@@ -47,6 +47,6 @@
     "next-env.d.ts",
     "vite.config.ts",
     "dist/types/**/*.ts"
-  ],
+, "public/assets"  ],
   "exclude": ["node_modules"]
 }

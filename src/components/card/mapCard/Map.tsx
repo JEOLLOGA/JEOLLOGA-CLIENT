@@ -1,8 +1,8 @@
+import mapImage from '@assets/images/home_card_look.png';
 import LocBtn from '@components/card/mapCard/LocBtn';
 import { REGION_INFOS, REGION_LABEL_MAP } from '@constants/regionInfos';
 import useFilter from '@hooks/useFilter';
 import Image from 'next/image';
-import mapImage from 'src/assets/images/home_card_map.png';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import mapStyle from './map.css';
