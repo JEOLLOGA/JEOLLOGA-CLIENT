@@ -49,12 +49,6 @@ export default tseslint.config(
       'react/prop-types': 'off',
       'react/jsx-pascal-case': 'warn',
       'react/no-unknown-property': ['error', { ignore: ['css'] }],
-      'react/function-component-definition': [
-        'error',
-        {
-          namedComponents: 'arrow-function',
-        },
-      ],
       'react-hooks/rules-of-hooks': 'error',
       'react-refresh/only-export-components': [
         'warn',
