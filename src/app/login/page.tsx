@@ -1,3 +1,5 @@
+'use client';
+
 import KakaoBtn from '@components/common/button/kakaoBtn/KakaoBtn';
 import PageName from '@components/common/pageName/PageName';
 import LOGIN_INFOS from '@constants/loginInfos';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useGetNickname } from '@apis/user';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';

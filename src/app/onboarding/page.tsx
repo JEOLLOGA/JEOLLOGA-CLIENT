@@ -1,5 +1,7 @@
 'use client';
 
+export const dynamic = 'force-dynamic';
+
 import { useGetNickname, useRegisterUser } from '@apis/user';
 import { OnboardingUserRequest } from '@apis/user/type';
 import ProgressBar from '@components/common/progressBar/ProgressBar';

@@ -1,3 +1,5 @@
+'use client';
+
 import ButtonBar from '@components/common/button/buttonBar/ButtonBar';
 import Divider from '@components/common/divider/Divider';
 import PageName from '@components/common/pageName/PageName';

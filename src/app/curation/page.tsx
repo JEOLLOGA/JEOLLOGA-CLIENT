@@ -1,3 +1,5 @@
+'use client';
+
 import PageName from '@components/common/pageName/PageName';
 import { CURATION_IMAGES } from '@constants/curationInfo';
 import { useParams } from 'react-router-dom';

@@ -1,3 +1,5 @@
+'use client';
+
 import RecentBtnBox from '@components/search/recentBtn/RecentBtnBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
 
