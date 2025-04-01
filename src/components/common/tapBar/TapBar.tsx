@@ -1,3 +1,4 @@
+'use client';
 import UnderlinedBtn from '@components/common/button/underlinedBtn/UnderlinedBtn';
 import tapBarContainer from '@components/common/tapBar/tapBar.css';
 import { DETAIL_HEADER_HEIGHT, HEADER_HEIGHT } from '@constants/constants';

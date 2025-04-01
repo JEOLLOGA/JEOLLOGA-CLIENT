@@ -1,3 +1,4 @@
+'use client';
 import { DETAIL_TAPBAR_HEIGHT } from '@constants/constants';
 import { useEffect, useRef, useState, ReactNode } from 'react';
 

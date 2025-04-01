@@ -1,3 +1,4 @@
+'use client';
 import { useWishlistQuery, useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardList';
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';

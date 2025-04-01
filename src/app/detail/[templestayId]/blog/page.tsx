@@ -1,3 +1,4 @@
+'use client';
 import useGetTempleReviews from '@apis/templeReviews';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import PageName from '@components/common/pageName/PageName';

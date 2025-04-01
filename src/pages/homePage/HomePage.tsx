@@ -1,3 +1,4 @@
+'use client';
 import { useGetNickname } from '@apis/user';
 import LookCard from '@components/card/lookCard/LookCard';
 import MapCard from '@components/card/mapCard/MapCard';

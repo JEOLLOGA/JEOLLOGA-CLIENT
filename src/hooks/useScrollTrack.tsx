@@ -1,3 +1,4 @@
+'use client';
 import { useEffect, useRef, useState } from 'react';
 
 const useScrollTracker = (sections: string[], headerHeight: number = 0) => {

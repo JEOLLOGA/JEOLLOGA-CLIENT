@@ -1,3 +1,4 @@
+'use client';
 import { usePostLogout, usePostWithdraw } from '@apis/auth';
 import { useGetMyPage } from '@apis/user';
 import ModalContainer from '@components/common/modal/ModalContainer';

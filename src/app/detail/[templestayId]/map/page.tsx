@@ -1,3 +1,4 @@
+'use client';
 import smallMarker from '@assets/images/icn_map.png';
 import ArrowBtn from '@components/common/button/arrowBtn/ArrowBtn';
 import { useEffect } from 'react';

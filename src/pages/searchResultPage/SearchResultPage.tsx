@@ -1,3 +1,4 @@
+'use client';
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
