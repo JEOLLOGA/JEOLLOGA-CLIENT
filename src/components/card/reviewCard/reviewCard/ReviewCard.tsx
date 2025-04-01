@@ -1,5 +1,5 @@
-import emptyMediumImage from '@assets/images/img_gray_light_leaf_medium.png';
-import emptySmallImage from '@assets/images/img_gray_light_leaf_small.png';
+const emptyMediumImage = '/assets/images/img_gray_light_leaf_medium.png';
+const emptySmallImage = '/assets/images/img_gray_light_leaf_small.png';
 
 import * as styles from './reviewCard.css';
 import CardInfo from '../cardInfo/CardInfo';

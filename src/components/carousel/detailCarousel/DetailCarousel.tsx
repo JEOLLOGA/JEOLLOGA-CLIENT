@@ -1,5 +1,5 @@
 import useGetTempleImages from '@apis/templeImages';
-import LargeEmptyImage from '@assets/images/img_gray_light_leaf_large.png';
+const largeEmptyImage = '@assets/images/img_gray_light_leaf_large.png';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
@@ -28,7 +28,7 @@ const DetailCarousel = () => {
   if (!data) {
     return (
       <div className={styles.emptyImageContainer}>
-        <img src={LargeEmptyImage} alt="빈 이미지"></img>
+        <img src={largeEmptyImage} alt="빈 이미지"></img>
       </div>
     );
   }
