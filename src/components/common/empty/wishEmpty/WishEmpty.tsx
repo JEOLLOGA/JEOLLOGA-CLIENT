@@ -1,4 +1,4 @@
-import emptyImage from '@assets/images/img_gray_light_leaf_large.png';
+const emptyImage = '/assets/images/img_gray_light_leaf_large.png';
 import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn';
 import useFilter from '@hooks/useFilter';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
