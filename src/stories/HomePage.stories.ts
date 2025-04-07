@@ -1,5 +1,5 @@
-import HomePage from '@pages/homePage/HomePage';
 import type { Meta, StoryObj } from '@storybook/react';
+import HomePage from 'src/app/page';
 
 const meta = {
   title: 'Page/HomePage',

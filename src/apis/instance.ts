@@ -1,7 +1,8 @@
+import API_URL from '@apis/env';
 import MESSAGES from '@apis/messages';
 import axios, { isAxiosError } from 'axios';
 
-const API_URL = `${import.meta.env.VITE_APP_BASE_URL}`;
+// const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL as string;
 
 // 토큰이 필요없는 api 요청
 const instance = axios.create({

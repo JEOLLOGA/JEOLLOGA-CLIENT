@@ -1,3 +1,4 @@
+'use client';
 import Icon from '@assets/svgs';
 import RankBtn from '@components/card/popularCard/RankBtn';
 import { useState } from 'react';

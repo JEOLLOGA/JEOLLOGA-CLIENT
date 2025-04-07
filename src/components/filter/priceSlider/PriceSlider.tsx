@@ -1,3 +1,4 @@
+'use client';
 import debounce from '@hooks/debounce';
 import { useAtom } from 'jotai';
 import React, { useCallback, useState } from 'react';

@@ -1,3 +1,4 @@
+'use client';
 import Icon from '@assets/svgs';
 import useFilter from '@hooks/useFilter';
 import { useEffect, useState } from 'react';

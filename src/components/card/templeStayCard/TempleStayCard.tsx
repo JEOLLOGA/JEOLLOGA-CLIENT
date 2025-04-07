@@ -1,4 +1,5 @@
-import errorImage from '@assets/images/img_gray_light_leaf_medium.png';
+'use client';
+const errorImage = '/assets/images/img_gray_light_leaf_medium.png';
 import InfoSection from '@components/card/templeStayCard/InfoSection';
 import FlowerIcon from '@components/common/icon/flowerIcon/FlowerIcon';
 import { useState } from 'react';

@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, RefObject } from 'react';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 

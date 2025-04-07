@@ -24,9 +24,13 @@ const TextBtn = ({
 
   return (
     <button className={styles.textBtnStyle({ clicked, size })} onClick={onClick}>
-      {LeftIconComponent && <LeftIconComponent className={styles.iconStyle({ size })} />}
+      {LeftIconComponent && (
+        <img src={LeftIconComponent} className={styles.iconStyle({ size })} alt="" />
+      )}
       <span>{text}</span>
-      {RightIconComponent && <RightIconComponent className={styles.iconStyle({ size })} />}
+      {RightIconComponent && (
+        <img src={RightIconComponent} className={styles.iconStyle({ size })} alt="" />
+      )}
     </button>
   );
 };
