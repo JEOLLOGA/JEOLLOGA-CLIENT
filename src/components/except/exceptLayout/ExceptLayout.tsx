@@ -1,10 +1,10 @@
 'use client';
 
+import LottiePlayer from '@components/common/lottie/LottiePlayer';
 import EXCEPT_INFOS from '@constants/exceptInfos';
 import React from 'react';
 
 import * as styles from './exceptLayout.css';
-import '@dotlottie/player-component';
 
 interface ExceptLayoutProps {
   type: 'loading' | 'networkError';
@@ -17,13 +17,7 @@ const ExceptLayout = ({ type }: ExceptLayoutProps) => {
     <section className={styles.exceptWrapper}>
       <span className={styles.title}>{title}</span>
       <div className={styles.imgContainer}>
-        <dotlottie-player
-          key={type}
-          src={lottie}
-          autoplay
-          loop
-          style={{ width: 210, height: 210 }}
-        />
+        <LottiePlayer keyId={type} src={lottie} style={{ width: 210, height: 210 }} />
       </div>
       <span className={styles.subtitle[type]}>{subtitle}</span>
     </section>

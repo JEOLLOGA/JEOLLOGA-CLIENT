@@ -1,3 +1,6 @@
+'use client';
+
+import LottiePlayer from '@components/common/lottie/LottiePlayer';
 import React from 'react';
 
 import * as styles from './searchEmpty.css';
@@ -13,11 +16,9 @@ const SearchEmpty = ({ text }: SearchEmptyProps) => {
         <p className={styles.textStyle}>
           '<span className={styles.highlight}>{`${text}`}</span>'{'에 대한\n검색결과가 없어요'}
         </p>
-        <dotlottie-player
-          key="search"
+        <LottiePlayer
+          keyId="search"
           src="/lotties/moktak_sad.lottie"
-          autoplay
-          loop
           style={{ width: '15rem', height: '10.3rem' }}
         />
       </div>

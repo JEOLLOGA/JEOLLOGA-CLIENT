@@ -1,5 +1,8 @@
+'use client';
+
 import Icon from '@assets/svgs';
 import KakaoBtn from '@components/common/button/kakaoBtn/KakaoBtn';
+import LottiePlayer from '@components/common/lottie/LottiePlayer';
 import React from 'react';
 
 import * as styles from './style.css';
@@ -12,7 +15,7 @@ const ModalLoginPage = () => {
         <p className={styles.textStyle}>템플스테이를 만나는 가장 쉬운 방법</p>
       </div>
       <div className={styles.lottieStyle}>
-        <dotlottie-player key="onboarding" src="/lotties/onboarding.lottie" autoplay loop />
+        <LottiePlayer keyId="onboarding" src="/lotties/onboarding.lottie" />
       </div>
       <KakaoBtn />
     </div>
