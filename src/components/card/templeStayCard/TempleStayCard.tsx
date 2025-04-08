@@ -2,8 +2,8 @@
 const errorImage = '/assets/images/img_gray_light_leaf_medium.png';
 import InfoSection from '@components/card/templeStayCard/InfoSection';
 import FlowerIcon from '@components/common/icon/flowerIcon/FlowerIcon';
+import { usePathname } from 'next/navigation';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './templeStayCard.css';
@@ -40,10 +40,9 @@ const TempleStayCard = ({
   const [isWished, setIsWished] = useState(liked);
   const isHorizontal = layout === 'horizontal';
   const { logClickEvent } = useEventLogger('templestay_card');
-  const location = useLocation();
+  const pathname = usePathname();
 
-  const isWishPage = location.pathname === '/wishList';
-  console.log(location.pathname);
+  const isWishPage = pathname === '/wishList';
 
   const onClickWishBtn = (e: React.MouseEvent) => {
     e.stopPropagation();

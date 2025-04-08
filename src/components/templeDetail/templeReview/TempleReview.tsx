@@ -3,7 +3,7 @@ import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useNavigateTo from '@hooks/useNavigateTo';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './templeReview.css';

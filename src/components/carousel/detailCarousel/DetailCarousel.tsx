@@ -3,7 +3,7 @@ const largeEmptyImage = '@assets/images/img_gray_light_leaf_large.png';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
 import registDragEvent from '@utils/registDragEvent';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 
 import * as styles from './detailCarousel.css';
 import ImageItem from './DetailImage';

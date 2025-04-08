@@ -10,8 +10,8 @@ import useFilter from '@hooks/useFilter';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
+import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import { filterListAtom } from 'src/store/store';
 
@@ -19,10 +19,15 @@ import * as styles from './searchResultPage.css';
 
 const SearchResultPage = () => {
   const navigateToLogin = useNavigateTo('/loginStart');
-  const location = useLocation();
-  const { results, content, price } = location.state || {};
+
+  const searchParams = useSearchParams();
+  const content = searchParams.get('content') ?? '';
+  const page = Number(searchParams.get('page') ?? '1');
+  const minPrice = Number(searchParams.get('minPrice') ?? '0');
+  const maxPrice = Number(searchParams.get('maxPrice') ?? '30');
   const userId = Number(localStorage.getItem('userId'));
   const queryClient = useQueryClient();
+  const [totalPages, setTotalPages] = useState(1);
 
   const addWishlistMutation = useAddWishlist();
   const removeWishlistMutation = useRemoveWishlist();
@@ -30,16 +35,23 @@ const SearchResultPage = () => {
   const { logClickEvent } = useEventLogger('modal_login_wish');
 
   useEffect(() => {
-    if (results) {
-      setTemplestays(results.templestays);
-      setCurrentPage(results.page);
-      setSearchText(content);
-    }
-  }, [results, content]);
+    const fetchSearchResults = async () => {
+      const results = await handleSearch(content, page);
+
+      if (results) {
+        setTemplestays(results.templestays);
+        setTotalPages(results.totalPages);
+        setCurrentPage(results.page);
+        setSearchText(content);
+      }
+    };
+
+    fetchSearchResults();
+  }, [content, page]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentPage, setCurrentPage] = useState(results.page);
-  const [templestays, setTemplestays] = useState(results.templestays);
+  const [currentPage, setCurrentPage] = useState(page);
+  const [templestays, setTemplestays] = useState([]);
   const [searchText, setSearchText] = useState(content);
   const { handleSearch } = useFilter();
 
@@ -60,7 +72,7 @@ const SearchResultPage = () => {
   };
 
   const filterInstance = useAtomValue(filterListAtom);
-  const isPriceChanged = price.minPrice !== 0 || price.maxPrice !== 30;
+  const isPriceChanged = minPrice !== 0 || maxPrice !== 30;
 
   const activeFilters = [
     ...filterInstance.getFilteredGroups(),
@@ -114,7 +126,7 @@ const SearchResultPage = () => {
           />
           <Pagination
             currentPage={currentPage}
-            totalPages={results.totalPages}
+            totalPages={totalPages}
             onPageChange={handlePageChange}
             color="white"
           />

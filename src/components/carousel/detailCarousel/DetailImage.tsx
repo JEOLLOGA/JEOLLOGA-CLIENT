@@ -1,5 +1,5 @@
 import useNavigateTo from '@hooks/useNavigateTo';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 
 import * as styles from './detailCarousel.css';
 import NumberTag from './numberTag/NumberTag';

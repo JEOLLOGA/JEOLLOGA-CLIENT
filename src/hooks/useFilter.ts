@@ -3,7 +3,7 @@ import { fetchFilteredCount } from '@apis/filter/axios';
 import useLocalStorage from '@hooks/useLocalStorage';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import queryClient from 'src/queryClient';
 import { filterListAtom, priceAtom, contentAtom } from 'src/store/store';
 
@@ -12,7 +12,7 @@ const useFilter = () => {
   const [price, setPrice] = useAtom(priceAtom);
   const [content, setContent] = useAtom(contentAtom);
 
-  const navigate = useNavigate();
+  const router = useRouter();
   const { mutateAsync: fetchFilterLists } = useFetchFilteredList();
 
   const getAdjustedPrice = () => ({
@@ -57,14 +57,13 @@ const useFilter = () => {
   const getUserId = () => localStorage.getItem('userId') || '';
 
   const { addStorageValue } = useLocalStorage();
+  const isLoggedIn = localStorage.getItem('Authorization');
 
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {
     const groupedFilters = getGroupedFilters();
     const searchQuery = searchContent ? searchContent.replace(/\s+/g, '') : content;
     const adjustedPrice = getAdjustedPrice();
-
-    const isLoggedIn = localStorage.getItem('Authorization');
 
     try {
       const response = await fetchFilterLists({
@@ -84,14 +83,15 @@ const useFilter = () => {
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
 
-      navigate('/searchResult', {
-        state: {
-          selectedfilters: groupedFilters,
-          content: searchQuery,
-          results: response,
-          price,
-        },
+      const searchParams = new URLSearchParams({
+        content: searchQuery,
+        page: String(currentPage),
+        minPrice: String(price.minPrice),
+        maxPrice: String(price.maxPrice),
       });
+
+      router.push(`/searchResult?${searchParams.toString()}`);
+      return response;
     } catch (error) {
       console.error('Error executing search:', error);
     }

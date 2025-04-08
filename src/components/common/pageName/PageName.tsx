@@ -1,5 +1,7 @@
+'use client';
+
 import Icon from '@assets/svgs';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 import * as PageNameStyle from './pageName.css';
 
@@ -9,13 +11,13 @@ interface PageNameProps {
 }
 
 const PageName = ({ title, isPrivate }: PageNameProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleToBack = () => {
     if (isPrivate) {
-      navigate('/');
+      router.push('/');
     } else {
-      navigate(-1);
+      router.back();
     }
   };
 
