@@ -12,7 +12,7 @@ globalStyle('html, body', {
   WebkitOverflowScrolling: 'touch',
 });
 
-globalStyle('#root', {
+globalStyle('body', {
   display: 'flex',
   flexDirection: 'column',
   position: 'relative',
