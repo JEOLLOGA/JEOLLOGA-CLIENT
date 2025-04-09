@@ -17,8 +17,8 @@ import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './detail.css';

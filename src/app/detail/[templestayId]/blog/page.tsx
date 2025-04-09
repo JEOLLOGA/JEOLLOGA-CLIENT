@@ -4,8 +4,8 @@ import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import { useParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 
 import * as styles from './style.css';
 

@@ -1,21 +1,22 @@
 import ArrowBtn from '@components/common/button/arrowBtn/ArrowBtn';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 import * as styles from './largeMap.css';
 import MapContainer from '../MapContainer';
 
 const LargeMap = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const latitudeString = params.get('latitude');
-  const longitudeString = params.get('longitude');
+  const router = useRouter();
+
+  const searchParams = useSearchParams();
+  const latitudeString = searchParams.get('latitude');
+  const longitudeString = searchParams.get('longitude');
 
   const latitude = latitudeString ? parseFloat(latitudeString) : 0;
   const longitude = longitudeString ? parseFloat(longitudeString) : 0;
 
   const handleToBack = () => {
-    navigate(-1);
+    router.back();
     window.addEventListener('popstate', () => {
       setTimeout(() => {
         window.scrollTo(0, document.body.scrollHeight);

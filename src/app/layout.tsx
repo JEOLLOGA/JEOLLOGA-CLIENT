@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import ClientProviders from './layout.client';
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.gototemplestay.com'),
   title: '절로가 | 템플스테이를 만나는 가장 쉬운 방법',
   description: '템플스테이를 쉽고 빠르게 찾고, 지친 일상에 특별한 휴식을 더해보세요.',
   keywords: [
@@ -37,6 +38,8 @@ export const metadata: Metadata = {
     canonical: 'https://www.gototemplestay.com/',
   },
 };
+
+export const dynamic = 'force-dynamic';
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

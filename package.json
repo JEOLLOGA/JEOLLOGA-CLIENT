@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint src/**/*.{ts,tsx} --fix",
-    "next": "next build",
+    "next": "next dev",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",

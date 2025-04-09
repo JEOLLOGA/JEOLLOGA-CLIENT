@@ -1,6 +1,6 @@
 import Icon from '@assets/svgs';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterTypeBox.css';
@@ -10,10 +10,10 @@ interface FilterTypeBoxProps {
 }
 
 const FilterTypeBox = ({ activeFilters }: FilterTypeBoxProps) => {
-  const navigator = useNavigate();
+  const router = useRouter();
 
   const handleClickFilter = (filter: string) => {
-    navigator('/filter', { state: { selectedTap: filter } });
+    router.push(`/filter?selectedTap=${filter}`);
   };
 
   return (

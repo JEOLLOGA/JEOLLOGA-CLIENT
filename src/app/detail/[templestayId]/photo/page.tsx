@@ -3,7 +3,7 @@
 import useGetTempleImages from '@apis/templeImages';
 import PageName from '@components/common/pageName/PageName';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 
 import * as styles from './style.css';
 

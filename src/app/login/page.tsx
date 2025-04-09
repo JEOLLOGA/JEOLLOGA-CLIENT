@@ -1,19 +1,22 @@
 'use client';
 
 import KakaoBtn from '@components/common/button/kakaoBtn/KakaoBtn';
+import LottiePlayer from '@components/common/lottie/LottiePlayer';
 import PageName from '@components/common/pageName/PageName';
 import LOGIN_INFOS from '@constants/loginInfos';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 
 import * as styles from './loginPage.css';
 
 type LoginType = 'my' | 'wish';
 
 const LoginPage = () => {
-  const location = useLocation();
+  const searchParams = useSearchParams();
+  const typeParam = searchParams.get('type');
+  const isPrivateParam = searchParams.get('isPrivate');
 
-  const type: LoginType = location.state?.type || 'wish';
-  const isPrivate = location.state?.isPrivate || false;
+  const type: LoginType = typeParam === 'my' ? 'my' : 'wish';
+  const isPrivate = isPrivateParam === 'true';
 
   const { title, text, lottie } = LOGIN_INFOS[type];
 
@@ -23,13 +26,7 @@ const LoginPage = () => {
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 
-        <dotlottie-player
-          key={type}
-          src={lottie}
-          autoplay
-          loop
-          style={{ width: '27rem', height: '28.8rem' }}
-        />
+        <LottiePlayer keyId={type} src={lottie} style={{ width: '27rem', height: '28.8rem' }} />
       </div>
       <KakaoBtn />
     </section>

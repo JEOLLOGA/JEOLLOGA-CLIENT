@@ -1,9 +1,9 @@
 import { postKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 export const usePostKakaoLogin = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: ({ code, redirectUri }: { code: string; redirectUri: string }) =>
@@ -20,9 +20,9 @@ export const usePostKakaoLogin = () => {
       localStorage.removeItem('searchKeyword');
 
       if (!userNickname) {
-        navigate('/onboarding');
+        router.push('/onboarding');
       } else {
-        navigate('/');
+        router.push('/');
       }
     },
     onError: (error) => {
@@ -32,13 +32,13 @@ export const usePostKakaoLogin = () => {
 };
 
 export const usePostLogout = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: () => postLogout(),
     onSuccess: () => {
       localStorage.clear();
-      navigate('/');
+      router.push('/');
     },
 
     onError: (error) => {
@@ -48,7 +48,7 @@ export const usePostLogout = () => {
 };
 
 export const usePostWithdraw = ({ userId }: { userId: number | null }) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return useMutation({
     mutationFn: async () => {
@@ -57,7 +57,7 @@ export const usePostWithdraw = ({ userId }: { userId: number | null }) => {
     },
     onSuccess: () => {
       localStorage.clear();
-      navigate('/');
+      router.push('/');
       window.location.reload();
     },
     onError: (error) => {

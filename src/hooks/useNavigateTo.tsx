@@ -1,13 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 
 const useNavigateTo = (routePage: string | number) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const navigateToPage = () => {
     if (typeof routePage === 'string') {
-      navigate(routePage);
+      router.push(routePage);
     } else if (typeof routePage === 'number') {
-      navigate(routePage);
+      router.back();
     }
   };
 

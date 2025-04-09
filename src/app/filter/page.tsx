@@ -8,18 +8,20 @@ import FilterBox from '@components/filter/filterBox/FilterBox';
 import FILTERS from '@constants/filters';
 import useFilter from '@hooks/useFilter';
 import { useAtomValue } from 'jotai';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import { filterListAtom } from 'src/store/store';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterPage.css';
 
+export const dynamic = 'force-dynamic';
+
 const FilterPage = () => {
   const { totalCount, toggleFilter, handleResetFilter, handleSearch } = useFilter();
 
-  const location = useLocation();
-  const { selectedTap } = location.state || {};
+  const searchParams = useSearchParams();
+  const selectedTap = searchParams.get('selectedTap') ?? undefined;
   const filterInstance = useAtomValue(filterListAtom);
 
   const filtersState = filterInstance.getAllStates();

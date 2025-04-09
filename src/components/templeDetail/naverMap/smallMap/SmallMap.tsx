@@ -1,7 +1,7 @@
 import TextBtn from '@components/common/button/textBtn/TextBtn';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import useNavigateTo from '@hooks/useNavigateTo';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'next/navigation';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './smallMap.css';

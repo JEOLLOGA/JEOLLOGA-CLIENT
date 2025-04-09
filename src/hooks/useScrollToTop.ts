@@ -1,15 +1,12 @@
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { useLocation, useNavigationType } from 'react-router-dom';
 
 const ScrollToTop = () => {
-  const { pathname } = useLocation();
-  const navigationType = useNavigationType();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (navigationType !== 'POP') {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    }
-  }, [pathname, navigationType]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
 
   return null;
 };

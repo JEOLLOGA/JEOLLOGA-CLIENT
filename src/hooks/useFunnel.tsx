@@ -1,5 +1,5 @@
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { ReactElement, ReactNode, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 
 interface StepProps {
   name: string;
@@ -19,8 +19,8 @@ type SetStepOptions = {
 };
 
 const useFunnel = (steps: string[], completePath: string) => {
-  const navigate = useNavigate();
-  const [searchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const currentStep = searchParams.get('step') || steps[0];
 
@@ -37,15 +37,13 @@ const useFunnel = (steps: string[], completePath: string) => {
       step: newStep,
     };
 
-    const updatedPath = {
-      pathname: '/onboarding',
-      search: `?${new URLSearchParams(updatedQuery)}`,
-    };
+    const searchString = new URLSearchParams(updatedQuery).toString();
+    const targetUrl = `/onboarding?${searchString}`;
 
     if (stepChangeType === 'replace') {
-      navigate(updatedPath, { replace: true });
+      router.replace(targetUrl);
     } else {
-      navigate(updatedPath);
+      router.push(targetUrl);
     }
   };
 
@@ -55,7 +53,7 @@ const useFunnel = (steps: string[], completePath: string) => {
     if (nextIndex < steps.length) {
       setStep(steps[nextIndex]);
     } else {
-      navigate(completePath);
+      router.push(completePath);
     }
   };
 
@@ -65,7 +63,7 @@ const useFunnel = (steps: string[], completePath: string) => {
     if (prevIndex >= 0) {
       setStep(steps[prevIndex]);
     } else {
-      navigate(-1);
+      router.back();
     }
   };
 
