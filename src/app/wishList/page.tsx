@@ -1,10 +1,12 @@
 'use client';
+
 import { useWishlistQuery, useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import WishCardList from '@components/card/templeStayCard/wishCardList/WishCardList';
 import WishEmpty from '@components/common/empty/wishEmpty/WishEmpty';
 import PageName from '@components/common/pageName/PageName';
 import Pagination from '@components/common/pagination/Pagination';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
@@ -12,7 +14,7 @@ import * as styles from './wishList.css';
 
 const WishListPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const queryClient = useQueryClient();
 
   const { data, isLoading, isError } = useWishlistQuery(currentPage, userId);

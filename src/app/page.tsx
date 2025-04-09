@@ -10,6 +10,7 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Footer from '@components/footer/Footer';
 import Header from '@components/header/Header';
 import useFilter from '@hooks/useFilter';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useSetAtom } from 'jotai';
 import { useEffect, useState } from 'react';
@@ -47,7 +48,7 @@ const HomePage = () => {
     localStorage.setItem('prevPage', '/');
   }, []);
 
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const { data, isLoading } = useGetNickname(userId);
 
   if (isLoading) {

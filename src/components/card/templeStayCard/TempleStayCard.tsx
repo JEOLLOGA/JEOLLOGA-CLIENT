@@ -2,6 +2,7 @@
 const errorImage = '/assets/images/img_gray_light_leaf_medium.png';
 import InfoSection from '@components/card/templeStayCard/InfoSection';
 import FlowerIcon from '@components/common/icon/flowerIcon/FlowerIcon';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
@@ -48,7 +49,7 @@ const TempleStayCard = ({
     e.stopPropagation();
     e.preventDefault();
 
-    const userId = Number(localStorage.getItem('userId'));
+    const userId = Number(getStorageValue('userId'));
     if (!userId) {
       onRequireLogin?.();
       return;

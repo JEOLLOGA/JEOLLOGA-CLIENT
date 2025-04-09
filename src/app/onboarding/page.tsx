@@ -9,6 +9,7 @@ import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import OnboardingSection from '@components/onboarding/OnboardingSection';
 import { ONBOARDING_STEPS, COMMON_DESCRIPTION } from '@constants/onboarding/onboardingSteps';
 import useFunnel from '@hooks/useFunnel';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import React, { useState, useEffect } from 'react';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
@@ -23,13 +24,13 @@ const OnboardingPage = () => {
   const { logClickEvent } = useEventLogger('onboarding');
 
   const [selections, setSelections] = useState<Record<string, string | null>>(() => {
-    const savedSelections = localStorage.getItem('onboardingSelections');
+    const savedSelections = getStorageValue('onboardingSelections');
     return savedSelections
       ? JSON.parse(savedSelections)
       : ONBOARDING_STEPS.reduce((acc, step) => ({ ...acc, [step.id]: null }), {});
   });
 
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const { mutate: registerUserMutate } = useRegisterUser();
 
   const { data, isLoading } = useGetNickname(userId);

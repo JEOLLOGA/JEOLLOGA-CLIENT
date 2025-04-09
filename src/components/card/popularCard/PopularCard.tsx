@@ -1,6 +1,7 @@
 'use client';
 import Icon from '@assets/svgs';
 import RankBtn from '@components/card/popularCard/RankBtn';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { useState } from 'react';
 
 import * as styles from './popularCard.css';
@@ -32,7 +33,7 @@ const PopularCard = ({
     e.stopPropagation();
     e.preventDefault();
 
-    const userId = Number(localStorage.getItem('userId'));
+    const userId = Number(getStorageValue('userId'));
     if (!userId) {
       onLikeToggle(liked);
       return;

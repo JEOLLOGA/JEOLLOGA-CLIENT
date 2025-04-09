@@ -5,6 +5,7 @@ import PageBottomBtn from '@components/common/button/pageBottomBtn/PageBottomBtn
 import LottiePlayer from '@components/common/lottie/LottiePlayer';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { WELCOME_TEXT } from '@constants/onboarding/onboardingSteps';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
@@ -13,7 +14,7 @@ import * as styles from './welcomePage.css';
 
 const WelcomePage = () => {
   const router = useRouter();
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const { data, isLoading } = useGetNickname(userId);
   const { logClickEvent } = useEventLogger('onboarding_end');
 

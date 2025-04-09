@@ -1,6 +1,6 @@
 import useFetchFilteredList from '@apis/filter';
 import { fetchFilteredCount } from '@apis/filter/axios';
-import useLocalStorage from '@hooks/useLocalStorage';
+import useLocalStorage, { getStorageValue } from '@hooks/useLocalStorage';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation';
@@ -57,7 +57,7 @@ const useFilter = () => {
   const getUserId = () => localStorage.getItem('userId') || '';
 
   const { addStorageValue } = useLocalStorage();
-  const isLoggedIn = localStorage.getItem('Authorization');
+  const isLoggedIn = getStorageValue('Authorization');
 
   // 검색 실행 함수
   const handleSearch = async (searchContent?: string, currentPage = 1) => {

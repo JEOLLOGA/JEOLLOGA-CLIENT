@@ -1,5 +1,6 @@
 'use client';
 
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
 
@@ -14,7 +15,7 @@ const PrivateRoute = ({ children, redirectPath, state }: PrivateRouteProps) => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const isAuthenticated = localStorage.getItem('Authorization');
+  const isAuthenticated = getStorageValue('Authorization');
 
   useEffect(() => {
     if (!isAuthenticated) {

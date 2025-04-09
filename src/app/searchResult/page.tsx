@@ -7,6 +7,7 @@ import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
 import useFilter from '@hooks/useFilter';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai';
@@ -25,7 +26,7 @@ const SearchResultPage = () => {
   const page = Number(searchParams.get('page') ?? '1');
   const minPrice = Number(searchParams.get('minPrice') ?? '0');
   const maxPrice = Number(searchParams.get('maxPrice') ?? '30');
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const queryClient = useQueryClient();
   const [totalPages, setTotalPages] = useState(1);
 
@@ -92,7 +93,7 @@ const SearchResultPage = () => {
     );
   };
 
-  const prevPath = localStorage.getItem('prevPage') || '';
+  const prevPath = getStorageValue('prevPage') || '';
 
   return (
     <div className={styles.container}>
