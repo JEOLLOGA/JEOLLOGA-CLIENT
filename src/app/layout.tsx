@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import ClientProviders from './layout.client';
 import '../styles/reset.css';
 import '../styles/global.css';
+import '../styles/fonts.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.gototemplestay.com'),
