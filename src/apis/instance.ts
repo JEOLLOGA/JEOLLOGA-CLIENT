@@ -1,5 +1,6 @@
 import API_URL from '@apis/env';
 import MESSAGES from '@apis/messages';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import axios, { isAxiosError } from 'axios';
 
 // const API_URL = process.env.NEXT_PUBLIC_APP_BASE_URL as string;
@@ -18,7 +19,7 @@ export const privateInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('Authorization')}`,
+    Authorization: `Bearer ${getStorageValue('Authorization')}`,
   },
   withCredentials: true,
 });
@@ -28,7 +29,7 @@ export const postRefreshToken = async () => {
     const response = await axios.get(`${API_URL}/login/refresh`, {
       headers: {
         'Content-Type': 'application/json',
-        refreshToken: localStorage.getItem('refreshToken'),
+        refreshToken: getStorageValue('refreshToken'),
       },
       withCredentials: true,
     });
@@ -43,7 +44,7 @@ privateInstance.interceptors.response.use(
   (response) => response,
 
   async (error) => {
-    if (!localStorage.getItem('Authorization')) {
+    if (!getStorageValue('Authorization')) {
       return Promise.reject(error);
     }
 
@@ -80,7 +81,7 @@ privateInstance.interceptors.response.use(
 
 // 로그인 상태에 따라 axios인스턴스 선택을 위한 훅
 export const getAxiosInstance = () => {
-  const isLoggedIn = !!localStorage.getItem('Authorization');
+  const isLoggedIn = !!getStorageValue('Authorization');
   return isLoggedIn ? privateInstance : instance;
 };
 

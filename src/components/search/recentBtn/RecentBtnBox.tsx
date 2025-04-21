@@ -5,10 +5,10 @@ import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import * as styles from '@components/search/recentBtn/recentBtnBox.css';
 import useFilter from '@hooks/useFilter';
-import useLocalStorage from '@hooks/useLocalStorage';
+import useLocalStorage, { getStorageValue } from '@hooks/useLocalStorage';
 
 const RecentBtnBox = () => {
-  const userId = localStorage.getItem('userId');
+  const userId = getStorageValue('userId');
   const numericUserId = userId ? Number(userId) : null;
 
   const { data, isLoading, isError } = useGetSearchHistory(numericUserId);

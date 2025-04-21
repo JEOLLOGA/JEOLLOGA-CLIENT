@@ -4,6 +4,7 @@ import PopularCard from '@components/card/popularCard/PopularCard';
 import CarouselIndex from '@components/carousel/popularCarousel/CarouselIndex';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useCarousel from '@hooks/useCarousel';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import { useQueryClient } from '@tanstack/react-query';
 import registDragEvent from '@utils/registDragEvent';
 
@@ -14,7 +15,7 @@ interface PopularCarouselProps {
 }
 
 const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
-  const userId = Number(localStorage.getItem('userId'));
+  const userId = Number(getStorageValue('userId'));
   const queryClient = useQueryClient();
 
   const addWishlistMutation = useAddWishlist();

@@ -1,36 +1,69 @@
+import IcnArrowBlackLeft from './icn_arrow_black_left.svg';
+import IcnArrowGrayDown from './icn_arrow_gray_down.svg';
+import IcnArrowGrayRight from './icn_arrow_gray_right.svg';
+import IcnArrowGrayUp from './icn_arrow_gray_up.svg';
+import IcnBackBlackLeft from './icn_back_black_left.svg';
+import IcnCloseLargeGray from './icn_close_large_gray.svg';
+import IcnCloseSmallGray from './icn_close_small_gray.svg';
+import IcnDivider from './icn_divider.svg';
+import IcnDoubleArrowDown from './icn_double_arrow_lightgray_down.svg';
+import IcnEmptyImage from './icn_empty_image.svg';
+import IcnFilter from './icn_filter.svg';
+import IcnFlowerGray from './icn_flower_gray.svg';
+import IcnFlowerPink from './icn_flower_pink.svg';
+import IcnHome from './icn_home.svg';
+import IcnInsta from './icn_insta.svg';
+import IcnKakaoLogo from './icn_kakao_logo.svg';
+import IcnLargeHeartPink from './icn_large_heart_pink.svg';
+import IcnLineArrowLargeRight from './icn_linearrow_large_right.svg';
+import IcnLineArrowSmallLeft from './icn_linearrow_small_left.svg';
+import IcnLineArrowSmallRight from './icn_linearrow_small_right.svg';
+import IcnMyPage from './icn_mypage.svg';
+import IcnO from './icn_o.svg';
+import IcnPaste from './icn_paste.svg';
+import IcnReset from './icn_reset.svg';
+import IcnSearchLargeBlack from './icn_search_large_black.svg';
+import IcnSearchMediumGray from './icn_search_medium_gray.svg';
+import IcnSmallHeart from './icn_small_heart.svg';
+import IcnWish from './icn_wish.svg';
+import IcnX from './icn_x.svg';
+import Logo from './logo.svg';
+import SmallLogo from './logo_small.svg';
+import XSmallLogo from './logo_xsmall.svg';
+
 const Icon = {
-  Logo: '/assets/svgs/logo.svg',
-  SmallLogo: '/assets/svgs/logo_small.svg',
-  XSmallLogo: '/assets/svgs/logo_xsmall.svg',
-  IcnArrowBlackLeft: '/assets/svgs/icn_arrow_black_left.svg',
-  IcnArrowGrayDown: '/assets/svgs/icn_arrow_gray_down.svg',
-  IcnArrowGrayRight: '/assets/svgs/icn_arrow_gray_right.svg',
-  IcnArrowGrayUp: '/assets/svgs/icn_arrow_gray_up.svg',
-  IcnCloseLargeGray: '/assets/svgs/icn_close_large_gray.svg',
-  IcnCloseSmallGray: '/assets/svgs/icn_close_small_gray.svg',
-  IcnFilter: '/assets/svgs/icn_filter.svg',
-  IcnHome: '/assets/svgs/icn_home.svg',
-  IcnInsta: '/assets/svgs/icn_insta.svg',
-  IcnLargeHeartPink: '/assets/svgs/icn_large_heart_pink.svg',
-  IcnLineArrowLargeRight: '/assets/svgs/icn_linearrow_large_right.svg',
-  IcnLineArrowSmallLeft: '/assets/svgs/icn_linearrow_small_left.svg',
-  IcnLineArrowSmallRight: '/assets/svgs/icn_linearrow_small_right.svg',
-  IcnMyPage: '/assets/svgs/icn_mypage.svg',
-  IcnO: '/assets/svgs/icn_o.svg',
-  IcnPaste: '/assets/svgs/icn_paste.svg',
-  IcnReset: '/assets/svgs/icn_reset.svg',
-  IcnSearchLargeBlack: '/assets/svgs/icn_search_large_black.svg',
-  IcnSearchMediumGray: '/assets/svgs/icn_search_medium_gray.svg',
-  IcnSmallHeart: '/assets/svgs/icn_small_heart.svg',
-  IcnWish: '/assets/svgs/icn_wish.svg',
-  IcnX: '/assets/svgs/icn_x.svg',
-  IcnBackBlackLeft: '/assets/svgs/icn_back_black_left.svg',
-  IcnFlowerPink: '/assets/svgs/icn_flower_pink.svg',
-  IcnFlowerGray: '/assets/svgs/icn_flower_gray.svg',
-  IcnDivider: '/assets/svgs/icn_divider.svg',
-  IcnKakaoLogo: '/assets/svgs/icn_kakao_logo.svg',
-  IcnDoubleArrowDown: '/assets/svgs/icn_double_arrow_lightgray_down.svg',
-  IcnEmptyImage: '/assets/svgs/icn_empty_image.svg',
+  Logo,
+  SmallLogo,
+  XSmallLogo,
+  IcnArrowBlackLeft,
+  IcnArrowGrayDown,
+  IcnArrowGrayRight,
+  IcnArrowGrayUp,
+  IcnCloseLargeGray,
+  IcnCloseSmallGray,
+  IcnFilter,
+  IcnHome,
+  IcnInsta,
+  IcnLargeHeartPink,
+  IcnLineArrowLargeRight,
+  IcnLineArrowSmallLeft,
+  IcnLineArrowSmallRight,
+  IcnMyPage,
+  IcnO,
+  IcnPaste,
+  IcnReset,
+  IcnSearchLargeBlack,
+  IcnSearchMediumGray,
+  IcnSmallHeart,
+  IcnWish,
+  IcnX,
+  IcnBackBlackLeft,
+  IcnFlowerPink,
+  IcnFlowerGray,
+  IcnDivider,
+  IcnKakaoLogo,
+  IcnDoubleArrowDown,
+  IcnEmptyImage,
 };
 
 export default Icon;

@@ -32,16 +32,22 @@ const BasicBtn = ({
       {SelectedLeftIcon && <SelectedLeftIcon />}
       <p>{label}</p>
       {SelectedRightIcon && (
-        <button
-          onClick={
-            onRightIconClick &&
-            ((e) => {
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={(e) => {
+            e.stopPropagation();
+            onRightIconClick?.();
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
               e.stopPropagation();
-              onRightIconClick();
-            })
-          }>
+              onRightIconClick?.();
+            }
+          }}>
           <SelectedRightIcon />
-        </button>
+        </span>
       )}
     </button>
   );

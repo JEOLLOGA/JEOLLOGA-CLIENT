@@ -42,10 +42,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange, color }: Pagination
         className={styles.arrowStyle({ direction: 'left', isDisabled: isLeftDisabled })}
         onClick={() => onPageChange(Math.max(1, rangeStart - PAGINATION_UNIT))}
         disabled={isLeftDisabled}>
-        <img
-          src={Icon.IcnLineArrowSmallLeft}
-          className={isLeftDisabled ? styles.disabledIcon : styles.iconStyle}
+        <Icon.IcnLineArrowSmallLeft
           alt="이전 페이지"
+          className={isLeftDisabled ? styles.disabledIcon : styles.iconStyle}
         />
       </button>
       {renderPageNumbers()}
@@ -53,9 +52,8 @@ const Pagination = ({ currentPage, totalPages, onPageChange, color }: Pagination
         className={styles.arrowStyle({ direction: 'right', isDisabled: isRightDisabled })}
         onClick={() => onPageChange(Math.min(totalPages, rangeStart + PAGINATION_UNIT))}
         disabled={isRightDisabled}>
-        <img
-          src={Icon.IcnLineArrowSmallRight}
-          className={isLeftDisabled ? styles.disabledIcon : styles.iconStyle}
+        <Icon.IcnLineArrowSmallRight
+          className={isRightDisabled ? styles.disabledIcon : styles.iconStyle}
           alt="다음 페이지"
         />
       </button>

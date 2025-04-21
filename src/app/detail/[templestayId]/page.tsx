@@ -15,6 +15,7 @@ import TempleReview from '@components/templeDetail/templeReview/TempleReview';
 import TempleSchedule from '@components/templeDetail/templeSchedule/TempleSchedule';
 import TempleTitle from '@components/templeDetail/templeTitle/TempleTitle';
 import TempleTopbar from '@components/templeDetail/templeTopbar/TempleTopbar';
+import { getStorageValue } from '@hooks/useLocalStorage';
 import useNavigateTo from '@hooks/useNavigateTo';
 import { useQueryClient } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
@@ -24,7 +25,7 @@ import useEventLogger from 'src/gtm/hooks/useEventLogger';
 import * as styles from './detail.css';
 
 const TempleDetailPage = () => {
-  const userId = localStorage.getItem('userId');
+  const userId = getStorageValue('userId');
   const { templestayId } = useParams();
   const { data, isLoading, isError } = useGetTempleDetails(
     String(templestayId),

@@ -6,14 +6,19 @@ interface SearchHistoryItem {
   content: string;
 }
 
-const useLocalStorage = () => {
-  const getStorageValue = (key: string) => {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : [];
-  };
+export const getStorageValue = (key: string) => {
+  if (typeof window === 'undefined') return null;
+  return localStorage.getItem(key);
+};
 
+const useLocalStorage = () => {
   const [searchHistory, setSearchHistory] = useState<SearchHistoryItem[]>(() => {
-    return getStorageValue('searchHistory');
+    const data = getStorageValue('searchHistory');
+    try {
+      return data ? JSON.parse(data) : [];
+    } catch {
+      return [];
+    }
   });
 
   useEffect(() => {
@@ -25,9 +30,7 @@ const useLocalStorage = () => {
     // 중복된 검색어는 저장 안 하도록, 최대 10개까지만
     const updatedHistory = [
       { searchId: new Date().getTime(), content: searchQuery },
-      ...getStorageValue('searchHistory').filter(
-        (item: SearchHistoryItem) => item.content !== searchQuery,
-      ),
+      ...searchHistory.filter((item) => item.content !== searchQuery),
     ].slice(0, 10);
 
     setSearchHistory(updatedHistory);
@@ -36,11 +39,8 @@ const useLocalStorage = () => {
 
   // 검색어 삭제
   const delStorageValue = (searchId: number) => {
-    const searchHistory: { searchId: number; content: string }[] = getStorageValue('searchHistory');
     const updatedHistory = searchHistory.filter((item) => item.searchId !== searchId);
-
     setSearchHistory(updatedHistory);
-    localStorage.setItem('searchHistory', JSON.stringify(updatedHistory));
   };
 
   // 검색 기록 전체 삭제
