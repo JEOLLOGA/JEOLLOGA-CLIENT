@@ -1,0 +1,23 @@
+.react-modal-sheet-backdrop {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  max-width: 37.5rem;
+  left: auto !important;
+}
+
+.react-modal-sheet-content {
+  align-items: center;
+  overflow-y: auto;
+}
+
+.react-modal-sheet-container {
+  width: 100%;
+  height: 90%;
+  max-width: 37.5rem;
+  left: auto !important;
+}
+
+.react-modal-sheet {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
