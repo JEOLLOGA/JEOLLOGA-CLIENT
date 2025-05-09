@@ -90,6 +90,14 @@ const useFilter = () => {
         maxPrice: String(price.maxPrice),
       });
 
+      Object.entries(groupedFilters).forEach(([groupKey, groupValues]) => {
+        Object.entries(groupValues).forEach(([key, isSelected]) => {
+          if (isSelected) {
+            searchParams.append(groupKey, key);
+          }
+        });
+      });
+
       router.push(`/searchResult?${searchParams.toString()}`);
       return response;
     } catch (error) {
