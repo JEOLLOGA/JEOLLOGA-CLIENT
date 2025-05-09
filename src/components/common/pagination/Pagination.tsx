@@ -43,7 +43,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange, color }: Pagination
         onClick={() => onPageChange(Math.max(1, rangeStart - PAGINATION_UNIT))}
         disabled={isLeftDisabled}>
         <Icon.IcnLineArrowSmallLeft
-          alt="이전 페이지"
           className={isLeftDisabled ? styles.disabledIcon : styles.iconStyle}
         />
       </button>
@@ -54,7 +53,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange, color }: Pagination
         disabled={isRightDisabled}>
         <Icon.IcnLineArrowSmallRight
           className={isRightDisabled ? styles.disabledIcon : styles.iconStyle}
-          alt="다음 페이지"
         />
       </button>
     </nav>
