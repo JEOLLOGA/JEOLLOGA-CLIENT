@@ -14,6 +14,7 @@ const BottomSheet = ({ header, isOpen, onClose, children }: BottomSheetProps) =>
   return (
     <Sheet isOpen={isOpen} onClose={onClose} className="react-modal-sheet" detent="content-height">
       <Sheet.Container>
+        <div className="modal-header-rectangle" />
         {header && <Sheet.Header>{header}</Sheet.Header>}
         <Sheet.Content>{children}</Sheet.Content>
       </Sheet.Container>
