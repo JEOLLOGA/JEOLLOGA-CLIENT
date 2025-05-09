@@ -1,6 +1,7 @@
 import Icon from '@assets/svgs';
 import BasicBtn from '@components/common/button/basicBtn/BasicBtn';
-import { useRouter } from 'next/navigation';
+import FilterBottomSheetModal from '@components/filter/filterBottomSheetModal/FilterBottomSheetModal';
+import { useState } from 'react';
 import titleMap from 'src/type/titleMap';
 
 import * as styles from './filterTypeBox.css';
@@ -10,10 +11,16 @@ interface FilterTypeBoxProps {
 }
 
 const FilterTypeBox = ({ activeFilters }: FilterTypeBoxProps) => {
-  const router = useRouter();
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedTap, setSelectedTap] = useState<string>('region');
 
   const handleClickFilter = (filter: string) => {
-    router.push(`/filter?selectedTap=${filter}`);
+    setSelectedTap(filter);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
   };
 
   return (
@@ -33,6 +40,11 @@ const FilterTypeBox = ({ activeFilters }: FilterTypeBoxProps) => {
             />
           );
         })}
+        <FilterBottomSheetModal
+          selectedTap={selectedTap}
+          isOpen={isOpen}
+          handleCloseModal={handleCloseModal}
+        />
       </div>
     </div>
   );

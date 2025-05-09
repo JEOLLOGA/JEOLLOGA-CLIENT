@@ -25,7 +25,7 @@ export const titleStyle = style({
   width: '100%',
   height: '4rem',
   marginBottom: '1.2rem',
-  marginTop: '3.4rem',
+  marginTop: '1.4rem',
   ...theme.FONTS.h3Sb18,
   color: theme.COLORS.black,
 });
