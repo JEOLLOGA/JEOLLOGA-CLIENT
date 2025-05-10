@@ -13,16 +13,14 @@ type LoginType = 'my' | 'wish';
 const LoginPage = () => {
   const searchParams = useSearchParams();
   const typeParam = searchParams.get('type');
-  const isPrivateParam = searchParams.get('isPrivate');
 
-  const type: LoginType = typeParam === 'my' ? 'my' : 'wish';
-  const isPrivate = isPrivateParam === 'true';
+  const type: LoginType = typeParam === '/myPage' ? 'my' : 'wish';
 
   const { title, text, lottie } = LOGIN_INFOS[type];
 
   return (
     <section className={styles.loginWrapper}>
-      <PageName title={title} isPrivate={isPrivate} />
+      <PageName title={title} />
       <div className={styles.contentWrapper}>
         <h2 className={styles.textStyle}>{text}</h2>
 
