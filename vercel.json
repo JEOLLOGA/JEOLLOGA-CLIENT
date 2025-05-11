@@ -1,4 +1,3 @@
 {
-  "name": "web-jeolloga",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }]
+  "framework": "nextjs"
 }
