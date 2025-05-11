@@ -6,15 +6,16 @@ import FILTERS from '@constants/filters';
 import { TapType, TAPS } from '@constants/taps';
 import useMoveScroll from '@hooks/useMoveScroll';
 import useScrollTracker from '@hooks/useScrollTrack';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 interface TapBarProps {
   type: TapType;
   selectedTap?: string;
+  scrollContainerRef?: React.RefObject<HTMLDivElement>;
 }
 
-const TapBar = ({ type, selectedTap }: TapBarProps) => {
+const TapBar = ({ type, selectedTap, scrollContainerRef }: TapBarProps) => {
   const headerHeight = type === 'filter' ? HEADER_HEIGHT : DETAIL_HEADER_HEIGHT;
   const taplist = TAPS[type];
   const sectionIds =
@@ -22,13 +23,17 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
       ? Object.keys(FILTERS)
       : TAPS.detail.map((_, index) => `detail-section-${index}`);
 
-  const { scrollIndex, handleClick } = useScrollTracker(sectionIds, headerHeight);
+  const { scrollIndex, handleClick } = useScrollTracker(
+    sectionIds,
+    headerHeight,
+    scrollContainerRef?.current,
+  );
   const scrollToElement = useMoveScroll(headerHeight);
   const { logClickEvent } = useEventLogger('filter_tag');
 
   const handleTabClick = (index: number) => {
     handleClick(index);
-    scrollToElement(sectionIds, index);
+    scrollToElement(sectionIds, index, scrollContainerRef?.current);
 
     if (type === 'filter') {
       logClickEvent('click_tag', {
@@ -47,7 +52,7 @@ const TapBar = ({ type, selectedTap }: TapBarProps) => {
       const selectedIndex = sectionIds.indexOf(selectedTap);
       if (selectedIndex !== -1) {
         handleClick(selectedIndex);
-        scrollToElement(sectionIds, selectedIndex);
+        scrollToElement(sectionIds, selectedIndex, scrollContainerRef?.current);
       }
     }
   }, []);

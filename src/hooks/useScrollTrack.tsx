@@ -1,19 +1,34 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
 
-const useScrollTracker = (sections: string[], headerHeight: number = 0) => {
+const useScrollTracker = (
+  sections: string[],
+  headerHeight: number = 0,
+  scrollContainer?: HTMLElement | null,
+) => {
   const [scrollIndex, setScrollIndex] = useState(0);
   const isClicked = useRef(false);
 
   useEffect(() => {
+    const container = scrollContainer ?? window;
+
+    const getScrollTop = () =>
+      container instanceof Window ? container.scrollY : container.scrollTop;
+
+    const getElement = (id: string): HTMLElement | null => {
+      return container instanceof Window
+        ? document.getElementById(id)
+        : (container.querySelector(`#${id}`) as HTMLElement | null);
+    };
+
     const handleScroll = () => {
       if (isClicked.current) return;
 
-      const scrollPosition = window.scrollY + headerHeight;
+      const scrollPosition = getScrollTop() + headerHeight;
       let newIndex = -1;
 
       sections.forEach((sectionId, index) => {
-        const element = document.getElementById(sectionId);
+        const element = getElement(sectionId);
         if (!element) return;
 
         const elementTop = element.offsetTop;
@@ -25,7 +40,11 @@ const useScrollTracker = (sections: string[], headerHeight: number = 0) => {
         }
       });
 
-      const pageBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight;
+      const pageBottom =
+        container instanceof Window
+          ? window.innerHeight + window.scrollY >= document.body.offsetHeight
+          : container.scrollTop + container.clientHeight >= container.scrollHeight;
+
       if (pageBottom) {
         newIndex = sections.length - 1;
       }
@@ -35,12 +54,12 @@ const useScrollTracker = (sections: string[], headerHeight: number = 0) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    container.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      container.removeEventListener('scroll', handleScroll);
     };
-  }, [sections, headerHeight, scrollIndex]);
+  }, [sections, scrollContainer, headerHeight, scrollIndex]);
 
   const handleClick = (index: number) => {
     isClicked.current = true;

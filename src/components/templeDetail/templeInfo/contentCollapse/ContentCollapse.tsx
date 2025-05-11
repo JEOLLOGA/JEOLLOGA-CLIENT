@@ -13,7 +13,7 @@ const ContentCollapse = ({ leftIcon, text, onClick }: ContetnCollapseProps) => {
   return (
     <div className={styles.contentCollapseContainer}>
       <button className={styles.collapseButtonBox} onClick={onClick}>
-        <img src={LeftIconComponent} alt="" />
+        <LeftIconComponent aria-hidden />
         {text}
       </button>
     </div>

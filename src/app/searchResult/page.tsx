@@ -48,7 +48,7 @@ const SearchResultPage = () => {
     };
 
     fetchSearchResults();
-  }, [content, page]);
+  }, [searchParams.toString()]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(page);

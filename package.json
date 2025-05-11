@@ -22,10 +22,12 @@
     "@vanilla-extract/vite-plugin": "^4.0.19",
     "axios": "^1.7.9",
     "jotai": "^2.11.1",
+    "motion": "^12.10.1",
     "next": "^15.2.4",
     "ol": "^10.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-modal-sheet": "^4.4.0",
     "react-router-dom": "^7.1.1",
     "storybook-addon-react-router-v6": "^2.0.15"
   },

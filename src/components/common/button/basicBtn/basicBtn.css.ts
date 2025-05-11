@@ -7,7 +7,6 @@ const buttonStyle = recipe({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: '40px',
-    transition: 'background-color 0.2s, color 0.2s, border 0.2s', // 임시로 넣어놓은 transition
     boxSizing: 'border-box',
   },
 

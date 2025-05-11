@@ -1,4 +1,4 @@
-export const HEADER_HEIGHT = 92;
+export const HEADER_HEIGHT = 0;
 
 export const DETAIL_HEADER_HEIGHT = 142;
 

@@ -11,7 +11,7 @@ const ButtonStyle = recipe({
     isActive: {
       true: {
         color: theme.COLORS.black,
-        boxShadow: `0 1px 0 0 ${theme.COLORS.black}`,
+        boxShadow: `inset 0 -1px 0 0 ${theme.COLORS.black}`,
       },
       false: {
         color: theme.COLORS.gray9,

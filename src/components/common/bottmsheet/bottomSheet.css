@@ -1,0 +1,33 @@
+.react-modal-sheet-backdrop {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+  max-width: 37.5rem;
+  left: auto !important;
+}
+
+.react-modal-sheet-content {
+  align-items: center;
+  overflow-y: auto;
+}
+
+.react-modal-sheet-container {
+  width: 100%;
+  max-width: 37.5rem;
+  left: auto !important;
+  border-top-right-radius: 24px !important;
+  border-top-left-radius: 24px !important;
+  align-items: center;
+}
+
+.react-modal-sheet {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-header-rectangle {
+  width: 3.3rem;
+  height: 0.5rem;
+  border-radius: 20px;
+  background-color: #e1e4e7;
+  margin-top: 1.5rem;
+}
