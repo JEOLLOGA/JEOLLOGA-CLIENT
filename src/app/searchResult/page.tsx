@@ -1,6 +1,9 @@
 'use client';
+
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
+import BottomSheet from '@components/common/bottmsheet/BottomSheet';
+import SortBtn from '@components/common/button/sortBtn/SortBtn';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import ModalContainer from '@components/common/modal/ModalContainer';
 import Pagination from '@components/common/pagination/Pagination';
@@ -95,6 +98,16 @@ const SearchResultPage = () => {
 
   const prevPath = getStorageValue('prevPage') || '';
 
+  const sortOptions = ['추천순', '찜 많은순', '가격 낮은순'];
+  const [isSortSheetOpen, setIsSortSheetOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('추천순');
+
+  const handleSort = (option: string) => {
+    setSelectedOption(option);
+    setIsSortSheetOpen(false);
+    // TODO : 정렬 api 연결 ~
+  };
+
   return (
     <div className={styles.container}>
       {isModalOpen && (
@@ -119,12 +132,33 @@ const SearchResultPage = () => {
         </div>
       ) : (
         <div className={styles.bodyContainer}>
-          <SearchCardList
-            data={templestays}
-            layout="horizontal"
-            onToggleWishlist={handleToggleWishlist}
-            onRequireLogin={openModal}
-          />
+          <div className={styles.sortWrapper}>
+            <SortBtn text={selectedOption} onClick={() => setIsSortSheetOpen(true)} />
+          </div>
+
+          <BottomSheet isOpen={isSortSheetOpen} onClose={() => setIsSortSheetOpen(false)}>
+            <div className={styles.sortSheetContent}>
+              {sortOptions.map((option) => (
+                <button
+                  key={option}
+                  className={`${styles.sortOptionButton} ${
+                    option === selectedOption ? styles.active : ''
+                  }`}
+                  onClick={() => handleSort(option)}>
+                  {option}
+                </button>
+              ))}
+            </div>
+          </BottomSheet>
+
+          <div className={styles.cardListWrapper}>
+            <SearchCardList
+              data={templestays}
+              layout="horizontal"
+              onToggleWishlist={handleToggleWishlist}
+              onRequireLogin={openModal}
+            />
+          </div>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
