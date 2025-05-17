@@ -55,12 +55,14 @@ export const sortSheetContent = style({
 });
 
 export const sortOptionButton = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
   width: '33.5rem',
   color: theme.COLORS.gray8,
   cursor: 'pointer',
   ...theme.FONTS.h5Sb16,
   padding: '1.3rem 0',
-  textAlign: 'left',
 });
 
 export const active = style({

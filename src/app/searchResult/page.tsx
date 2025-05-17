@@ -1,6 +1,7 @@
 'use client';
 
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
+import Icon from '@assets/svgs';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
 import BottomSheet from '@components/common/bottmsheet/BottomSheet';
 import SortBtn from '@components/common/button/sortBtn/SortBtn';
@@ -138,16 +139,19 @@ const SearchResultPage = () => {
 
           <BottomSheet isOpen={isSortSheetOpen} onClose={() => setIsSortSheetOpen(false)}>
             <div className={styles.sortSheetContent}>
-              {Object.entries(SORT_OPTIONS).map(([key, value]) => (
-                <button
-                  key={key}
-                  className={`${styles.sortOptionButton} ${
-                    value === selectedOption ? styles.active : ''
-                  }`}
-                  onClick={() => handleSort(value)}>
-                  {SORT_LABELS[value as SortOption]}
-                </button>
-              ))}
+              {Object.entries(SORT_OPTIONS).map(([key, value]) => {
+                const isActive = value === selectedOption;
+
+                return (
+                  <button
+                    key={key}
+                    className={`${styles.sortOptionButton} ${isActive ? styles.active : ''}`}
+                    onClick={() => handleSort(value)}>
+                    {SORT_LABELS[value as SortOption]}
+                    {isActive && <Icon.IcnCheckBlack />}
+                  </button>
+                );
+              })}
             </div>
           </BottomSheet>
 
