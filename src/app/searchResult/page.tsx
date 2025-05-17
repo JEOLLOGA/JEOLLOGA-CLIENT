@@ -9,6 +9,7 @@ import ModalContainer from '@components/common/modal/ModalContainer';
 import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
+import { SORT_OPTIONS, SortOption, SORT_LABELS } from '@constants/sort';
 import useFilter from '@hooks/useFilter';
 import { getStorageValue } from '@hooks/useLocalStorage';
 import useNavigateTo from '@hooks/useNavigateTo';
@@ -98,11 +99,10 @@ const SearchResultPage = () => {
 
   const prevPath = getStorageValue('prevPage') || '';
 
-  const sortOptions = ['추천순', '찜 많은순', '가격 낮은순'];
   const [isSortSheetOpen, setIsSortSheetOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('추천순');
+  const [selectedOption, setSelectedOption] = useState<SortOption>(SORT_OPTIONS.RECOMMEND);
 
-  const handleSort = (option: string) => {
+  const handleSort = (option: SortOption) => {
     setSelectedOption(option);
     setIsSortSheetOpen(false);
     // TODO : 정렬 api 연결 ~
@@ -133,19 +133,19 @@ const SearchResultPage = () => {
       ) : (
         <div className={styles.bodyContainer}>
           <div className={styles.sortWrapper}>
-            <SortBtn text={selectedOption} onClick={() => setIsSortSheetOpen(true)} />
+            <SortBtn text={SORT_LABELS[selectedOption]} onClick={() => setIsSortSheetOpen(true)} />
           </div>
 
           <BottomSheet isOpen={isSortSheetOpen} onClose={() => setIsSortSheetOpen(false)}>
             <div className={styles.sortSheetContent}>
-              {sortOptions.map((option) => (
+              {Object.entries(SORT_OPTIONS).map(([key, value]) => (
                 <button
-                  key={option}
+                  key={key}
                   className={`${styles.sortOptionButton} ${
-                    option === selectedOption ? styles.active : ''
+                    value === selectedOption ? styles.active : ''
                   }`}
-                  onClick={() => handleSort(option)}>
-                  {option}
+                  onClick={() => handleSort(value)}>
+                  {SORT_LABELS[value as SortOption]}
                 </button>
               ))}
             </div>
