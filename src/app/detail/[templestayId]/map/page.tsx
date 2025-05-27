@@ -1,82 +1,25 @@
-'use client';
-import smallMarker from '@assets/images/icn_map.png';
 import ArrowBtn from '@components/common/button/arrowBtn/ArrowBtn';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import MapContainer from '@components/templeDetail/naverMap/MapContainer';
 
 import * as styles from './style.css';
 
-interface MapContainerProps {
-  latitude: number;
-  longitude: number;
-  size: 'small' | 'large';
-}
-
-const MapContainer = ({ latitude, longitude, size }: MapContainerProps) => {
-  useEffect(() => {
-    const { naver } = window;
-
-    const timeoutId = setTimeout(() => {
-      const isSmall = size === 'small';
-
-      const mapOptions = {
-        center: new naver.maps.LatLng(latitude, longitude),
-        zoom: isSmall ? 16 : 19,
-        disableDoubleClickZoom: isSmall,
-        scrollWheel: !isSmall,
-        draggable: !isSmall,
-        pinchZoom: !isSmall,
-        keyboardShortcuts: !isSmall,
-      };
-
-      const map = new naver.maps.Map('map', mapOptions);
-
-      new naver.maps.Marker({
-        position: new naver.maps.LatLng(latitude, longitude),
-        map,
-        icon: {
-          url: smallMarker,
-          size: isSmall ? new naver.maps.Size(53, 53) : new naver.maps.Size(63, 63),
-          scaledSize: isSmall ? new naver.maps.Size(53, 53) : new naver.maps.Size(63, 63),
-          anchor: isSmall ? new naver.maps.Point(26.5, 26.5) : new naver.maps.Size(31.5, 31.5),
-        },
-      });
-    }, 500);
-
-    return () => clearTimeout(timeoutId);
-  }, [latitude, longitude, size]);
-
-  return <div id="map" style={{ width: '100%', height: '100%' }}></div>;
-};
-
-const LargeMap = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const latitudeString = searchParams.get('latitude');
-  const longitudeString = searchParams.get('longitude');
-
-  const latitude = latitudeString ? parseFloat(latitudeString) : 0;
-  const longitude = longitudeString ? parseFloat(longitudeString) : 0;
-
-  const handleToBack = () => {
-    router.back();
-    window.addEventListener('popstate', () => {
-      setTimeout(() => {
-        window.scrollTo(0, document.body.scrollHeight);
-      }, 100);
-    });
-  };
+export default async function LargeMap({
+  searchParams,
+}: {
+  searchParams: { latitude: string; longitude: string };
+}) {
+  const params = await searchParams;
+  const latitude = params.latitude ? parseFloat(params.latitude) : 0;
+  const longitude = params.longitude ? parseFloat(params.longitude) : 0;
 
   return (
     <>
       <div className={styles.largeMapContainer}>
         <div className={styles.arrowBtn}>
-          <ArrowBtn onClick={handleToBack} />
+          <ArrowBtn />
         </div>
         <MapContainer latitude={latitude} longitude={longitude} size="large" />
       </div>
     </>
   );
-};
-
-export default LargeMap;
+}

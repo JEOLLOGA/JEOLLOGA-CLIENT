@@ -1,13 +1,15 @@
+'use client';
+
 import Icon from '@assets/svgs';
 import BtnBox from '@components/common/button/arrowBtn/arrowBtn.css';
 
-interface ArrowBtnProps {
-  onClick: () => void;
-}
+const ArrowBtn = () => {
+  const handleClick = () => {
+    window.history.back();
+  };
 
-const ArrowBtn = ({ onClick }: ArrowBtnProps) => {
   return (
-    <button onClick={onClick} className={BtnBox}>
+    <button onClick={handleClick} className={BtnBox}>
       <Icon.IcnBackBlackLeft />
     </button>
   );

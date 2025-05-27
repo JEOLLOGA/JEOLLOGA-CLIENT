@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Script from 'next/script';
 import { ReactNode } from 'react';
 
 import ClientProviders from './layout.client';
@@ -58,7 +59,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             style={{ display: 'none', visibility: 'hidden' }}></iframe>
         </noscript>
         {/* End Google Tag Manager (noscript) */}
-
+        <Script
+          src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_API_KEY}`}
+          strategy="afterInteractive"
+        />
         <ClientProviders>{children}</ClientProviders>
       </body>
     </html>
