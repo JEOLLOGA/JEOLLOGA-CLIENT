@@ -44,7 +44,11 @@ const PopularCard = ({
   };
 
   return (
-    <a href={link} className={styles.cardWrapper}>
+    <a
+      href={link}
+      className={styles.cardWrapper}
+      draggable={false}
+      onDragStart={(e) => e.preventDefault()}>
       <div>
         <div className={styles.imgBox} style={{ backgroundImage: `url(${templeImg})` }}>
           <RankBtn ranking={ranking} />

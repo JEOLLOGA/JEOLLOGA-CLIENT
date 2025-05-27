@@ -9,7 +9,12 @@ interface CurationCardProps {
 
 const CurationCard = ({ bgImage, title, subtitle, link }: CurationCardProps) => {
   return (
-    <a href={link} className={styles.cardContainer} style={{ backgroundImage: `url(${bgImage})` }}>
+    <a
+      href={link}
+      className={styles.cardContainer}
+      style={{ backgroundImage: `url(${bgImage})` }}
+      draggable={false}
+      onDragStart={(e) => e.preventDefault()}>
       <div className={styles.textbox}>
         <p className={styles.title}>{title}</p>
         <p className={styles.subtitle}>{subtitle}</p>
