@@ -3,6 +3,7 @@
 import useGetTempleImages from '@apis/templeImages';
 import PageName from '@components/common/pageName/PageName';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
+import Image from 'next/image';
 import { useParams } from 'next/navigation';
 
 import * as styles from './style.css';
@@ -30,7 +31,9 @@ const TemplePhotoPage = () => {
       </div>
       <div className={styles.photoGrid}>
         {data.templestayImgs.map((photo) => (
-          <img
+          <Image
+            width={162}
+            height={162}
             key={photo.imageUrlId}
             src={photo.imgUrl}
             alt={`Temple Stay ${photo.imageUrlId}`}
