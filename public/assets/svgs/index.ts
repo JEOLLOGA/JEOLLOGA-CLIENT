@@ -2,7 +2,9 @@ import IcnArrowBlackLeft from './icn_arrow_black_left.svg';
 import IcnArrowGrayDown from './icn_arrow_gray_down.svg';
 import IcnArrowGrayRight from './icn_arrow_gray_right.svg';
 import IcnArrowGrayUp from './icn_arrow_gray_up.svg';
+import IcnArrowSmallGrayDown from './icn_arrow_small_gray_down.svg';
 import IcnBackBlackLeft from './icn_back_black_left.svg';
+import IcnCheckBlack from './icn_check_black.svg';
 import IcnCloseLargeGray from './icn_close_large_gray.svg';
 import IcnCloseSmallGray from './icn_close_small_gray.svg';
 import IcnDivider from './icn_divider.svg';
@@ -64,6 +66,8 @@ const Icon = {
   IcnKakaoLogo,
   IcnDoubleArrowDown,
   IcnEmptyImage,
+  IcnArrowSmallGrayDown,
+  IcnCheckBlack,
 };
 
 export default Icon;

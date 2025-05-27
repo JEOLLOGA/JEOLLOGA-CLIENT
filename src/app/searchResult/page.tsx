@@ -1,11 +1,16 @@
 'use client';
+
 import { useAddWishlist, useRemoveWishlist } from '@apis/wish';
+import Icon from '@assets/svgs';
 import SearchCardList from '@components/card/templeStayCard/searchCardList/SearchCardList';
+import BottomSheet from '@components/common/bottmsheet/BottomSheet';
+import SortBtn from '@components/common/button/sortBtn/SortBtn';
 import SearchEmpty from '@components/common/empty/searchEmpty/SearchEmpty';
 import ModalContainer from '@components/common/modal/ModalContainer';
 import Pagination from '@components/common/pagination/Pagination';
 import FilterTypeBox from '@components/filter/filterTypeBox/FilterTypeBox';
 import SearchHeader from '@components/search/searchHeader/SearchHeader';
+import { SORT_OPTIONS, SortOption, SORT_LABELS } from '@constants/sort';
 import useFilter from '@hooks/useFilter';
 import { getStorageValue } from '@hooks/useLocalStorage';
 import useNavigateTo from '@hooks/useNavigateTo';
@@ -95,6 +100,15 @@ const SearchResultPage = () => {
 
   const prevPath = getStorageValue('prevPage') || '';
 
+  const [isSortSheetOpen, setIsSortSheetOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<SortOption>(SORT_OPTIONS.RECOMMEND);
+
+  const handleSort = (option: SortOption) => {
+    setSelectedOption(option);
+    setIsSortSheetOpen(false);
+    // TODO : 정렬 api 연결 ~
+  };
+
   return (
     <div className={styles.container}>
       {isModalOpen && (
@@ -119,12 +133,36 @@ const SearchResultPage = () => {
         </div>
       ) : (
         <div className={styles.bodyContainer}>
-          <SearchCardList
-            data={templestays}
-            layout="horizontal"
-            onToggleWishlist={handleToggleWishlist}
-            onRequireLogin={openModal}
-          />
+          <div className={styles.sortWrapper}>
+            <SortBtn text={SORT_LABELS[selectedOption]} onClick={() => setIsSortSheetOpen(true)} />
+          </div>
+
+          <BottomSheet isOpen={isSortSheetOpen} onClose={() => setIsSortSheetOpen(false)}>
+            <div className={styles.sortSheetContent}>
+              {Object.entries(SORT_OPTIONS).map(([key, value]) => {
+                const isActive = value === selectedOption;
+
+                return (
+                  <button
+                    key={key}
+                    className={`${styles.sortOptionButton} ${isActive ? styles.active : ''}`}
+                    onClick={() => handleSort(value)}>
+                    {SORT_LABELS[value as SortOption]}
+                    {isActive && <Icon.IcnCheckBlack />}
+                  </button>
+                );
+              })}
+            </div>
+          </BottomSheet>
+
+          <div className={styles.cardListWrapper}>
+            <SearchCardList
+              data={templestays}
+              layout="horizontal"
+              onToggleWishlist={handleToggleWishlist}
+              onRequireLogin={openModal}
+            />
+          </div>
           <Pagination
             currentPage={currentPage}
             totalPages={totalPages}
