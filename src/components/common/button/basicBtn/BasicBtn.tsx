@@ -1,5 +1,6 @@
 import Icon from '@assets/svgs';
-import buttonStyle from '@components/common/button/basicBtn/basicBtn.css';
+
+import * as styles from './basicBtn.css';
 
 interface ButtonProps {
   variant?: 'primary' | 'grayOutlined' | 'blackOutlined' | 'lightGrayOutlined' | 'green';
@@ -27,9 +28,13 @@ const BasicBtn = ({
 
   return (
     <button
-      className={buttonStyle({ color: variant, size, active: isActive ? true : false })}
+      className={styles.buttonStyle({ color: variant, size, active: isActive ? true : false })}
       onClick={onClick}>
-      {SelectedLeftIcon && <SelectedLeftIcon />}
+      {SelectedLeftIcon && (
+        <span className={styles.iconWrapper}>
+          <SelectedLeftIcon />
+        </span>
+      )}
       <p>{label}</p>
       {SelectedRightIcon && (
         <span
@@ -45,7 +50,8 @@ const BasicBtn = ({
               e.stopPropagation();
               onRightIconClick?.();
             }
-          }}>
+          }}
+          className={styles.iconWrapper}>
           <SelectedRightIcon />
         </span>
       )}
