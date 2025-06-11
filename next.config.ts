@@ -5,6 +5,9 @@ const withVanillaExtract = createVanillaExtractPlugin();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  images: {
+    domains: ['noms.templestay.com'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

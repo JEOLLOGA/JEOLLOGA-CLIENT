@@ -1,7 +1,9 @@
 'use client';
+
 import Icon from '@assets/svgs';
 import RankBtn from '@components/card/popularCard/RankBtn';
 import { getStorageValue } from '@hooks/useLocalStorage';
+import Image from 'next/image';
 import { useState } from 'react';
 
 import * as styles from './popularCard.css';
@@ -50,7 +52,13 @@ const PopularCard = ({
       draggable={false}
       onDragStart={(e) => e.preventDefault()}>
       <div>
-        <div className={styles.imgBox} style={{ backgroundImage: `url(${templeImg})` }}>
+        <div className={styles.imgBox}>
+          <Image
+            src={templeImg}
+            alt={`${templeName} 대표 이미지`}
+            fill
+            style={{ objectFit: 'cover' }}
+          />
           <RankBtn ranking={ranking} />
         </div>
         <div className={styles.bottomWrapper}>
