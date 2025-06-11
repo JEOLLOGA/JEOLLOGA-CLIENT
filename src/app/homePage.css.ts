@@ -6,7 +6,6 @@ const flexCenterColumn = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  position: 'relative',
 });
 
 export const homeWrapper = flexCenterColumn;
