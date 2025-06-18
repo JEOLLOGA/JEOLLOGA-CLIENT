@@ -41,8 +41,8 @@ export const imgBox = style({
   justifyContent: 'flex-end',
   color: theme.COLORS.white,
   overflow: 'hidden',
-  backgroundSize: 'cover',
   backgroundPosition: 'center',
+  position: 'relative',
 });
 
 export const bottomContainer = style({

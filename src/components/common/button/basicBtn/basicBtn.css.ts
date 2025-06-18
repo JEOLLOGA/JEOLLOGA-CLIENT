@@ -1,7 +1,8 @@
 import theme from '@styles/theme.css';
+import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
-const buttonStyle = recipe({
+export const buttonStyle = recipe({
   base: {
     display: 'flex',
     justifyContent: 'center',
@@ -144,4 +145,8 @@ const buttonStyle = recipe({
   },
 });
 
-export default buttonStyle;
+export const iconWrapper = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+});
