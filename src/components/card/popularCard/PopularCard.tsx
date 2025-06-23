@@ -13,6 +13,7 @@ interface PopularCardProps {
   isLiked?: boolean;
   onLikeToggle: (liked: boolean) => void;
   link: string;
+  onClick: () => void;
 }
 
 const PopularCard = ({
@@ -24,6 +25,7 @@ const PopularCard = ({
   isLiked = false,
   onLikeToggle,
   link,
+  onClick,
 }: PopularCardProps) => {
   const [liked, setLiked] = useState(isLiked);
 
@@ -42,7 +44,7 @@ const PopularCard = ({
   };
 
   return (
-    <a href={link} className={styles.cardWrapper}>
+    <a href={link} className={styles.cardWrapper} onClick={onClick}>
       <div>
         <div className={styles.imgBox} style={{ backgroundImage: `url(${templeImg})` }}>
           <RankBtn ranking={ranking} />

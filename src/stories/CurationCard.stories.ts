@@ -24,6 +24,7 @@ const meta = {
     title: '고양이 있는 절 봤어?',
     subtitle: '용문사에 있는 고양이 좀 봐. 귀엽지?',
     link: 'https://www.gototemplestay.com/',
+    onClick: () => {},
   },
 } satisfies Meta<typeof CurationCard>;
 
