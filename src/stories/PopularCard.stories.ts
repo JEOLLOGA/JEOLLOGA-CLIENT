@@ -42,6 +42,7 @@ const meta = {
     link: 'https://www.gototemplestay.com/',
     isLiked: false,
     onLikeToggle: () => alert('Liked'),
+    onClick: () => {},
   },
 } satisfies Meta<typeof PopularCard>;
 

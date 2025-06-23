@@ -7,6 +7,7 @@ import useCarousel from '@hooks/useCarousel';
 import { getStorageValue } from '@hooks/useLocalStorage';
 import { useQueryClient } from '@tanstack/react-query';
 import registDragEvent from '@utils/registDragEvent';
+import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
 import * as styles from './popularCarousel.css';
 
@@ -28,6 +29,8 @@ const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
       itemCount: data?.rankings?.length || 0,
       moveDistance: 355,
     });
+
+  const { logClickEvent } = useEventLogger('home_popularity_component');
 
   if (isLoading) {
     return <ExceptLayout type="loading" />;
@@ -66,7 +69,7 @@ const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
             onDragEnd: handleDragEnd,
           })}>
           {data?.rankings &&
-            data.rankings.map((rankings) => (
+            data.rankings.map((rankings, index) => (
               <PopularCard
                 key={rankings.templestayId}
                 ranking={rankings.ranking}
@@ -77,6 +80,11 @@ const PopularCarousel = ({ onRequireLogin }: PopularCarouselProps) => {
                 tag={rankings.tag}
                 onLikeToggle={(liked: boolean) => handleLikeToggle(rankings.templestayId, liked)}
                 link={`/detail/${rankings.templestayId}`}
+                onClick={() => {
+                  logClickEvent('click_popularity_card', {
+                    label: index + 1,
+                  });
+                }}
               />
             ))}
         </div>

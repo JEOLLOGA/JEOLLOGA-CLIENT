@@ -67,7 +67,11 @@ const TempleStayCard = ({
     <a
       href={link}
       className={isHorizontal ? styles.horizontalContainer : styles.verticalContainer}
-      onClick={() => logClickEvent('click_card_detail')}>
+      onClick={() =>
+        logClickEvent('click_card_detail', {
+          label: String(templestayId),
+        })
+      }>
       {imgUrl ? (
         <section className={isHorizontal ? styles.horizontalImgSection : styles.verticalImgSection}>
           <img
