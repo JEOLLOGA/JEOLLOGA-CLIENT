@@ -16,7 +16,7 @@ const RedirectionPage = () => {
   useEffect(() => {
     if (code) {
       window.history.forward();
-      mutate({ code, redirectUri });
+      mutate({ code });
     }
   }, [code, redirectUri, mutate]);
 
