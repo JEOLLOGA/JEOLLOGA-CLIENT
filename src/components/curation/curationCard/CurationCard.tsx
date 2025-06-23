@@ -5,11 +5,16 @@ interface CurationCardProps {
   title: string;
   subtitle: string;
   link: string;
+  onClick: () => void;
 }
 
-const CurationCard = ({ bgImage, title, subtitle, link }: CurationCardProps) => {
+const CurationCard = ({ bgImage, title, subtitle, link, onClick }: CurationCardProps) => {
   return (
-    <a href={link} className={styles.cardContainer} style={{ backgroundImage: `url(${bgImage})` }}>
+    <a
+      href={link}
+      className={styles.cardContainer}
+      style={{ backgroundImage: `url(${bgImage})` }}
+      onClick={onClick}>
       <div className={styles.textbox}>
         <p className={styles.title}>{title}</p>
         <p className={styles.subtitle}>{subtitle}</p>
