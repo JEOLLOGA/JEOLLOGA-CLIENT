@@ -5,7 +5,7 @@ import { ReviewsResponse, TemplestayImgsResponse, TempleDetail } from './type';
 
 export const useGetTempleDetails = (templestayId: string, userId?: string) => {
   const { data, isLoading, isError } = useQuery<TempleDetail>({
-    queryKey: ['detailPage', templestayId],
+    queryKey: ['detailPage', templestayId, userId],
     queryFn: () => getTempleDetails(templestayId, userId),
   });
 
@@ -20,8 +20,6 @@ export const useGetTempleImages = (templestayId: string) => {
 
   return { data, isLoading, isError };
 };
-
-export default useGetTempleImages;
 
 export const useGetTempleReviews = (templestayId: string, page: number) => {
   const { data, isLoading, isError } = useQuery<ReviewsResponse>({

@@ -15,7 +15,12 @@ const BlogReviewPage = async ({
   const currentPage = parseInt(page || '1', 10);
 
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(templeReviewsQueryOptions(templestayId, currentPage));
+
+  const cachedData = queryClient.getQueryData(['reviews', templestayId, currentPage]);
+
+  if (!cachedData) {
+    await queryClient.prefetchQuery(templeReviewsQueryOptions(templestayId, currentPage));
+  }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>

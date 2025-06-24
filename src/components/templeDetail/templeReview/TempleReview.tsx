@@ -1,8 +1,11 @@
-import { useGetTempleReviews } from '@apis/templeInfo';
+'use client';
+
+import { templeReviewsQueryOptions } from '@apis/templeInfo/prefetch';
 import ReviewCard from '@components/card/reviewCard/reviewCard/ReviewCard';
 import DetailTitle from '@components/detailTitle/DetailTitle';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import useNavigateTo from '@hooks/useNavigateTo';
+import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import useEventLogger from 'src/gtm/hooks/useEventLogger';
 
@@ -12,7 +15,7 @@ const TempleReview = () => {
   const { templestayId } = useParams();
   const navigateToLargeReview = useNavigateTo(`/detail/${templestayId}/blog`);
 
-  const { data, isLoading, isError } = useGetTempleReviews(String(templestayId), Number(1));
+  const { data, isLoading, isError } = useQuery(templeReviewsQueryOptions(String(templestayId), 1));
 
   const { logClickEvent } = useEventLogger('blog_review');
 
