@@ -1,47 +1,18 @@
-'use client';
+import templeImagesQueryOptions from '@apis/templeImages/prefetch';
+import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
-import useGetTempleImages from '@apis/templeImages';
-import PageName from '@components/common/pageName/PageName';
-import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
-import Image from 'next/image';
-import { useParams } from 'next/navigation';
+import TemplePhotoClient from './TemplePhotoClient';
 
-import * as styles from './style.css';
+const TemplePhotoPage = async ({ params }: { params: Promise<{ templestayId: string }> }) => {
+  const { templestayId } = await params;
+  const queryClient = new QueryClient();
 
-const TemplePhotoPage = () => {
-  const { templestayId } = useParams();
-  const { data, isLoading, isError } = useGetTempleImages(String(templestayId));
-
-  if (isLoading) {
-    return <ExceptLayout type="loading" />;
-  }
-
-  if (isError) {
-    return <ExceptLayout type="networkError" />;
-  }
-
-  if (!data) {
-    return <p>No user information available</p>;
-  }
+  await queryClient.prefetchQuery(templeImagesQueryOptions(templestayId));
 
   return (
-    <div className={styles.photoContainer}>
-      <div className={styles.headerBox}>
-        <PageName title="사진" />
-      </div>
-      <div className={styles.photoGrid}>
-        {data.templestayImgs.map((photo) => (
-          <Image
-            width={162}
-            height={162}
-            key={photo.imageUrlId}
-            src={photo.imgUrl}
-            alt={`Temple Stay ${photo.imageUrlId}`}
-            className={styles.photoItem}
-          />
-        ))}
-      </div>
-    </div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <TemplePhotoClient templestayId={templestayId} />
+    </HydrationBoundary>
   );
 };
 
