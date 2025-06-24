@@ -1,4 +1,4 @@
-import instance, { privateInstance } from '@apis/instance';
+import { privateInstance } from '@apis/instance';
 
 import { OnboardingUserRequest, UserNicknameResponse } from './type';
 
@@ -6,7 +6,7 @@ export const fetchUserNickname = async (userId?: number) => {
   if (userId === 0) {
     return null;
   }
-  const response = await instance.get<UserNicknameResponse>(`/user/register/success`, {
+  const response = await privateInstance.get<UserNicknameResponse>(`/user/register/success`, {
     params: {
       userId,
     },

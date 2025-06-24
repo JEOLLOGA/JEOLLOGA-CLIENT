@@ -19,6 +19,7 @@ export const privateInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
+    Authorization: `Bearer ${getStorageValue('Authorization')}`,
   },
   withCredentials: true,
 });
