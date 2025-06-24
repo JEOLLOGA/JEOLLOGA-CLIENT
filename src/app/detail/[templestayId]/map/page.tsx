@@ -6,7 +6,7 @@ import * as styles from './style.css';
 const LargeMap = async ({
   searchParams,
 }: {
-  searchParams: { latitude: string; longitude: string };
+  searchParams: Promise<{ latitude: string; longitude: string }>;
 }) => {
   const params = await searchParams;
   const latitude = params.latitude ? parseFloat(params.latitude) : 0;
