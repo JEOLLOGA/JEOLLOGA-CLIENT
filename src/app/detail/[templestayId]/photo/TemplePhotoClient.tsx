@@ -1,6 +1,6 @@
 'use client';
 
-import useGetTempleImages from '@apis/templeImages';
+import useGetTempleImages from '@apis/templeInfo';
 import PageName from '@components/common/pageName/PageName';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import Image from 'next/image';

@@ -1,4 +1,4 @@
-import templeImagesQueryOptions from '@apis/templeImages/prefetch';
+import templeImagesQueryOptions from '@apis/templeInfo/prefetch';
 import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query';
 
 import TemplePhotoClient from './TemplePhotoClient';

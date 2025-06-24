@@ -1,6 +1,6 @@
 import { queryOptions } from '@tanstack/react-query';
 
-import getTempleImages from './axios';
+import { getTempleImages } from './axios';
 import { TemplestayImgsResponse } from './type';
 
 const templeImagesQueryOptions = (templestayId: string) =>
