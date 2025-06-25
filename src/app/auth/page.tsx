@@ -10,7 +10,6 @@ export const dynamic = 'force-dynamic';
 const RedirectionPage = () => {
   const searchParams = useSearchParams();
   const code = searchParams.get('code') || '';
-  const redirectUri = process.env.NEXT_PUBLIC_REDIRECT_URI || '';
   const { mutate } = useGetKakaoLogin();
 
   useEffect(() => {
@@ -18,7 +17,7 @@ const RedirectionPage = () => {
       window.history.forward();
       mutate({ code });
     }
-  }, [code, redirectUri, mutate]);
+  }, [code, mutate]);
 
   return <ExceptLayout type="loading" />;
 };
