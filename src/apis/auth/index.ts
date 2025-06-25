@@ -1,13 +1,13 @@
-import { postKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
+import { getKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
 import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
-export const usePostKakaoLogin = () => {
+export const useGetKakaoLogin = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: ({ code }: { code: string }) => postKakaoLogin(code),
+    mutationFn: ({ code }: { code: string }) => getKakaoLogin(code),
     onSuccess: (response) => {
       const userId = response.data.data.userId;
       const userNickname = response.data.data.nickname;

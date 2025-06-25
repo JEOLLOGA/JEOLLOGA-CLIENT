@@ -1,6 +1,6 @@
 'use client';
 
-import { usePostKakaoLogin } from '@apis/auth';
+import { useGetKakaoLogin } from '@apis/auth';
 import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect } from 'react';
@@ -11,7 +11,7 @@ const RedirectionPage = () => {
   const searchParams = useSearchParams();
   const code = searchParams.get('code') || '';
   const redirectUri = process.env.NEXT_PUBLIC_REDIRECT_URI || '';
-  const { mutate } = usePostKakaoLogin();
+  const { mutate } = useGetKakaoLogin();
 
   useEffect(() => {
     if (code) {
