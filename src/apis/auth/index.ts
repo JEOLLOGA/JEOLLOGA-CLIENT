@@ -12,7 +12,13 @@ export const useGetKakaoLogin = () => {
       const userId = response.data.data.userId;
       const userNickname = response.data.data.nickname;
 
-      setCookie('userId', userId);
+      setCookie('userId', userId, {
+        httpOnly: false,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 1209600, // 14일
+      });
 
       if (!userNickname) {
         router.push('/onboarding');
