@@ -1,23 +1,24 @@
-import { postKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
+import { getKakaoLogin, postLogout, postWithdraw } from '@apis/auth/axios';
 import { useMutation } from '@tanstack/react-query';
+import { setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 
-export const usePostKakaoLogin = () => {
+export const useGetKakaoLogin = () => {
   const router = useRouter();
 
   return useMutation({
-    mutationFn: ({ code, redirectUri }: { code: string; redirectUri: string }) =>
-      postKakaoLogin(code, redirectUri),
+    mutationFn: ({ code }: { code: string }) => getKakaoLogin(code),
     onSuccess: (response) => {
-      const userId = response.data.userId;
-      const accessToken = response.headers['authorization'].replace('Bearer ', '');
-      const refreshToken = response.headers['refreshtoken'];
-      const userNickname = response.data.nickname;
+      const userId = response.data.data.userId;
+      const userNickname = response.data.data.nickname;
 
-      localStorage.setItem('userId', userId);
-      localStorage.setItem('Authorization', accessToken);
-      localStorage.setItem('refreshToken', refreshToken);
-      localStorage.removeItem('searchKeyword');
+      setCookie('userId', userId, {
+        httpOnly: false,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        path: '/',
+        maxAge: 1209600, // 14일
+      });
 
       if (!userNickname) {
         router.push('/onboarding');
