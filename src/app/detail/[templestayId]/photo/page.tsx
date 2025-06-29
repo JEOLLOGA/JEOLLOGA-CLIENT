@@ -1,26 +1,27 @@
-'use client';
-
-import useGetTempleImages from '@apis/templeImages';
+import { templeImagesQueryOptions } from '@apis/templeInfo/prefetch';
+import { TemplestayImgsResponse, TemplestayImg } from '@apis/templeInfo/type';
 import PageName from '@components/common/pageName/PageName';
-import ExceptLayout from '@components/except/exceptLayout/ExceptLayout';
-import { useParams } from 'next/navigation';
+import { QueryClient } from '@tanstack/react-query';
+import Image from 'next/image';
 
 import * as styles from './style.css';
 
-const TemplePhotoPage = () => {
-  const { templestayId } = useParams();
-  const { data, isLoading, isError } = useGetTempleImages(String(templestayId));
+const TemplePhotoPage = async ({ params }: { params: Promise<{ templestayId: string }> }) => {
+  const { templestayId } = await params;
+  const queryClient = new QueryClient();
 
-  if (isLoading) {
-    return <ExceptLayout type="loading" />;
+  const cachedData = queryClient.getQueryData(['images', templestayId]);
+
+  if (!cachedData) {
+    await queryClient.prefetchQuery(templeImagesQueryOptions(templestayId));
   }
 
-  if (isError) {
-    return <ExceptLayout type="networkError" />;
-  }
+  const data =
+    queryClient.getQueryData<TemplestayImgsResponse>(['images', templestayId]) ||
+    (await queryClient.fetchQuery(templeImagesQueryOptions(templestayId)));
 
   if (!data) {
-    return <p>No user information available</p>;
+    return <p>No temple images available</p>;
   }
 
   return (
@@ -29,8 +30,10 @@ const TemplePhotoPage = () => {
         <PageName title="사진" />
       </div>
       <div className={styles.photoGrid}>
-        {data.templestayImgs.map((photo) => (
-          <img
+        {data.templestayImgs.map((photo: TemplestayImg) => (
+          <Image
+            width={162}
+            height={162}
             key={photo.imageUrlId}
             src={photo.imgUrl}
             alt={`Temple Stay ${photo.imageUrlId}`}
